@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5o6yqui00tua"]
+
+[ext_resource type="AudioStream" uid="uid://0sigvvirtt0w" path="res://music/Whimsy_Loopable.ogg" id="1_y2pf5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_y2pf5")
+autoplay = true
