@@ -1,16 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=20 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Script" path="res://scenes/GameScene/Helm.gd" id="2_atwiw"]
 [ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="2_p4bl1"]
 [ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="2_t5sut"]
-[ext_resource type="Script" path="res://scenes/GameScene/Station.gd" id="3_eqivj"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="3_jl034"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="6_115t8"]
+[ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/station.tscn" id="6_jn8e0"]
 [ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="7_nrlsp"]
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="8_dp8ix"]
 [ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
+[ext_resource type="Script" path="res://scenes/GameScene/Ascend.gd" id="8_sp7d0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
@@ -28,12 +29,6 @@ size = Vector2(32, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwvih"]
 size = Vector2(480, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oke5l"]
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy8i3"]
-size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0n5r2"]
 
@@ -112,17 +107,6 @@ shape = SubResource("RectangleShape2D_qwvih")
 position = Vector2(192, 32)
 script = ExtResource("2_atwiw")
 
-[node name="Station" type="Node2D" parent="Submarine/Stations/Helm"]
-script = ExtResource("3_eqivj")
-
-[node name="Area2D" type="Area2D" parent="Submarine/Stations/Helm/Station"]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Stations/Helm/Station/Area2D"]
-shape = SubResource("RectangleShape2D_oke5l")
-debug_color = Color(0.778598, 0.438096, 0.0171958, 0.42)
-
 [node name="HelmUI" parent="Submarine/Stations/Helm" instance=ExtResource("6_115t8")]
 anchors_preset = 7
 anchor_left = 0.5
@@ -136,8 +120,11 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="Station" parent="Submarine/Stations/Helm" instance=ExtResource("6_jn8e0")]
+
 [node name="Ascend" type="Node2D" parent="Submarine/Stations"]
 position = Vector2(-164, 32)
+script = ExtResource("8_sp7d0")
 
 [node name="AscendUI" parent="Submarine/Stations/Ascend" instance=ExtResource("7_nrlsp")]
 offset_left = -16.0
@@ -145,13 +132,7 @@ offset_top = -56.0
 offset_right = 16.0
 offset_bottom = -24.0
 
-[node name="Station" type="Node2D" parent="Submarine/Stations/Ascend"]
-
-[node name="Area2D" type="Area2D" parent="Submarine/Stations/Ascend/Station"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Stations/Ascend/Station/Area2D"]
-shape = SubResource("RectangleShape2D_fy8i3")
-debug_color = Color(0.780392, 0.439216, 0.0156863, 0.419608)
+[node name="Station" parent="Submarine/Stations/Ascend" instance=ExtResource("6_jn8e0")]
 
 [node name="Environment" type="Node2D" parent="."]
 position = Vector2(0, 300)
