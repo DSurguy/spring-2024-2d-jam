@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=9 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
-[ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="2_t5sut"]
-[ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="3_jl034"]
+[ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
@@ -35,12 +34,10 @@ offset_bottom = 238.0
 text = "I AM GAME SCENE"
 
 [node name="Submarine" type="Node2D" parent="."]
-script = ExtResource("2_t5sut")
 
 [node name="Player" type="CharacterBody2D" parent="Submarine"]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("3_jl034")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Player"]
 shape = SubResource("RectangleShape2D_8nvpx")
@@ -89,3 +86,9 @@ position = Vector2(0, -40)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Plant"]
 shape = SubResource("CircleShape2D_0n5r2")
 debug_color = Color(3.85046e-07, 0.644872, 0.272088, 0.42)
+
+[node name="Music" type="Node" parent="."]
+
+[node name="MusicLoop" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("2_px71f")
+autoplay = true
