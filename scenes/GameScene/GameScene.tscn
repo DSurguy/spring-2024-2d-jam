@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="6_115t8"]
 [ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="7_nrlsp"]
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="8_dp8ix"]
-[ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
+[ext_resource type="AudioStream" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 

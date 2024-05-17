@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk4fm1rhxv6h"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Station.gd" id="1_db2ko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oke5l"]
+size = Vector2(32, 32)
+
+[node name="Station" type="Node2D"]
+script = ExtResource("1_db2ko")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_oke5l")
+debug_color = Color(0.778598, 0.438096, 0.0171958, 0.42)
