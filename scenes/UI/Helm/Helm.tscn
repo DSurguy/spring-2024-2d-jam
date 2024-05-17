@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://30roy3p4ivnh"]
+[gd_scene load_steps=4 format=3 uid="uid://30roy3p4ivnh"]
 
+[ext_resource type="Script" path="res://scenes/UI/Helm/Helm.gd" id="1_26f2r"]
 [ext_resource type="Texture2D" uid="uid://bqeoi0u02wwv1" path="res://assets/icons/SolidArrow-Left@2x.png" id="1_muxt7"]
 [ext_resource type="Texture2D" uid="uid://bej3x1oxsw4p" path="res://assets/icons/SolidArrow-Right@2x.png" id="2_r4r4l"]
 
@@ -8,6 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 120.0
 offset_bottom = 50.0
+script = ExtResource("1_26f2r")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -36,7 +38,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/HBoxContainer"]
+[node name="LeftArrowTexture" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("1_muxt7")
@@ -47,8 +49,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/HBoxContainer2"]
+[node name="RightArrowTexture" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("2_r4r4l")
 expand_mode = 1
+
+[connection signal="status_changed" from="." to="." method="_on_status_changed"]

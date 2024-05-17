@@ -56,6 +56,11 @@ text = "Load Shop Scene"
 layout_mode = 2
 text = "Load Game Scene"
 
+[node name="LoadUITestScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load UI Test Scene"
+
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadTestScene" to="." method="_on_load_test_scene_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadShopScene" to="." method="_on_load_shop_scene_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadGameScene" to="." method="_on_load_game_scene_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadUITestScene" to="." method="_on_load_ui_test_scene_button_pressed"]
