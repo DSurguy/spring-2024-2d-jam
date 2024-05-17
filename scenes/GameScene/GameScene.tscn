@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="2_t5sut"]
 [ext_resource type="Script" path="res://scenes/GameScene/Station.gd" id="3_eqivj"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="3_jl034"]
-[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Helm/HelmUI.tscn" id="6_115t8"]
+[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="6_115t8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
