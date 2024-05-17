@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=20 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Script" path="res://scenes/GameScene/Helm.gd" id="2_atwiw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="6_115t8"]
 [ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="7_nrlsp"]
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="8_dp8ix"]
+[ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
@@ -158,7 +159,8 @@ debug_color = Color(3.85046e-07, 0.644872, 0.272088, 0.42)
 
 [node name="Music" type="Node" parent="."]
 script = ExtResource("8_dp8ix")
+descent_music = ExtResource("2_px71f")
+ascent_music = ExtResource("10_8b3co")
 
-[node name="MusicLoop" type="AudioStreamPlayer" parent="Music"]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_px71f")
-autoplay = true
