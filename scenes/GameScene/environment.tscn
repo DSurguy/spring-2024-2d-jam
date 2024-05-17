@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://vhgx1tlgboft"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0n5r2"]
+
+[node name="Environment" type="Node2D"]
+position = Vector2(0, 300)
+
+[node name="Plant" type="StaticBody2D" parent="."]
+position = Vector2(0, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant"]
+shape = SubResource("CircleShape2D_0n5r2")
+debug_color = Color(3.85046e-07, 0.644872, 0.272088, 0.42)

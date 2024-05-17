@@ -1,39 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=11 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
-[ext_resource type="Script" path="res://scenes/GameScene/Helm.gd" id="2_atwiw"]
 [ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="2_p4bl1"]
 [ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
-[ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="2_t5sut"]
-[ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="3_jl034"]
-[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="6_115t8"]
-[ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/station.tscn" id="6_jn8e0"]
-[ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="7_nrlsp"]
+[ext_resource type="PackedScene" uid="uid://d3vhcxq5yx7k" path="res://scenes/GameScene/submarine.tscn" id="3_hsa6m"]
+[ext_resource type="PackedScene" uid="uid://vhgx1tlgboft" path="res://scenes/GameScene/environment.tscn" id="4_5iene"]
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="8_dp8ix"]
-[ext_resource type="Script" path="res://scenes/GameScene/Ascend.gd" id="8_sp7d0"]
-[ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
+[ext_resource type="AudioStream" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
 [ext_resource type="Script" path="res://scenes/GameScene/Ambience.gd" id="12_8m4r4"]
 [ext_resource type="Script" path="res://scenes/GameScene/Bubble.gd" id="13_o3rii"]
 [ext_resource type="AudioStream" uid="uid://cow3ilsdxramd" path="res://sfx/AMB_bubble.ogg" id="14_jfpvc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0bx2"]
-size = Vector2(24, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vix4"]
-size = Vector2(480, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ye3h"]
-size = Vector2(32, 96)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_67chm"]
-size = Vector2(32, 96)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwvih"]
-size = Vector2(480, 32)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0n5r2"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_knlki")
@@ -50,105 +26,6 @@ offset_right = 640.0
 offset_bottom = 238.0
 text = "I AM GAME SCENE"
 
-[node name="Submarine" type="Node2D" parent="."]
-script = ExtResource("2_t5sut")
-
-[node name="Player" type="CharacterBody2D" parent="Submarine"]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("3_jl034")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Player"]
-shape = SubResource("RectangleShape2D_8nvpx")
-debug_color = Color(0.721569, 0.168627, 0.0627451, 0.615686)
-
-[node name="StationInteraction" type="Area2D" parent="Submarine/Player"]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Player/StationInteraction"]
-shape = SubResource("RectangleShape2D_f0bx2")
-debug_color = Color(0.900578, 0.00016942, 0.762208, 0.42)
-
-[node name="AudioListener2D" type="AudioListener2D" parent="Submarine/Player"]
-
-[node name="Hull" type="Node2D" parent="Submarine"]
-
-[node name="Floor" type="StaticBody2D" parent="Submarine/Hull"]
-position = Vector2(0, 64)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/Floor"]
-shape = SubResource("RectangleShape2D_7vix4")
-
-[node name="WallLeft" type="StaticBody2D" parent="Submarine/Hull"]
-position = Vector2(-224, 0)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/WallLeft"]
-shape = SubResource("RectangleShape2D_7ye3h")
-
-[node name="WallRight" type="StaticBody2D" parent="Submarine/Hull"]
-position = Vector2(224, 0)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/WallRight"]
-shape = SubResource("RectangleShape2D_67chm")
-
-[node name="Ceiling" type="StaticBody2D" parent="Submarine/Hull"]
-position = Vector2(0, -64)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/Ceiling"]
-shape = SubResource("RectangleShape2D_qwvih")
-
-[node name="Stations" type="Node2D" parent="Submarine"]
-
-[node name="Helm" type="Node2D" parent="Submarine/Stations"]
-position = Vector2(192, 32)
-script = ExtResource("2_atwiw")
-
-[node name="HelmUI" parent="Submarine/Stations/Helm" instance=ExtResource("6_115t8")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -56.0
-offset_right = 32.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Station" parent="Submarine/Stations/Helm" instance=ExtResource("6_jn8e0")]
-
-[node name="Ascend" type="Node2D" parent="Submarine/Stations"]
-position = Vector2(-164, 32)
-script = ExtResource("8_sp7d0")
-
-[node name="AscendUI" parent="Submarine/Stations/Ascend" instance=ExtResource("7_nrlsp")]
-offset_left = -16.0
-offset_top = -56.0
-offset_right = 16.0
-offset_bottom = -24.0
-
-[node name="Station" parent="Submarine/Stations/Ascend" instance=ExtResource("6_jn8e0")]
-
-[node name="Environment" type="Node2D" parent="."]
-position = Vector2(0, 300)
-
-[node name="Plant" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, -40)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Plant"]
-shape = SubResource("CircleShape2D_0n5r2")
-debug_color = Color(3.85046e-07, 0.644872, 0.272088, 0.42)
-
 [node name="Music" type="Node" parent="."]
 script = ExtResource("8_dp8ix")
 descent_music = ExtResource("2_px71f")
@@ -161,17 +38,17 @@ autoplay = true
 [node name="Ambience" type="Node" parent="."]
 script = ExtResource("12_8m4r4")
 
-[node name="Bubble" type="Node" parent="Ambience" node_paths=PackedStringArray("listener")]
+[node name="Bubble" type="Node" parent="Ambience"]
 script = ExtResource("13_o3rii")
-listener = NodePath("../../Submarine/Player")
 bubble_sound = ExtResource("14_jfpvc")
 
 [node name="BubblePlayer" type="AudioStreamPlayer2D" parent="Ambience/Bubble"]
 panning_strength = 76.3
-bus = &"Sfx"
 
 [node name="BubbleTimer" type="Timer" parent="Ambience/Bubble"]
 
-[connection signal="area_entered" from="Submarine/Player/StationInteraction" to="Submarine/Player" method="_on_station_interaction_area_entered"]
-[connection signal="area_exited" from="Submarine/Player/StationInteraction" to="Submarine/Player" method="_on_station_interaction_area_exited"]
+[node name="Submarine" parent="." instance=ExtResource("3_hsa6m")]
+
+[node name="Environment" parent="." instance=ExtResource("4_5iene")]
+
 [connection signal="timeout" from="Ambience/Bubble/BubbleTimer" to="Ambience/Bubble" method="_on_bubble_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvg3k0vq6qxxn"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="1_klu5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0bx2"]
+size = Vector2(24, 24)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_klu5a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8nvpx")
+debug_color = Color(0.721569, 0.168627, 0.0627451, 0.615686)
+
+[node name="StationInteraction" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationInteraction"]
+shape = SubResource("RectangleShape2D_f0bx2")
+debug_color = Color(0.900578, 0.00016942, 0.762208, 0.42)
+
+[connection signal="area_entered" from="StationInteraction" to="." method="_on_station_interaction_area_entered"]
+[connection signal="area_exited" from="StationInteraction" to="." method="_on_station_interaction_area_exited"]

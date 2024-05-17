@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3vhcxq5yx7k"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
+[ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
+[ext_resource type="PackedScene" uid="uid://dav5fb6cl8r26" path="res://scenes/GameScene/hull.tscn" id="3_63n1p"]
+[ext_resource type="Script" path="res://scenes/GameScene/Helm.gd" id="4_r5l76"]
+[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="5_to3mj"]
+[ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/station.tscn" id="6_5rhys"]
+[ext_resource type="Script" path="res://scenes/GameScene/Ascend.gd" id="7_p2psf"]
+[ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="8_s2b0p"]
+
+[node name="Submarine" type="Node2D"]
+script = ExtResource("1_0ojk1")
+
+[node name="Player" parent="." instance=ExtResource("2_7br66")]
+
+[node name="Hull" parent="." instance=ExtResource("3_63n1p")]
+
+[node name="Stations" type="Node2D" parent="."]
+
+[node name="Helm" type="Node2D" parent="Stations"]
+position = Vector2(192, 32)
+script = ExtResource("4_r5l76")
+
+[node name="HelmUI" parent="Stations/Helm" instance=ExtResource("5_to3mj")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Station" parent="Stations/Helm" instance=ExtResource("6_5rhys")]
+
+[node name="Ascend" type="Node2D" parent="Stations"]
+position = Vector2(-164, 32)
+script = ExtResource("7_p2psf")
+
+[node name="AscendUI" parent="Stations/Ascend" instance=ExtResource("8_s2b0p")]
+offset_left = -16.0
+offset_top = -56.0
+offset_right = 16.0
+offset_bottom = -24.0
+
+[node name="Station" parent="Stations/Ascend" instance=ExtResource("6_5rhys")]
