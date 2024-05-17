@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=24 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Script" path="res://scenes/GameScene/Helm.gd" id="2_atwiw"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="7_nrlsp"]
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="8_dp8ix"]
 [ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
+[ext_resource type="Script" path="res://scenes/GameScene/Ambience.gd" id="12_8m4r4"]
+[ext_resource type="Script" path="res://scenes/GameScene/Bubble.gd" id="13_o3rii"]
+[ext_resource type="AudioStream" uid="uid://cow3ilsdxramd" path="res://sfx/AMB_bubble.ogg" id="14_jfpvc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
@@ -71,6 +74,8 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Player/StationInteraction"]
 shape = SubResource("RectangleShape2D_f0bx2")
 debug_color = Color(0.900578, 0.00016942, 0.762208, 0.42)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Submarine/Player"]
 
 [node name="Hull" type="Node2D" parent="Submarine"]
 
@@ -172,5 +177,18 @@ ascent_music = ExtResource("10_8b3co")
 stream = ExtResource("2_px71f")
 autoplay = true
 
+[node name="Ambience" type="Node" parent="."]
+script = ExtResource("12_8m4r4")
+
+[node name="Bubble" type="Node" parent="Ambience" node_paths=PackedStringArray("listener")]
+script = ExtResource("13_o3rii")
+listener = NodePath("../../Submarine/Player")
+bubble_sound = ExtResource("14_jfpvc")
+
+[node name="BubblePlayer" type="AudioStreamPlayer2D" parent="Ambience/Bubble"]
+
+[node name="BubbleTimer" type="Timer" parent="Ambience/Bubble"]
+
 [connection signal="area_entered" from="Submarine/Player/StationInteraction" to="Submarine/Player" method="_on_station_interaction_area_entered"]
 [connection signal="area_exited" from="Submarine/Player/StationInteraction" to="Submarine/Player" method="_on_station_interaction_area_exited"]
+[connection signal="timeout" from="Ambience/Bubble/BubbleTimer" to="Ambience/Bubble" method="_on_bubble_timer_timeout"]
