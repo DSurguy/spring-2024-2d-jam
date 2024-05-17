@@ -26,6 +26,7 @@ size = Vector2(32, 96)
 size = Vector2(480, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oke5l"]
+size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0n5r2"]
 
@@ -98,7 +99,7 @@ shape = SubResource("RectangleShape2D_qwvih")
 [node name="Stations" type="Node2D" parent="Submarine"]
 
 [node name="Helm" type="Node2D" parent="Submarine/Stations"]
-position = Vector2(80, 20)
+position = Vector2(192, 32)
 script = ExtResource("2_atwiw")
 
 [node name="Station" type="Node2D" parent="Submarine/Stations/Helm"]
@@ -107,11 +108,14 @@ script = ExtResource("3_eqivj")
 [node name="Area2D" type="Area2D" parent="Submarine/Stations/Helm/Station"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Stations/Helm/Station/Area2D"]
-position = Vector2(118, 18)
 shape = SubResource("RectangleShape2D_oke5l")
 debug_color = Color(0.778598, 0.438096, 0.0171958, 0.42)
 
 [node name="HelmUI" parent="Submarine/Stations/Helm" instance=ExtResource("6_115t8")]
+offset_left = -32.0
+offset_top = -52.0
+offset_right = 32.0
+offset_bottom = -20.0
 
 [node name="Environment" type="Node2D" parent="."]
 position = Vector2(0, 300)
