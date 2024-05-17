@@ -1,11 +1,13 @@
 extends Node2D
 
 var active = false
+var submarine: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	submarine = get_parent().get_parent().get_parent()
+	if submarine.name != "Submarine":
+		printerr("Submarine not found for station: " + name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
