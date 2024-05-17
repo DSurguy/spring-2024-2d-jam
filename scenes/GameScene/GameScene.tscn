@@ -167,7 +167,7 @@ listener = NodePath("../../Submarine/Player")
 bubble_sound = ExtResource("14_jfpvc")
 
 [node name="BubblePlayer" type="AudioStreamPlayer2D" parent="Ambience/Bubble"]
-panning_strength = 2.46
+panning_strength = 76.3
 bus = &"Sfx"
 
 [node name="BubbleTimer" type="Timer" parent="Ambience/Bubble"]
