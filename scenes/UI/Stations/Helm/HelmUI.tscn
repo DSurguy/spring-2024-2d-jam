@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://30roy3p4ivnh"]
 
-[ext_resource type="Script" path="res://scenes/UI/Helm/HelmUI.gd" id="1_26f2r"]
+[ext_resource type="Script" path="res://scenes/UI/Stations/Helm/HelmUI.gd" id="1_26f2r"]
 [ext_resource type="Texture2D" uid="uid://bqeoi0u02wwv1" path="res://assets/icons/SolidArrow-Left@2x.png" id="1_muxt7"]
 [ext_resource type="Texture2D" uid="uid://bej3x1oxsw4p" path="res://assets/icons/SolidArrow-Right@2x.png" id="2_r4r4l"]
 

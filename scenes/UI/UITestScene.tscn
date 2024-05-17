@@ -1,33 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://n1ql8cl0dei5"]
+[gd_scene load_steps=4 format=3 uid="uid://n1ql8cl0dei5"]
 
-[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Helm/HelmUI.tscn" id="1_3y17d"]
+[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="1_3y17d"]
 [ext_resource type="Script" path="res://scenes/UI/UITestScene.gd" id="1_hsqk2"]
+[ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="3_qmkou"]
 
 [node name="UiTestScene" type="Node2D"]
 script = ExtResource("1_hsqk2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Helm" parent="CanvasLayer" instance=ExtResource("1_3y17d")]
+[node name="HelmUI" parent="CanvasLayer" instance=ExtResource("1_3y17d")]
 
-[node name="Control" type="HBoxContainer" parent="CanvasLayer"]
+[node name="Helm Buttons" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 17.0
 offset_top = 70.0
 offset_right = 191.0
 offset_bottom = 110.0
 
-[node name="Button" type="Button" parent="CanvasLayer/Control"]
+[node name="Button" type="Button" parent="CanvasLayer/Helm Buttons"]
 layout_mode = 2
 text = "Left"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control"]
+[node name="Button2" type="Button" parent="CanvasLayer/Helm Buttons"]
 layout_mode = 2
 text = "Right"
 
-[node name="Button3" type="Button" parent="CanvasLayer/Control"]
+[node name="Button3" type="Button" parent="CanvasLayer/Helm Buttons"]
 layout_mode = 2
 text = "None"
 
-[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Button3" to="." method="_on_button_3_pressed"]
+[node name="AscendUI" parent="CanvasLayer" instance=ExtResource("3_qmkou")]
+offset_left = 366.0
+offset_top = 27.0
+offset_right = 416.0
+offset_bottom = 77.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 334.0
+offset_top = 96.0
+offset_right = 465.0
+offset_bottom = 136.0
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Press"
+
+[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Un-Press"
+
+[connection signal="pressed" from="CanvasLayer/Helm Buttons/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Helm Buttons/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Helm Buttons/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button" to="." method="_on_press_ascend"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button2" to="." method="_on_press_un_ascend"]
