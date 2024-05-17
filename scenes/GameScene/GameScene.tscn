@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=13 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
+[ext_resource type="Script" path="res://scenes/GameScene/Helm.gd" id="2_atwiw"]
 [ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
+[ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="2_t5sut"]
+[ext_resource type="Script" path="res://scenes/GameScene/Station.gd" id="3_eqivj"]
+[ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="3_jl034"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
@@ -34,10 +38,12 @@ offset_bottom = 238.0
 text = "I AM GAME SCENE"
 
 [node name="Submarine" type="Node2D" parent="."]
+script = ExtResource("2_t5sut")
 
 [node name="Player" type="CharacterBody2D" parent="Submarine"]
 collision_layer = 2
 collision_mask = 2
+script = ExtResource("3_jl034")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Player"]
 shape = SubResource("RectangleShape2D_8nvpx")
@@ -76,6 +82,14 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/Ceiling"]
 shape = SubResource("RectangleShape2D_qwvih")
+
+[node name="Stations" type="Node2D" parent="Submarine"]
+
+[node name="Helm" type="Node2D" parent="Submarine/Stations"]
+script = ExtResource("2_atwiw")
+
+[node name="Station" type="Node2D" parent="Submarine/Stations/Helm"]
+script = ExtResource("3_eqivj")
 
 [node name="Environment" type="Node2D" parent="."]
 position = Vector2(0, 300)
