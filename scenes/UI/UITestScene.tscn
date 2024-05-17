@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://n1ql8cl0dei5"]
+
+[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Helm/Helm.tscn" id="1_3y17d"]
+
+[node name="UiTestScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Helm" parent="CanvasLayer" instance=ExtResource("1_3y17d")]
