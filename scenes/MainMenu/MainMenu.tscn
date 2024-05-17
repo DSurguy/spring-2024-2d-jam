@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfwtjv78bol0l"]
+
+[ext_resource type="Script" path="res://scenes/LoadableScene.gd" id="1_ywqsf"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_ywqsf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center][outline_size={3}][outline_color=#31424f]UI Practice Project[/outline_color][/outline_size][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="LoadTestScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load Test Scene"
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadTestScene" to="." method="_on_load_test_scene_button_pressed"]

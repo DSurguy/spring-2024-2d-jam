@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyrs160lfwj6i"]
+
+[ext_resource type="Script" path="res://scenes/SceneLoader/SceneLoader.gd" id="1_61ngp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x26e1"]
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="SceneLoader" type="Node2D"]
+script = ExtResource("1_61ngp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+follow_viewport_enabled = true
+
+[node name="Loader" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Loader"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.235294, 0.784314)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Loader"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Loader/CenterContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x26e1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Loader/CenterContainer/Panel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Loader/CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Loader/CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="resource_load_complete" from="." to="." method="_on_resource_load_complete"]
+[connection signal="resource_load_error" from="." to="." method="_on_resource_load_error"]
