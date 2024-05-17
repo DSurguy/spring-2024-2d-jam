@@ -7,12 +7,7 @@
 [ext_resource type="Script" path="res://scenes/GameScene/Station.gd" id="3_eqivj"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="3_jl034"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="6_115t8"]
-<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://d3g07ric82rh7" path="res://scenes/UI/Stations/Ascend/AscendUI.tscn" id="7_nrlsp"]
-=======
-[ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="7_5bb8y"]
-[ext_resource type="AudioStream" uid="uid://dwpynaesxt5o5" path="res://music/MUS_Ascent.ogg" id="9_euea1"]
->>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
@@ -161,10 +156,7 @@ shape = SubResource("CircleShape2D_0n5r2")
 debug_color = Color(3.85046e-07, 0.644872, 0.272088, 0.42)
 
 [node name="Music" type="Node" parent="."]
-script = ExtResource("7_5bb8y")
-descent_music = ExtResource("2_px71f")
-ascent_music = ExtResource("9_euea1")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="Music"]
+[node name="MusicLoop" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_px71f")
-bus = &"Music"
+autoplay = true
