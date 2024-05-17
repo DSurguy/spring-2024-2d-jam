@@ -164,3 +164,4 @@ ascent_music = ExtResource("10_8b3co")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_px71f")
+bus = &"Music"
