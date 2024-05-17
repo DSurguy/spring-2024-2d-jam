@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciy5kjl5o8mjp"]
+
+[ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
+
+[node name="ShopScene" type="Node2D"]
+script = ExtResource("1_toyhn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 504.0
+offset_top = 215.0
+offset_right = 640.0
+offset_bottom = 238.0
+text = "I AM SHOP SCENE"

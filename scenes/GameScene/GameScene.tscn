@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmj7kchtv06qw"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_knlki")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 504.0
+offset_top = 215.0
+offset_right = 640.0
+offset_bottom = 238.0
+text = "I AM GAME SCENE"

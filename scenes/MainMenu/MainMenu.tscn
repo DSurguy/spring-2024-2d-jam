@@ -48,4 +48,14 @@ layout_mode = 2
 layout_mode = 2
 text = "Load Test Scene"
 
+[node name="LoadShopScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load Shop Scene"
+
+[node name="LoadGameScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load Game Scene"
+
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadTestScene" to="." method="_on_load_test_scene_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadShopScene" to="." method="_on_load_shop_scene_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadGameScene" to="." method="_on_load_game_scene_button_pressed"]
