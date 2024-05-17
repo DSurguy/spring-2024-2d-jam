@@ -34,7 +34,7 @@ func _schedule_bubble():
 func _on_bubble_timer_timeout():
 	play_bubble()
 
-func play_bubble():	
+func play_bubble():
 	var randx = random.randf_range(-max_distance_from_listener, max_distance_from_listener)
 	var randy = random.randf_range(-max_distance_from_listener, max_distance_from_listener)	
 	var bubble_position = Vector2(listener.global_position.x + randx, listener.global_position.y + randy)	

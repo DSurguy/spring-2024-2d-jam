@@ -1,15 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=9 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="2_p4bl1"]
 [ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
-[ext_resource type="PackedScene" uid="uid://d3vhcxq5yx7k" path="res://scenes/GameScene/submarine.tscn" id="3_hsa6m"]
-[ext_resource type="PackedScene" uid="uid://vhgx1tlgboft" path="res://scenes/GameScene/environment.tscn" id="4_5iene"]
+[ext_resource type="PackedScene" path="res://scenes/GameScene/submarine.tscn" id="3_hsa6m"]
+[ext_resource type="PackedScene" path="res://scenes/GameScene/environment.tscn" id="4_5iene"]
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="8_dp8ix"]
-[ext_resource type="AudioStream" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
-[ext_resource type="Script" path="res://scenes/GameScene/Ambience.gd" id="12_8m4r4"]
-[ext_resource type="Script" path="res://scenes/GameScene/Bubble.gd" id="13_o3rii"]
-[ext_resource type="AudioStream" uid="uid://cow3ilsdxramd" path="res://sfx/AMB_bubble.ogg" id="14_jfpvc"]
+[ext_resource type="PackedScene" uid="uid://62n5ao8l72cp" path="res://scenes/Audio/ambience.tscn" id="8_nav1v"]
+[ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_knlki")
@@ -35,20 +33,9 @@ ascent_music = ExtResource("10_8b3co")
 stream = ExtResource("2_px71f")
 autoplay = true
 
-[node name="Ambience" type="Node" parent="."]
-script = ExtResource("12_8m4r4")
-
-[node name="Bubble" type="Node" parent="Ambience"]
-script = ExtResource("13_o3rii")
-bubble_sound = ExtResource("14_jfpvc")
-
-[node name="BubblePlayer" type="AudioStreamPlayer2D" parent="Ambience/Bubble"]
-panning_strength = 76.3
-
-[node name="BubbleTimer" type="Timer" parent="Ambience/Bubble"]
-
 [node name="Submarine" parent="." instance=ExtResource("3_hsa6m")]
 
 [node name="Environment" parent="." instance=ExtResource("4_5iene")]
 
-[connection signal="timeout" from="Ambience/Bubble/BubbleTimer" to="Ambience/Bubble" method="_on_bubble_timer_timeout"]
+[node name="Ambience" parent="." node_paths=PackedStringArray("listener") instance=ExtResource("8_nav1v")]
+listener = NodePath("../Submarine")

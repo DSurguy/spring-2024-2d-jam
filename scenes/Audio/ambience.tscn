@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://62n5ao8l72cp"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Ambience.gd" id="1_8uo7m"]
+[ext_resource type="Script" path="res://scenes/GameScene/Bubble.gd" id="1_ri2td"]
+[ext_resource type="AudioStream" uid="uid://cow3ilsdxramd" path="res://sfx/AMB_bubble.ogg" id="2_e32px"]
+
+[node name="Ambience" type="Node"]
+script = ExtResource("1_8uo7m")
+
+[node name="Bubble" type="Node" parent="."]
+script = ExtResource("1_ri2td")
+bubble_sound = ExtResource("2_e32px")
+
+[node name="BubblePlayer" type="AudioStreamPlayer2D" parent="Bubble"]
+panning_strength = 76.3
+
+[node name="BubbleTimer" type="Timer" parent="Bubble"]
+
+[connection signal="timeout" from="Bubble/BubbleTimer" to="Bubble" method="_on_bubble_timer_timeout"]
