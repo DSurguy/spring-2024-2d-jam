@@ -1,9 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=9 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
+[ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vix4"]
+size = Vector2(220, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ye3h"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67chm"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwvih"]
+size = Vector2(220, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0n5r2"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_knlki")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -13,3 +32,63 @@ offset_top = 215.0
 offset_right = 640.0
 offset_bottom = 238.0
 text = "I AM GAME SCENE"
+
+[node name="Submarine" type="Node2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="Submarine"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Player"]
+shape = SubResource("RectangleShape2D_8nvpx")
+debug_color = Color(0.721569, 0.168627, 0.0627451, 0.615686)
+
+[node name="Hull" type="Node2D" parent="Submarine"]
+
+[node name="Floor" type="StaticBody2D" parent="Submarine/Hull"]
+position = Vector2(0, 40)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/Floor"]
+shape = SubResource("RectangleShape2D_7vix4")
+
+[node name="WallLeft" type="StaticBody2D" parent="Submarine/Hull"]
+position = Vector2(-100, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/WallLeft"]
+shape = SubResource("RectangleShape2D_7ye3h")
+
+[node name="WallRight" type="StaticBody2D" parent="Submarine/Hull"]
+position = Vector2(100, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/WallRight"]
+shape = SubResource("RectangleShape2D_67chm")
+
+[node name="Ceiling" type="StaticBody2D" parent="Submarine/Hull"]
+position = Vector2(0, -40)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Hull/Ceiling"]
+shape = SubResource("RectangleShape2D_qwvih")
+
+[node name="Environment" type="Node2D" parent="."]
+position = Vector2(0, 300)
+
+[node name="Plant" type="StaticBody2D" parent="Environment"]
+position = Vector2(0, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Plant"]
+shape = SubResource("CircleShape2D_0n5r2")
+debug_color = Color(3.85046e-07, 0.644872, 0.272088, 0.42)
+
+[node name="Music" type="Node" parent="."]
+
+[node name="MusicLoop" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("2_px71f")
+autoplay = true

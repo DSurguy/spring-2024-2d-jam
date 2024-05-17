@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmj7kchtv06qw"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
+[ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="2_t5sut"]
+[ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="3_jl034"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vix4"]
+size = Vector2(220, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ye3h"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67chm"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwvih"]
+size = Vector2(220, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_knlki")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 504.0
+offset_top = 215.0
+offset_right = 640.0
+offset_bottom = 238.0
+text = "I AM GAME SCENE"
+
+[node name="Submarine" type="Node2D" parent="."]
+script = ExtResource("2_t5sut")
+
+[node name="Floor" type="StaticBody2D" parent="Submarine"]
+position = Vector2(0, 40)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Floor"]
+shape = SubResource("RectangleShape2D_7vix4")
+
+[node name="WallLeft" type="StaticBody2D" parent="Submarine"]
+position = Vector2(-100, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/WallLeft"]
+shape = SubResource("RectangleShape2D_7ye3h")
+
+[node name="WallRight" type="StaticBody2D" parent="Submarine"]
+position = Vector2(100, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/WallRight"]
+shape = SubResource("RectangleShape2D_67chm")
+
+[node name="Ceiling" type="StaticBody2D" parent="Submarine"]
+position = Vector2(0, -40)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Ceiling"]
+shape = SubResource("RectangleShape2D_qwvih")
+
+[node name="Player" type="CharacterBody2D" parent="Submarine"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_jl034")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Submarine/Player"]
+shape = SubResource("RectangleShape2D_8nvpx")
+debug_color = Color(0.721569, 0.168627, 0.0627451, 0.615686)
+
+[node name="Camera2D" type="Camera2D" parent="."]
