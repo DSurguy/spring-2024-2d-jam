@@ -1,4 +1,4 @@
-class_name HelmUiPanel extends Control
+class_name HelmUI extends Control
 
 @onready var LeftArrow = $Panel/VBoxContainer/GridContainer/HBoxContainer/LeftArrowTexture
 @onready var RightArrow = $Panel/VBoxContainer/GridContainer/HBoxContainer2/RightArrowTexture
@@ -7,6 +7,9 @@ enum HELM_STATUS { LEFT, RIGHT, NONE }
 @export var status: HELM_STATUS = HELM_STATUS.NONE
 var active_color = Color(0.55, 0.68, 1)
 signal status_changed
+
+func _ready():
+	_on_status_changed()
 
 func set_status(next_status: HELM_STATUS):
 	status = next_status
