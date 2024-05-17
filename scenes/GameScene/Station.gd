@@ -10,3 +10,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+	
+func activate_station():
+	active = true
+	get_parent().activate()
+	print("station active")
+	
+func deactivate_station():
+	active = false
+	get_parent().activate()
+	print("station inactive")
