@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=19 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Script" path="res://scenes/GameScene/Helm.gd" id="2_atwiw"]
+[ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="2_p4bl1"]
 [ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="2_t5sut"]
 [ext_resource type="Script" path="res://scenes/GameScene/Station.gd" id="3_eqivj"]
@@ -38,6 +39,7 @@ size = Vector2(32, 32)
 script = ExtResource("1_knlki")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_p4bl1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
