@@ -11,6 +11,7 @@ script = ExtResource("1_m524u")
 footsteps = Array[AudioStream]([ExtResource("2_5dpf6"), ExtResource("3_jni24"), ExtResource("4_t7rnw"), ExtResource("5_6m2hx")])
 
 [node name="Player" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
 
 [node name="Timer" type="Timer" parent="."]
 

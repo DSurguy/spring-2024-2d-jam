@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvg3k0vq6qxxn"]
+[gd_scene load_steps=25 format=3 uid="uid://bvg3k0vq6qxxn"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="1_klu5a"]
 [ext_resource type="Texture2D" uid="uid://b5trj3ci15qwf" path="res://assets/sprites/Sprite-0001.png" id="2_lxexh"]
+[ext_resource type="PackedScene" uid="uid://c3ogg8a2tefsv" path="res://scenes/Audio/footsteps.tscn" id="3_ws7qx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
 
@@ -178,7 +179,7 @@ texture = ExtResource("2_lxexh")
 flip_h = true
 hframes = 4
 vframes = 3
-frame = 5
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -193,6 +194,8 @@ parameters/conditions/is_idle = false
 parameters/conditions/is_interacting = false
 parameters/conditions/is_moving_left = false
 parameters/conditions/is_walking_right = false
+
+[node name="Footsteps" parent="." instance=ExtResource("3_ws7qx")]
 
 [connection signal="area_entered" from="StationInteraction" to="." method="_on_station_interaction_area_entered"]
 [connection signal="area_exited" from="StationInteraction" to="." method="_on_station_interaction_area_exited"]

@@ -9,6 +9,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var using_station : bool = false
 var station_touching : Node2D = null
 
+@onready var footsteps: Footsteps = $Footsteps
+
+
 @onready var animation_tree : AnimationTree = $AnimationTree
 
 # Called when the node enters the scene tree for the first time.
@@ -47,6 +50,11 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 		move_and_slide()
+		
+		if abs(velocity.x) > 0.001:
+			footsteps.start()
+		else:
+			footsteps.stop()
 		
 		if Input.is_action_just_pressed("interact") and station_touching:
 			station_touching.activate_station()
