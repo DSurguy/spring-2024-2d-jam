@@ -12,7 +12,7 @@ var random = RandomNumberGenerator.new()
 var temp_x_clamp = 1000
 var spawn_y_offset_mult = 5
 var spawn_y_offset_const = 100
-var clump_radius = 25
+var clump_radius = 100
 
 func _ready():
 	assert(submarine_node != null, "submarine node is required")
@@ -40,12 +40,12 @@ func spawn_plants():
 		var bottom = camera.get_screen_center_position().y + view_rect.y / 2
 		var clump_y_position = bottom + spawn_y_offset_const + submarine_node.descent_speed * spawn_y_offset_mult
 		var clump_position = Vector2(clump_x_position, clump_y_position)
-		var num_plants = random.randi_range(1, 5)
+		var num_plants = random.randi_range(1, 3)
 		for plant in num_plants:
 			var plant_position = Vector2(
 				random.randi_range(-clump_radius, clump_radius),
 				random.randi_range(-clump_radius, clump_radius)
 			)
-			var new_plant = generic_plant_scene.instantiate()
+			var new_plant:Node2D = generic_plant_scene.instantiate()
 			new_plant.position = clump_position + plant_position
 			add_child(new_plant)
