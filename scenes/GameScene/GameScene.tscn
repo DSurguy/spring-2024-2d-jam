@@ -1,28 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=10 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="2_p4bl1"]
 [ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="2_px71f"]
-[ext_resource type="PackedScene" path="res://scenes/GameScene/submarine.tscn" id="3_hsa6m"]
-[ext_resource type="PackedScene" path="res://scenes/GameScene/environment.tscn" id="4_5iene"]
+[ext_resource type="PackedScene" uid="uid://d3vhcxq5yx7k" path="res://scenes/GameScene/submarine.tscn" id="3_hsa6m"]
+[ext_resource type="PackedScene" uid="uid://vhgx1tlgboft" path="res://scenes/GameScene/environment.tscn" id="4_5iene"]
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="8_dp8ix"]
 [ext_resource type="PackedScene" uid="uid://62n5ao8l72cp" path="res://scenes/Audio/ambience.tscn" id="8_nav1v"]
+[ext_resource type="PackedScene" uid="uid://c2bwsfdj3jefd" path="res://scenes/UI/Level/LevelProgress/LevelProgressUI.tscn" id="9_ej11t"]
 [ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="10_8b3co"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_knlki")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_p4bl1")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 504.0
-offset_top = 215.0
-offset_right = 640.0
-offset_bottom = 238.0
-text = "I AM GAME SCENE"
+[node name="LevelProgressUI" parent="CanvasLayer" node_paths=PackedStringArray("submarine_node") instance=ExtResource("9_ej11t")]
+submarine_node = NodePath("../../Submarine")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_p4bl1")
 
 [node name="Music" type="Node" parent="."]
 script = ExtResource("8_dp8ix")
@@ -37,5 +34,4 @@ autoplay = true
 
 [node name="Environment" parent="." instance=ExtResource("4_5iene")]
 
-[node name="Ambience" parent="." node_paths=PackedStringArray("listener") instance=ExtResource("8_nav1v")]
-listener = NodePath("../Submarine")
+[node name="Ambience" parent="." instance=ExtResource("8_nav1v")]
