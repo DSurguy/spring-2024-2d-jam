@@ -1,7 +1,7 @@
 extends Node2D
 
 var station : Node2D
-#var ui : AscendUI
+var ui : TrawlUI
 
 @onready var anchor_left:RigidBody2D = $AnchorLeft
 @onready var anchor_right:RigidBody2D = $AnchorRight
@@ -29,7 +29,7 @@ var anchor_right_origin:Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
-	#ui = get_node("AscendUI")
+	ui = get_node("TrawlUI")
 	
 	anchor_left.gravity_scale = anchor_gravity_scale
 	anchor_right.gravity_scale = anchor_gravity_scale
@@ -47,6 +47,7 @@ func _process(delta):
 		
 		anchor_left.apply_central_force(left_anchor_direction * anchor_move_force)
 		anchor_right.apply_central_force(right_anchor_direction * anchor_move_force)
+		ui.update_vectors(left_anchor_direction, right_anchor_direction)
 	
 	# ensure maximum speeds
 	#print("left speed: %s" % anchor_left.linear_velocity.length())
@@ -112,12 +113,13 @@ func _draw():
 
 func activate():
 	pass
-	#ui.visible = true
+	ui.visible = true
 
 func deactivate():
 	anchor_left.constant_force = Vector2.ZERO
 	anchor_right.constant_force = Vector2.ZERO
-	#ui.visible = false
+	ui.update_vectors(Vector2(0,0), Vector2(0,0))
+	ui.visible = false
 
 func use():
 	pass
