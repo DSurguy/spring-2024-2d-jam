@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Goblin extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY_MAX : float = -350.0
@@ -13,6 +13,7 @@ var flip_sprite : bool = false
 var is_grounded : bool = false
 var was_grounded : bool = false
 var jump_timer : Timer = Timer.new()
+var dead = false
 
 @onready var footsteps: Footsteps = $Footsteps
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
@@ -22,11 +23,18 @@ var jump_timer : Timer = Timer.new()
 func _ready():
 	jump_timer.one_shot = true
 	add_child(jump_timer)
+	dead = false
 
 func _process(delta):
 	pass
 
+func kill():
+	dead = true
+	rotate(1.0)
+
+
 func _physics_process(delta):
+	if dead: return
 	if using_station:
 		if Input.is_action_just_pressed("interact"):
 			station_touching.deactivate_station()

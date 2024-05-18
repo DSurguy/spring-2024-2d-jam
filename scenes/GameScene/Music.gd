@@ -6,6 +6,8 @@ class_name Music
 
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
+func stop():
+	music_player.stop()
 
 func play_descent():
 	music_player.stop()

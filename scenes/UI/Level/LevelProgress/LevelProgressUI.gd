@@ -13,7 +13,8 @@ func _ready():
 
 func _process(delta):
 	if submarine_node:
-		label.text = format_string % submarine_node.position.y
+		label.text = format_string % submarine_node.position.y		
+		oxy_label.text = oxy_format_string % submarine_node.current_oxygen()
 		
-	oxy_label.text = oxy_format_string % 100
+	
 	
