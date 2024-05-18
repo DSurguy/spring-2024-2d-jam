@@ -9,13 +9,19 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var using_station : bool = false
 var station_touching : Node2D = null
 
+@onready var animation_tree : AnimationTree = $AnimationTree
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	animation_tree.active = true;
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	update_animation_properties()
 	pass
+
+func update_animation_properties():
 
 func _physics_process(delta):
 	if using_station:
