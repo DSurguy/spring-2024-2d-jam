@@ -1,18 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3vhcxq5yx7k"]
+[gd_scene load_steps=11 format=3 uid="uid://d3vhcxq5yx7k"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
 [ext_resource type="PackedScene" uid="uid://dav5fb6cl8r26" path="res://scenes/GameScene/hull.tscn" id="3_63n1p"]
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
-[ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
-[ext_resource type="PackedScene" uid="uid://bnj2l3nqmi52g" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
-[ext_resource type="PackedScene" uid="uid://d2lxnf6cx8ejt" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
-[ext_resource type="Script" path="res://scenes/GameScene/Stations/Trawl.gd" id="9_tqcob"]
-[ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/Stations/station.tscn" id="10_l247o"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2r6xj"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
+[ext_resource type="PackedScene" uid="uid://dhpkwwwvwguk5" path="res://scenes/GameScene/Stations/trawl.tscn" id="9_p3wjj"]
 
 [node name="Submarine" type="Node2D"]
 script = ExtResource("1_0ojk1")
@@ -33,37 +30,6 @@ script = ExtResource("1_0ojk1")
 
 [node name="Scythe" parent="Stations" instance=ExtResource("6_8gp6i")]
 
-[node name="Trawl" type="Node2D" parent="Stations"]
-script = ExtResource("9_tqcob")
-
-[node name="AnchorLeft" type="RigidBody2D" parent="Stations/Trawl"]
-position = Vector2(83, 91)
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/Trawl/AnchorLeft"]
-shape = SubResource("CircleShape2D_2r6xj")
-debug_color = Color(0, 0, 0, 0.42)
-
-[node name="AnchorRight" type="RigidBody2D" parent="Stations/Trawl"]
-position = Vector2(115, 92)
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stations/Trawl/AnchorRight"]
-shape = SubResource("CircleShape2D_2r6xj")
-debug_color = Color(0, 0, 0, 0.42)
-
-[node name="Net" type="Area2D" parent="Stations/Trawl"]
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stations/Trawl/Net"]
-polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-
-[node name="Station" parent="Stations/Trawl" instance=ExtResource("10_l247o")]
-position = Vector2(96, 32)
+[node name="Trawl" parent="Stations" instance=ExtResource("9_p3wjj")]
 
 [node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
-
-[connection signal="area_entered" from="Stations/Trawl/Net" to="Stations/Trawl" method="_on_net_area_entered"]
-
-[editable path="Stations/Scythe"]
