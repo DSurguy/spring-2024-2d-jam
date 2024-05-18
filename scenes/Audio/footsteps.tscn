@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3ogg8a2tefsv"]
+
+[ext_resource type="Script" path="res://Footsteps.gd" id="1_m524u"]
+[ext_resource type="AudioStream" uid="uid://bgqew21ll6uuw" path="res://sfx/Footsteps/PLAYER_footstep_01.ogg" id="2_5dpf6"]
+[ext_resource type="AudioStream" uid="uid://bjg8f3bpptvq" path="res://sfx/Footsteps/PLAYER_footstep_02.ogg" id="3_jni24"]
+[ext_resource type="AudioStream" uid="uid://32gaa0i17v5a" path="res://sfx/Footsteps/PLAYER_footstep_03.ogg" id="4_t7rnw"]
+[ext_resource type="AudioStream" uid="uid://swnbj2kqdvs8" path="res://sfx/Footsteps/PLAYER_footstep_04.ogg" id="5_6m2hx"]
+
+[node name="Footsteps" type="Node"]
+script = ExtResource("1_m524u")
+footsteps = Array[AudioStream]([ExtResource("2_5dpf6"), ExtResource("3_jni24"), ExtResource("4_t7rnw"), ExtResource("5_6m2hx")])
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
