@@ -1,11 +1,16 @@
 class_name Submarine extends Node2D
 
+signal player_died
+signal death_restart_timeout
+
 @onready var music: Music = $Music
 @onready var button_audio: ButtonAudio = $ButtonAudio
 @onready var ascent_audio: AscentAudio = $AscentAudio
 @onready var hull = $Hull
 @onready var oxygen: Oxygen = $Oxygen
 @onready var player: Goblin = $Player
+@onready var death_timer: Timer = $DeathRestartTimer
+
 var hull_collider : StaticBody2D
 
 var descending = true
@@ -68,4 +73,10 @@ func _on_oxygen_oxygen_depleted():
 	descending = false
 	music.stop()
 	player.kill()
+	player_died.emit()
 	print("DED")
+	death_timer.start()
+
+
+func _on_death_restart_timer_timeout():
+	death_restart_timeout.emit()

@@ -32,3 +32,5 @@ submarine_node = NodePath("../Submarine")
 camera = NodePath("../Camera2D")
 
 [node name="Music" parent="." instance=ExtResource("7_uyluk")]
+
+[connection signal="death_restart_timeout" from="Submarine" to="." method="_on_submarine_death_restart_timeout"]

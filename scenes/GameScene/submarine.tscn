@@ -27,6 +27,7 @@ script = ExtResource("1_0ojk1")
 [node name="ButtonAudio" parent="." instance=ExtResource("5_ystk1")]
 
 [node name="Oxygen" parent="." instance=ExtResource("6_lobel")]
+max_oxygen = 4
 
 [node name="Stations" type="Node2D" parent="."]
 
@@ -67,7 +68,11 @@ position = Vector2(96, 32)
 
 [node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
 
+[node name="DeathRestartTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="oxygen_depleted" from="Oxygen" to="." method="_on_oxygen_oxygen_depleted"]
 [connection signal="area_entered" from="Stations/Trawl/Net" to="Stations/Trawl" method="_on_net_area_entered"]
+[connection signal="timeout" from="DeathRestartTimer" to="." method="_on_death_restart_timer_timeout"]
 
 [editable path="Stations/Scythe"]
