@@ -6,6 +6,7 @@ var station : Node2D
 @onready var anchor_left:RigidBody2D = $AnchorLeft
 @onready var anchor_right:RigidBody2D = $AnchorRight
 @onready var net:CollisionPolygon2D = $Net/CollisionPolygon2D
+@onready var collection:Node2D = $Collection
 
 var anchor_gravity_scale = 0.05
 var anchor_move_force = 1000
@@ -16,6 +17,11 @@ var anchor_max_distance_origin = 400
 var anchor_max_distance_between = 300
 var anchor_counter_force_factor = -10
 var anchor_distance_force_factor = -10
+
+var plant_collection_layer = 4
+var plant_consumption_layer = 9
+
+var plant_collection_center_drift_factor = 0.99
 
 var anchor_left_origin:Vector2
 var anchor_right_origin:Vector2
@@ -74,6 +80,13 @@ func _process(delta):
 	# eventually come to rest
 	anchor_left.apply_central_force(anchor_left.linear_velocity * anchor_damping_force_factor)
 	anchor_right.apply_central_force(anchor_right.linear_velocity * anchor_damping_force_factor)
+	
+	# update collection location
+	collection.position = (anchor_left.position + anchor_right.position) / 2
+	
+	# move collection toward net center
+	for plant in collection.get_children():
+		plant.position *= plant_collection_center_drift_factor
 
 	#_update_net()
 	queue_redraw()
@@ -108,7 +121,12 @@ func deactivate():
 
 func use():
 	pass
-	
 
-func _on_net_area_entered(area):
+func _on_net_area_entered(area:Area2D):
 	print("PLANT GET")
+	area.set_collision_layer_value(plant_collection_layer, false)
+	area.set_collision_mask_value(plant_collection_layer, false)
+	area.set_collision_layer_value(plant_consumption_layer, true)
+	area.set_collision_mask_value(plant_consumption_layer, true)
+	var plant:Node2D = area.get_parent()
+	plant.reparent(collection)

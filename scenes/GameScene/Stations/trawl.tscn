@@ -34,4 +34,6 @@ polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 [node name="Station" parent="." instance=ExtResource("2_c5vwa")]
 position = Vector2(96, 32)
 
+[node name="Collection" type="Node2D" parent="."]
+
 [connection signal="area_entered" from="Net" to="." method="_on_net_area_entered"]
