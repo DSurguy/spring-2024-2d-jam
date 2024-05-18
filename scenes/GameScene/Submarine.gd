@@ -59,7 +59,6 @@ func start_ascent():
 	button_audio.play()
 	music.play_ascent()
 	ascent_audio.play()
-	oxygen.decay_rate_per_second *= 2
 	
 
 func _draw():
