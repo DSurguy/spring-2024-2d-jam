@@ -16,6 +16,8 @@ var submarine_move_rotation_speed = 7
 
 var minimum_cut_speed = 1
 
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
@@ -52,6 +54,7 @@ func _process(delta):
 	if abs(scythe.rotation_degrees) > max_rotation:
 		scythe.rotation_degrees = clampf(scythe.rotation_degrees, -1 * max_rotation, max_rotation)
 		rotation_speed = -1 * bounce_loss * rotation_speed
+		audio.play()
 	else:
 		rotation_speed += -1 * scythe.rotation_degrees * rotation_drop_factor
 		rotation_speed *= rotation_loss

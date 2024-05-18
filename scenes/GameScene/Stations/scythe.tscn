@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwx2jvgrx18uh"]
+[gd_scene load_steps=6 format=3 uid="uid://bwx2jvgrx18uh"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Scythe.gd" id="1_5p62b"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_f5akm"]
 [ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/Stations/station.tscn" id="3_m42rt"]
+[ext_resource type="AudioStream" uid="uid://b3umyrshlcxdk" path="res://sfx/SUB_impact.ogg" id="4_d62as"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54cjv"]
 size = Vector2(20, 256)
@@ -38,3 +39,7 @@ offset_bottom = 16.0
 
 [node name="Station" parent="." instance=ExtResource("3_m42rt")]
 position = Vector2(0, 32)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d62as")
+bus = &"Sfx"
