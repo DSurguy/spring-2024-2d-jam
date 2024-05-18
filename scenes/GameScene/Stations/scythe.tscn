@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwx2jvgrx18uh"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Stations/Scythe.gd" id="1_5p62b"]
+[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_f5akm"]
+[ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/Stations/station.tscn" id="3_m42rt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54cjv"]
+size = Vector2(20, 256)
+
+[node name="Scythe" type="Node2D"]
+script = ExtResource("1_5p62b")
+
+[node name="ScytheCollision" type="Node2D" parent="."]
+position = Vector2(0, 80)
+
+[node name="ScytheStaff" type="Area2D" parent="ScytheCollision"]
+
+[node name="Staff" type="CollisionShape2D" parent="ScytheCollision/ScytheStaff"]
+position = Vector2(0, 128)
+shape = SubResource("RectangleShape2D_54cjv")
+debug_color = Color(0.505711, 0.42552, 1, 0.42)
+
+[node name="ScytheBlade" type="Area2D" parent="ScytheCollision"]
+position = Vector2(0, 256)
+
+[node name="BladeRight" type="CollisionPolygon2D" parent="ScytheCollision/ScytheBlade"]
+polygon = PackedVector2Array(0, 32, 256, 0, 0, -32)
+
+[node name="BladeLeft" type="CollisionPolygon2D" parent="ScytheCollision/ScytheBlade"]
+polygon = PackedVector2Array(0, 32, -256, 0, 0, -32)
+
+[node name="HelmUI" parent="." instance=ExtResource("2_f5akm")]
+visible = false
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+
+[node name="Station" parent="." instance=ExtResource("3_m42rt")]
+position = Vector2(0, 32)
