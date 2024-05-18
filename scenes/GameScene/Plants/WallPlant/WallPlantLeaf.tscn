@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b41jrltk4dtxi"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Plants/WallPlant/WallPlantLeaf.gd" id="1_bps1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfail"]
+size = Vector2(2, 2)
+
+[node name="WallPlantLeaf" type="Node2D"]
+script = ExtResource("1_bps1y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -21.0
+offset_right = 12.0
+offset_bottom = 2.0
+color = Color(0, 0.405151, 0.228771, 1)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 0.2
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_vfail")

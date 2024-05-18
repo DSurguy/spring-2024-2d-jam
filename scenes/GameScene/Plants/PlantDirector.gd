@@ -49,3 +49,6 @@ func spawn_plants():
 			var new_plant:Node2D = generic_plant_scene.instantiate()
 			new_plant.position = clump_position + plant_position
 			add_child(new_plant)
+
+func spawn_wall_plants():
+	pass

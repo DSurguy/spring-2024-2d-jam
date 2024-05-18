@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://vy3uli2gxbc8"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Plants/WallPlant/WallPlantRoot.gd" id="1_57nqj"]
+
+[node name="WallPlantRoot" type="StaticBody2D"]
+script = ExtResource("1_57nqj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(15, -8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, -16, 16, -8, -16, 16)

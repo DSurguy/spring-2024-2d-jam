@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dk4fm1rhxv6h"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Station.gd" id="1_db2ko"]
-[ext_resource type="PackedScene" uid="uid://er3jlw831f20" path="res://scenes/Audio/StationAudio.tscn" id="2_x44lu"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/StationAudio.tscn" id="2_x44lu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oke5l"]
 size = Vector2(32, 32)
