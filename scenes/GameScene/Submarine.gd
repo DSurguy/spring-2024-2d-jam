@@ -1,6 +1,7 @@
 class_name Submarine extends Node2D
 
 @onready var music: Music = $Music
+@onready var button_audio: ButtonAudio = $ButtonAudio
 
 var descending = true
 var ascending = false
@@ -29,7 +30,9 @@ func _process(delta):
 func start_ascent():
 	descending = false
 	ascending = true
+	button_audio.play()
 	music.play_ascent()
+	
 
 func _draw():
 	pass
