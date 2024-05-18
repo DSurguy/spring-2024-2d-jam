@@ -1,17 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://vhgx1tlgboft"]
+[gd_scene load_steps=2 format=3 uid="uid://vhgx1tlgboft"]
 
-[ext_resource type="PackedScene" uid="uid://7x6y2qb5vyte" path="res://scenes/GameScene/tilemap.tscn" id="1_s8hro"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0n5r2"]
+[ext_resource type="PackedScene" path="res://scenes/GameScene/tilemap.tscn" id="1_s8hro"]
 
 [node name="Environment" type="Node2D"]
 position = Vector2(0, 300)
-
-[node name="Plant" type="StaticBody2D" parent="."]
-position = Vector2(0, -40)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant"]
-shape = SubResource("CircleShape2D_0n5r2")
-debug_color = Color(3.85046e-07, 0.644872, 0.272088, 0.42)
 
 [node name="TilemapNode" parent="." instance=ExtResource("1_s8hro")]

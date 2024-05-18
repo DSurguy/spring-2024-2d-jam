@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
 [ext_resource type="PackedScene" uid="uid://dav5fb6cl8r26" path="res://scenes/GameScene/hull.tscn" id="3_63n1p"]
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
-[ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
 [ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
@@ -18,8 +18,6 @@ script = ExtResource("1_0ojk1")
 [node name="Player" parent="." instance=ExtResource("2_7br66")]
 
 [node name="Hull" parent="." instance=ExtResource("3_63n1p")]
-
-[node name="Music" parent="." instance=ExtResource("4_yekdg")]
 
 [node name="ButtonAudio" parent="." instance=ExtResource("5_ystk1")]
 
@@ -39,6 +37,8 @@ script = ExtResource("1_0ojk1")
 
 [node name="DeathRestartTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="Music" parent="." instance=ExtResource("4_yekdg")]
 
 [connection signal="oxygen_depleted" from="Oxygen" to="." method="_on_oxygen_oxygen_depleted"]
 [connection signal="timeout" from="DeathRestartTimer" to="." method="_on_death_restart_timer_timeout"]
