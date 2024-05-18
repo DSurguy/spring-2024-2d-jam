@@ -27,7 +27,6 @@ script = ExtResource("1_0ojk1")
 [node name="ButtonAudio" parent="." instance=ExtResource("5_ystk1")]
 
 [node name="Oxygen" parent="." instance=ExtResource("6_lobel")]
-max_oxygen = 4
 
 [node name="Stations" type="Node2D" parent="."]
 
