@@ -10,3 +10,6 @@ func _ready():
 func _physics_process(delta):
 	apply_force(Vector2(0, -200))
 	pass
+
+func on_scythe_hit():
+	print("HIT")

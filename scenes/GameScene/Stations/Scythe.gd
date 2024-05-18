@@ -65,3 +65,10 @@ func deactivate():
 	
 func use():
 	pass
+
+
+func _on_scythe_blade_body_entered(body):
+	# TODO: Make this a little more safe, relying on layer for now
+	assert(body is WallPlantStalk)
+	body.on_scythe_hit()
+	pass # Replace with function body.

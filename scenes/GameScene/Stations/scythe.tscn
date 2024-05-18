@@ -47,3 +47,5 @@ position = Vector2(0, 32)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_d62as")
 bus = &"Sfx"
+
+[connection signal="body_entered" from="ScytheCollision/ScytheBlade" to="." method="_on_scythe_blade_body_entered"]
