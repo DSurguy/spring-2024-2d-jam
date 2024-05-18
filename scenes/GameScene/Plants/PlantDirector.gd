@@ -12,7 +12,7 @@ var random = RandomNumberGenerator.new()
 var temp_x_clamp = 1000
 var spawn_y_offset_mult = 5
 var spawn_y_offset_const = 100
-var clump_radius = 10
+var clump_radius = 25
 
 func _ready():
 	assert(submarine_node != null, "submarine node is required")
