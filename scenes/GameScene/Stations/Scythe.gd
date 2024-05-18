@@ -18,11 +18,14 @@ var minimum_cut_speed = 1
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 
+@onready var animationPlayer: AnimationPlayer = $ScytheCollision/AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
 	ui = get_node("HelmUI")
 	scythe = get_node("ScytheCollision")
+	animationPlayer.stop(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -59,9 +62,11 @@ func _process(delta):
 			
 func activate():
 	ui.visible = true
+	animationPlayer.play("idle")
 	
 func deactivate():
 	ui.visible = false
+	animationPlayer.stop(true)
 	
 func use():
 	pass

@@ -1,12 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwx2jvgrx18uh"]
+[gd_scene load_steps=9 format=3 uid="uid://bwx2jvgrx18uh"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Scythe.gd" id="1_5p62b"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_f5akm"]
 [ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/Stations/station.tscn" id="3_m42rt"]
 [ext_resource type="AudioStream" uid="uid://b3umyrshlcxdk" path="res://sfx/SUB_impact.ogg" id="4_d62as"]
+[ext_resource type="Texture2D" uid="uid://c0is2eejah3cu" path="res://assets/sprites/sawScythe-Sheet.png" id="5_k8yx2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54cjv"]
 size = Vector2(20, 256)
+
+[sub_resource type="Animation" id="Animation_16yhk"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScytheCollision/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbekc"]
+_data = {
+"idle": SubResource("Animation_16yhk")
+}
 
 [node name="Scythe" type="Node2D"]
 script = ExtResource("1_5p62b")
@@ -33,6 +56,19 @@ polygon = PackedVector2Array(0, 32, 256, 0, 0, -32)
 
 [node name="BladeLeft" type="CollisionPolygon2D" parent="ScytheCollision/ScytheBlade"]
 polygon = PackedVector2Array(0, 32, -256, 0, 0, -32)
+
+[node name="Sprite2D" type="Sprite2D" parent="ScytheCollision"]
+position = Vector2(3, 112)
+scale = Vector2(2.675, 2.675)
+texture = ExtResource("5_k8yx2")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScytheCollision"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_fbekc")
+}
+autoplay = "idle"
 
 [node name="HelmUI" parent="." instance=ExtResource("2_f5akm")]
 visible = false
