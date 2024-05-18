@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqxkaoa6ejmlw"]
+[gd_scene load_steps=10 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="2_p4bl1"]
