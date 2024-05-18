@@ -22,6 +22,7 @@ func _process(delta):
 	pass
 
 func update_animation_properties():
+	pass
 
 func _physics_process(delta):
 	if using_station:
