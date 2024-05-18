@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vhgx1tlgboft"]
 
-[ext_resource type="PackedScene" path="res://scenes/GameScene/tilemap.tscn" id="1_s8hro"]
+[ext_resource type="PackedScene" uid="uid://b4qdnui2fqqr3" path="res://scenes/GameScene/tilemap.tscn" id="1_s8hro"]
 
 [node name="Environment" type="Node2D"]
 position = Vector2(0, 300)
