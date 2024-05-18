@@ -42,3 +42,8 @@ label_settings = SubResource("LabelSettings_ass80")
 layout_mode = 2
 text = "Oxygen: X"
 label_settings = SubResource("LabelSettings_ass80")
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Oxygen: X"
+label_settings = SubResource("LabelSettings_ass80")

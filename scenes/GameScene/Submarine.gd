@@ -22,7 +22,8 @@ var ascent_speed = -30
 func _ready():
 	hull_collider = hull.get_child(0) #DONT MOVE THE COLLIDER NODE ORDER
 	music.play_descent()
-	# To set the max oxy, just oxygen.max_oxygen = x when we have the shop	
+	oxygen.max_oxygen = GameState.max_oxygen
+	print("Set max oxygen from GameState")
 	oxygen.reset()
 	oxygen.start_depleting()
 
