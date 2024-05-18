@@ -133,3 +133,16 @@ func _on_net_area_entered(area:Area2D):
 	var plant:GenericPlant = area.get_parent()
 	plant.reparent(collection)
 	plant.collect(collection)
+
+func has_plants() -> bool:
+	if $Collection.get_child_count() > 0:
+		return true
+	return false
+
+func consume_plant_for_oxygen() -> int:
+	if has_plants():
+		var plant = $Collection.get_child(0)
+		var value = plant.data.value
+		plant.queue_free()
+		return value
+	return 0

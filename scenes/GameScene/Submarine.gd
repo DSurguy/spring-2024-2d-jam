@@ -106,16 +106,21 @@ func start_ascent():
 	music.play_ascent()
 	ascent_audio.play()
 
-
 func _on_oxygen_oxygen_depleted():
-	ascending = false
-	descending = false
-	music.stop()
-	player.kill()
-	player_died.emit()
-	print("DED")
-	death_timer.start()
-
+	# If we have any netted plants, consume one and turn its value into oxygen
+	if $Stations/Trawl.has_plants():
+		var amount = $Stations/Trawl.consume_plant_for_oxygen()
+		oxygen.add_oxygen(amount)
+		oxygen.start_depleting()
+	else:
+		# Otherwise, we ded
+		ascending = false
+		descending = false
+		music.stop()
+		player.kill()
+		player_died.emit()
+		print("DED")
+		death_timer.start()
 
 func _on_death_restart_timer_timeout():
 	death_restart_timeout.emit()
