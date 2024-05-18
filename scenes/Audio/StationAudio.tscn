@@ -10,4 +10,4 @@ open_sound = ExtResource("2_ymkdd")
 close_sound = ExtResource("3_mhlna")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"Sfx"
+bus = &"Stations"
