@@ -66,6 +66,7 @@ func _physics_process(delta):
 		animation_player.speed_scale = 1
 		if is_grounded:
 			if using_station :
+				animation_player.speed_scale = 0.8
 				animation_player.play("interact")
 				footsteps.stop()
 			elif directional_input != 0 && !is_on_wall():

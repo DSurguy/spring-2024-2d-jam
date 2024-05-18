@@ -8,7 +8,7 @@ var submarine: Node2D
 func _ready():
 	submarine = get_parent().get_parent().get_parent()
 	if submarine.name != "Submarine":
-		printerr("Submarine not found for station: " + name)
+		print("Submarine not found for station: " + name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

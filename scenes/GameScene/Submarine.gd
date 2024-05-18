@@ -6,7 +6,7 @@ signal death_restart_timeout
 @onready var music: Music = $Music
 @onready var button_audio: ButtonAudio = $ButtonAudio
 @onready var ascent_audio: AscentAudio = $AscentAudio
-@onready var hull = $Hull
+@onready var hull : StaticBody2D = $Hull_Collider
 @onready var oxygen: Oxygen = $Oxygen
 @onready var player: Goblin = $Player
 @onready var death_timer: Timer = $DeathRestartTimer
@@ -18,29 +18,54 @@ var ascending = false
 var descent_speed = 30
 var ascent_speed = -30
 
+var velocity : Vector2
+var sub_speedX : float = 200
+var bonk_timer = Timer.new()
+var bonk_move : Vector2
+
+@export var directionX : float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hull_collider = hull.get_child(0) #DONT MOVE THE COLLIDER NODE ORDER
 	music.play_descent()
 	oxygen.max_oxygen = GameState.max_oxygen
 	print("Set max oxygen from GameState")
 	oxygen.reset()
 	oxygen.start_depleting()
+	bonk_timer.one_shot = true
+	add_child(bonk_timer)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
+	if bonk_timer.is_stopped():
+		velocity.x = lerp(velocity.x, sub_speedX * directionX, 0.01)
+	else : velocity.x = lerp(velocity.x, 0.0, 0.005)
+	
 	if descending:
-		position.y += descent_speed * delta
-		
+		velocity.y = descent_speed
+	
 	if ascending:
-		position.y += ascent_speed * delta	
+		velocity.y = ascent_speed
+	
+	var final_move = velocity * delta
+	if !hull.test_move(transform, final_move):
+		position += final_move
+		bonk_move = Vector2.ZERO
+		velocity.y = 0
+	elif bonk_timer.is_stopped():
+		bonk_timer.start(0.5)
+		velocity.x *= -0.5
+		bonk_move.x = abs(final_move.x) * sub_speedX
+		bonk_move.y = 0
+	else :
+		bonk_timer.start(0.5)
+		position.x += bonk_move.x
+		
 	
 	var camera = get_parent().get_node("Camera2D")
 	camera.position.y = position.y
-	
-	# only use if using debug drawing
-	#queue_redraw()
+
 func current_oxygen():
 	return oxygen.current_oxygen
 	
@@ -49,7 +74,7 @@ func start_oxy_depletion():
 	
 func stop_oxy_depletion():
 	oxygen.stop_depleting()
-	
+
 func start_ascent():
 	if oxygen.is_empty():
 		print("Can't ascend, out of oxygen")
