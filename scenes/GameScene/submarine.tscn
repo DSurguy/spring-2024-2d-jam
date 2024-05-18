@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3vhcxq5yx7k"]
+[gd_scene load_steps=14 format=3 uid="uid://d3vhcxq5yx7k"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://crlshnis8tvt4" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
 [ext_resource type="PackedScene" uid="uid://d2lxnf6cx8ejt" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
 [ext_resource type="PackedScene" uid="uid://dhpkwwwvwguk5" path="res://scenes/GameScene/Stations/trawl.tscn" id="10_7jlvt"]
+[ext_resource type="PackedScene" uid="uid://r0bdebyyubdw" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
 
 [node name="Submarine" type="Node2D"]
 script = ExtResource("1_0ojk1")
@@ -25,6 +26,14 @@ format = 2
 layer_0/tile_data = PackedInt32Array(196602, 65536, 1, 196603, 65536, 1, 196604, 65536, 1, 196605, 65536, 1, 196606, 65536, 1, 196607, 65536, 1, 131072, 65536, 1, 131073, 65536, 1, 131074, 65536, 1, 131075, 65536, 1, 131076, 65536, 1, 131077, 65536, 1, 65542, 65536, 1, 6, 65536, 1, -65530, 65536, 1, -131066, 65536, 1, -196603, 65536, 1, -196604, 65536, 1, -196605, 65536, 1, -196606, 65536, 1, -196607, 65536, 1, -196608, 65536, 1, -131073, 65536, 1, -131074, 65536, 1, -131075, 65536, 1, -131076, 65536, 1, -131077, 65536, 1, -131078, 65536, 1, -65543, 65536, 1, -7, 65536, 1, 65529, 65536, 1, 131065, 65536, 1, -196602, 131072, 0, -131079, 0, 0, 196601, 0, 2, 131078, 131072, 2)
 
 [node name="Hull_Collider" parent="." instance=ExtResource("3_jwyqe")]
+
+[node name="raycast_right" type="RayCast2D" parent="."]
+position = Vector2(192, 97)
+target_position = Vector2(32, 0)
+
+[node name="raycast_left" type="RayCast2D" parent="."]
+position = Vector2(-192, 97)
+target_position = Vector2(-32, 0)
 
 [node name="ButtonAudio" parent="." instance=ExtResource("5_ystk1")]
 
@@ -43,6 +52,8 @@ position = Vector2(-156, 32)
 
 [node name="Trawl" parent="Stations" instance=ExtResource("10_7jlvt")]
 position = Vector2(-10, 2)
+
+[node name="SubBonkAudio" parent="." instance=ExtResource("11_yt1va")]
 
 [node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
 

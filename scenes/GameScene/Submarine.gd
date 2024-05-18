@@ -6,10 +6,13 @@ signal death_restart_timeout
 @onready var music: Music = $Music
 @onready var button_audio: ButtonAudio = $ButtonAudio
 @onready var ascent_audio: AscentAudio = $AscentAudio
+@onready var sub_bonk_audio: AudioStreamPlayer = $SubBonkAudio.get_child(0)
 @onready var hull : StaticBody2D = $Hull_Collider
 @onready var oxygen: Oxygen = $Oxygen
 @onready var player: Goblin = $Player
 @onready var death_timer: Timer = $DeathRestartTimer
+@onready var ray_right: RayCast2D = $raycast_right
+@onready var ray_left: RayCast2D = $raycast_left
 
 var hull_collider : StaticBody2D
 
@@ -37,7 +40,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	handle_low_oxygen()
 	if bonk_timer.is_stopped():
 		velocity.x = lerp(velocity.x, sub_speedX * directionX, 0.01)
 	else : velocity.x = lerp(velocity.x, 0.0, 0.005)
@@ -55,9 +58,15 @@ func _process(delta):
 	elif bonk_timer.is_stopped():
 		bonk_timer.start(0.5)
 		velocity.x *= -0.5
-		bonk_move.x = -abs(final_move.x) * 4
-		bonk_move.y = -abs(final_move.y) * 1
+		
+		var bonk_direction = 0
+		if ray_left: bonk_direction = -1
+		elif ray_right: bonk_direction = 1
+		bonk_move.x = bonk_direction
+		bonk_move.y = 0
 		oxygen.add_oxygen(-5)
+		sub_bonk_audio.play()
+		
 	else :
 		bonk_timer.start(0.5)
 		position += bonk_move
@@ -73,6 +82,14 @@ func start_oxy_depletion():
 	
 func stop_oxy_depletion():
 	oxygen.stop_depleting()
+
+func handle_low_oxygen():
+	if oxygen.current_oxygen < 20:
+		await get_tree().create_timer(0.3)
+		button_audio.play()
+	elif oxygen.current_oxygen < 50:
+		button_audio.play()
+		await get_tree().create_timer(0.1)
 
 func start_ascent():
 	if oxygen.is_empty():

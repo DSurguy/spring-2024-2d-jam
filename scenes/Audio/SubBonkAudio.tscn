@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://r0bdebyyubdw"]
+
+[ext_resource type="AudioStream" uid="uid://b3umyrshlcxdk" path="res://sfx/SUB_impact.ogg" id="1_cwatg"]
+
+[node name="SubBonkAudio" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_cwatg")
+bus = &"Sfx"
