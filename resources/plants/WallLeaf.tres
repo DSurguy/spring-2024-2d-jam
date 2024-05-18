@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="PlantData" load_steps=3 format=3 uid="uid://jbtgvyuwoy5v"]
+[gd_resource type="Resource" script_class="PlantData" load_steps=2 format=3 uid="uid://jbtgvyuwoy5v"]
 
 [ext_resource type="Script" path="res://resources/PlantData.gd" id="1_puir6"]
-[ext_resource type="Texture2D" uid="uid://1m8bjv6raroc" path="res://assets/sprites/wallPlantBulb.png" id="2_3hjlw"]
 
 [resource]
 script = ExtResource("1_puir6")
-texture = ExtResource("2_3hjlw")
 value = 2
+animation = 2

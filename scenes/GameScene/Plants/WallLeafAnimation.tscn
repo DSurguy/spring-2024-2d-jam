@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccb1nbdotdb06"]
+
+[ext_resource type="Texture2D" uid="uid://1m8bjv6raroc" path="res://assets/sprites/wallPlantBulb.png" id="1_mstda"]
+
+[sub_resource type="Animation" id="Animation_o6p4n"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rb6ta"]
+_data = {
+"idle": SubResource("Animation_o6p4n")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8p2t5"]
+animation = &"collected"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_if7vg"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jf20s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7koqv"]
+advance_mode = 2
+advance_condition = &"is_collected"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sm1lf"]
+states/collected/node = SubResource("AnimationNodeAnimation_8p2t5")
+states/collected/position = Vector2(569, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_if7vg")
+states/idle/position = Vector2(358, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jf20s"), "idle", "collected", SubResource("AnimationNodeStateMachineTransition_7koqv")]
+
+[node name="WallLeafAnimation" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_mstda")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rb6ta")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_sm1lf")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_collected = null

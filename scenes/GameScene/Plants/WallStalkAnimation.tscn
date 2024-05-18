@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://gmw8gdvb27kl"]
+
+[ext_resource type="Texture2D" uid="uid://d106aifole4hx" path="res://assets/sprites/wallPlantVine.png" id="1_uswqf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8p2t5"]
+animation = &"collected"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_if7vg"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jf20s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7koqv"]
+advance_mode = 2
+advance_condition = &"is_collected"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_py4d4"]
+states/collected/node = SubResource("AnimationNodeAnimation_8p2t5")
+states/collected/position = Vector2(569, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_if7vg")
+states/idle/position = Vector2(358, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jf20s"), "idle", "collected", SubResource("AnimationNodeStateMachineTransition_7koqv")]
+
+[sub_resource type="Animation" id="Animation_fl5o3"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_dxjqv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0qc3x"]
+_data = {
+"RESET": SubResource("Animation_dxjqv"),
+"idle": SubResource("Animation_fl5o3")
+}
+
+[node name="WallStalkAnimation" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uswqf")
+vframes = 3
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_py4d4")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_collected = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0qc3x")
+}

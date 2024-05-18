@@ -1,78 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhp21hmamf56"]
+[gd_scene load_steps=3 format=3 uid="uid://dhp21hmamf56"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Plants/GenericPlant.gd" id="1_x367m"]
-[ext_resource type="Texture2D" uid="uid://dot51ukh2lne7" path="res://assets/sprites/Sprite-0003.png" id="2_sh160"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rgdsy"]
 
-[sub_resource type="Animation" id="Animation_mcsk8"]
-resource_name = "collected"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_n1cqy"]
-resource_name = "idle"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ialm8"]
-_data = {
-"collected": SubResource("Animation_mcsk8"),
-"idle": SubResource("Animation_n1cqy")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8p2t5"]
-animation = &"collected"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_if7vg"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jf20s"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7koqv"]
-advance_mode = 2
-advance_condition = &"is_collected"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bgisr"]
-states/collected/node = SubResource("AnimationNodeAnimation_8p2t5")
-states/collected/position = Vector2(569, 100)
-states/idle/node = SubResource("AnimationNodeAnimation_if7vg")
-states/idle/position = Vector2(358, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jf20s"), "idle", "collected", SubResource("AnimationNodeStateMachineTransition_7koqv")]
-
 [node name="GenericPlant" type="Node2D"]
 script = ExtResource("1_x367m")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_sh160")
-hframes = 4
-vframes = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32776
@@ -81,17 +14,6 @@ collision_mask = 32776
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_rgdsy")
 debug_color = Color(0, 0.643137, 0.270588, 0.419608)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ialm8")
-}
-autoplay = "idle"
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_bgisr")
-anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/is_collected = null
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
