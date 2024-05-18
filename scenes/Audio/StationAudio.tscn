@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://er3jlw831f20"]
+
+[ext_resource type="Script" path="res://scenes/Audio/StationAudio.gd" id="1_vlmjb"]
+[ext_resource type="AudioStream" uid="uid://lds6val505m7" path="res://sfx/PLAYER_station_use.ogg" id="2_ymkdd"]
+[ext_resource type="AudioStream" uid="uid://br0ten2dfeokc" path="res://sfx/PLAYER_station_stop.ogg" id="3_mhlna"]
+
+[node name="StationAudio" type="Node"]
+script = ExtResource("1_vlmjb")
+open_sound = ExtResource("2_ymkdd")
+close_sound = ExtResource("3_mhlna")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
