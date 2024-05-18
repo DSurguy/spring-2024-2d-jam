@@ -13,5 +13,9 @@ texture = ExtResource("2_vlajg")
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(7, -3)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="RightFacingCollision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-16, -16, 8, -3, -16, 16)
+
+[node name="LeftFacingCollision" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(16, 16, -8, -3, 16, -16)

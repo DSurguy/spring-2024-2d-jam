@@ -1,28 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://11s0v6poswf7"]
+[gd_scene load_steps=2 format=3 uid="uid://11s0v6poswf7"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Plants/WallPlant/WallPlant.gd" id="1_sbm6h"]
-[ext_resource type="PackedScene" uid="uid://vy3uli2gxbc8" path="res://scenes/GameScene/Plants/WallPlant/WallPlantRoot.tscn" id="2_w072p"]
-[ext_resource type="PackedScene" uid="uid://dcjdci4ih1gmn" path="res://scenes/GameScene/Plants/WallPlant/WallPlantStalk.tscn" id="3_c3l2i"]
-[ext_resource type="PackedScene" uid="uid://b41jrltk4dtxi" path="res://scenes/GameScene/Plants/WallPlant/WallPlantLeaf.tscn" id="4_147r7"]
 
 [node name="WallPlant" type="Node2D"]
-position = Vector2(97, 149)
+position = Vector2(190, 714)
 script = ExtResource("1_sbm6h")
-
-[node name="WallPlantRoot" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("2_w072p")]
-next_plant_part = NodePath("../WallPlantStalk")
-
-[node name="WallPlantStalk" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
-position = Vector2(7, -18)
-next_plant_part = NodePath("../WallPlantStalk2")
-
-[node name="WallPlantStalk2" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
-position = Vector2(7, -48)
-next_plant_part = NodePath("../WallPlantStalk3")
-
-[node name="WallPlantStalk3" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
-position = Vector2(7, -78)
-next_plant_part = NodePath("../WallPlantLeaf")
-
-[node name="WallPlantLeaf" parent="." instance=ExtResource("4_147r7")]
-position = Vector2(7, -93)

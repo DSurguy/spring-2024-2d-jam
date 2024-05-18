@@ -3,17 +3,21 @@ class_name WallPlantStalk extends RigidBody2D
 var wall_stalk_data = load("res://resources/plants/WallStalk.tres")
 var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/GenericPlant.tscn")
 @onready var plant: WallPlant = get_parent()
-@onready var plant_director: PlantDirector = get_parent().get_parent() # Should be PlantDirector
+# @onready var plant_director: PlantDirector = get_parent().get_parent() # Should be PlantDirector
 @export var next_plant_part: Node2D
 var rand = RandomNumberGenerator.new()
 
 func _ready():
 	$PinJoint2D.node_a = self.get_path()
+	apply_force(Vector2(0, -200))
+
+func connect_joint_to(to: Node2D):
+	next_plant_part = to
 	if next_plant_part is WallPlantLeaf:
 		$PinJoint2D.node_b = next_plant_part.get_rigid_body().get_path()
-	else:
+	elif next_plant_part is RigidBody2D:
 		$PinJoint2D.node_b = next_plant_part.get_path()
-	apply_force(Vector2(0, -200))
+
 
 func _physics_process(delta):
 	apply_force(Vector2(0, -200))
@@ -35,7 +39,7 @@ func harvest():
 	new_plant.data = wall_stalk_data
 	new_plant.position = spawn_position
 	new_plant.initial_velocity = spawn_velocity
-	plant_director.add_child(new_plant)
+	# plant_director.add_child(new_plant)
 	
 	var next_node = next_plant_part
 	if next_node != null:
