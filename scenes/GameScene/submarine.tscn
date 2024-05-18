@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
-[ext_resource type="PackedScene" uid="uid://dav5fb6cl8r26" path="res://scenes/GameScene/hull.tscn" id="3_jwyqe"]
+[ext_resource type="PackedScene" uid="uid://o1a2g3k6pytn" path="res://scenes/GameScene/hull.tscn" id="3_jwyqe"]
 [ext_resource type="TileSet" uid="uid://ysb2iug31w84" path="res://assets/resources/hull_temp_tilemap.tres" id="3_xjmhw"]
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
 [ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
@@ -17,9 +17,34 @@
 [node name="Submarine" type="Node2D"]
 script = ExtResource("1_0ojk1")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 10
+offset_left = -197.0
+offset_top = -69.0
+offset_right = 201.0
+offset_bottom = 74.0
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Stations" type="Node2D" parent="."]
+z_index = 13
+position = Vector2(0, 12)
+
+[node name="Helm" parent="Stations" instance=ExtResource("4_j4e8l")]
+position = Vector2(160, 32)
+
+[node name="Ascend" parent="Stations" instance=ExtResource("5_qpvru")]
+position = Vector2(-156, 32)
+
+[node name="Scythe" parent="Stations" instance=ExtResource("6_8gp6i")]
+
+[node name="Trawl" parent="Stations" instance=ExtResource("10_7jlvt")]
+position = Vector2(96, 32)
+
 [node name="Player" parent="." instance=ExtResource("2_7br66")]
+z_index = 15
 
 [node name="Sprite" type="TileMap" parent="."]
+z_index = 5
 tile_set = ExtResource("3_xjmhw")
 rendering_quadrant_size = 32
 format = 2
@@ -39,19 +64,8 @@ target_position = Vector2(-32, 0)
 
 [node name="Oxygen" parent="." instance=ExtResource("6_lobel")]
 
-[node name="Stations" type="Node2D" parent="."]
+[node name="Stations2" type="Node2D" parent="."]
 position = Vector2(0, 12)
-
-[node name="Helm" parent="Stations" instance=ExtResource("4_j4e8l")]
-position = Vector2(161, 32)
-
-[node name="Ascend" parent="Stations" instance=ExtResource("5_qpvru")]
-position = Vector2(-156, 32)
-
-[node name="Scythe" parent="Stations" instance=ExtResource("6_8gp6i")]
-
-[node name="Trawl" parent="Stations" instance=ExtResource("10_7jlvt")]
-position = Vector2(96, 32)
 
 [node name="SubBonkAudio" parent="." instance=ExtResource("11_yt1va")]
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhkojr061kgek"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/WinchChain.gd" id="1_m78hy"]
+[ext_resource type="Texture2D" uid="uid://cge0vqo64bqvv" path="res://assets/sprites/chain.png" id="2_y3urt"]
+
+[node name="WinchChain" type="Node2D"]
+script = ExtResource("1_m78hy")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 5
+texture_filter = 1
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 0, -250)
+texture = ExtResource("2_y3urt")
+texture_mode = 1

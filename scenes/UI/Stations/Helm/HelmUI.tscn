@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bej3x1oxsw4p" path="res://assets/icons/SolidArrow-Right@2x.png" id="2_r4r4l"]
 
 [node name="HelmUI" type="Control"]
+z_index = 14
 layout_mode = 3
 anchors_preset = 0
 offset_right = 64.0
