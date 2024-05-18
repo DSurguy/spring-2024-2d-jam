@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crlshnis8tvt4"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Oxygen.gd" id="1_hr6tt"]
+
+[node name="Oxygen" type="Node"]
+script = ExtResource("1_hr6tt")
