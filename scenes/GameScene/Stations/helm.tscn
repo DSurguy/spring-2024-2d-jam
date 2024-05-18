@@ -1,10 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx532280ahds"]
+[gd_scene load_steps=9 format=3 uid="uid://cx532280ahds"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Helm.gd" id="1_7g6xy"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_gjx2v"]
 [ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/Stations/station.tscn" id="3_htd3u"]
 [ext_resource type="PackedScene" path="res://scenes/Audio/engine.tscn" id="4_frpct"]
+[ext_resource type="Texture2D" uid="uid://dtq6ys2yqnt3v" path="res://assets/sprites/stations/throttleStation.png" id="4_jfaqh"]
 [ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_may6t"]
+
+[sub_resource type="Animation" id="Animation_cvpqo"]
+resource_name = "active"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_je3b4"]
+_data = {
+"active": SubResource("Animation_cvpqo")
+}
 
 [node name="Helm" type="Node2D"]
 position = Vector2(192, 32)
@@ -25,6 +48,15 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Station" parent="." instance=ExtResource("3_htd3u")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Station"]
+texture = ExtResource("4_jfaqh")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Station"]
+libraries = {
+"": SubResource("AnimationLibrary_je3b4")
+}
 
 [node name="Engine" parent="." instance=ExtResource("4_frpct")]
 
