@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4qdnui2fqqr3"]
 
-[ext_resource type="PackedScene" uid="uid://c3r2s3e06ntxw" path="res://assets/sprites/tilemap.tscn" id="1_12njy"]
+[ext_resource type="PackedScene" path="res://assets/sprites/tilemap.tscn" id="1_12njy"]
 [ext_resource type="TileSet" uid="uid://wfnd1lrb2wh3" path="res://assets/resources/tilemap_white.tres" id="2_nmy43"]
 
 [node name="TilemapNode" type="Node2D"]
