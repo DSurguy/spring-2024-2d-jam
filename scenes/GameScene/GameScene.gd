@@ -11,3 +11,7 @@ func _process(delta):
 	if $Submarine.position.y < 0 and $Submarine.ascending:
 		$Submarine.ascending = false
 		loader.load_scene("res://scenes/ShopScene/ShopScene.tscn")
+
+
+func _on_submarine_death_restart_timeout():
+	loader.load_scene("res://scenes/ShopScene/ShopScene.tscn")
