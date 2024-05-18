@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlantData" load_steps=3 format=3 uid="uid://nhj0fl24mf5e"]
+
+[ext_resource type="Script" path="res://resources/PlantData.gd" id="1_3tggp"]
+[ext_resource type="Texture2D" uid="uid://dot51ukh2lne7" path="res://assets/sprites/Sprite-0003.png" id="2_rlgev"]
+
+[resource]
+script = ExtResource("1_3tggp")
+texture = ExtResource("2_rlgev")
+value = 1
