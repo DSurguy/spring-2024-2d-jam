@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwx2jvgrx18uh"]
+[gd_scene load_steps=6 format=3 uid="uid://c73tkpnjc5cs8"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Scythe.gd" id="1_5p62b"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_f5akm"]
@@ -15,6 +15,8 @@ script = ExtResource("1_5p62b")
 position = Vector2(0, 80)
 
 [node name="ScytheStaff" type="Area2D" parent="ScytheCollision"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="Staff" type="CollisionShape2D" parent="ScytheCollision/ScytheStaff"]
 position = Vector2(0, 128)
@@ -23,6 +25,8 @@ debug_color = Color(0.505711, 0.42552, 1, 0.42)
 
 [node name="ScytheBlade" type="Area2D" parent="ScytheCollision"]
 position = Vector2(0, 256)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BladeRight" type="CollisionPolygon2D" parent="ScytheCollision/ScytheBlade"]
 polygon = PackedVector2Array(0, 32, 256, 0, 0, -32)
