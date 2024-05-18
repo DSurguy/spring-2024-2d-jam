@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3vhcxq5yx7k"]
+[gd_scene load_steps=10 format=3 uid="uid://d3vhcxq5yx7k"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
 [ext_resource type="PackedScene" uid="uid://dav5fb6cl8r26" path="res://scenes/GameScene/hull.tscn" id="3_63n1p"]
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
-[ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
-[ext_resource type="PackedScene" uid="uid://bnj2l3nqmi52g" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
-[ext_resource type="PackedScene" uid="uid://d2lxnf6cx8ejt" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
+[ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
 
 [node name="Submarine" type="Node2D"]
 script = ExtResource("1_0ojk1")
@@ -25,5 +26,7 @@ script = ExtResource("1_0ojk1")
 [node name="Helm" parent="Stations" instance=ExtResource("4_j4e8l")]
 
 [node name="Ascend" parent="Stations" instance=ExtResource("5_qpvru")]
+
+[node name="Scythe" parent="Stations" instance=ExtResource("6_8gp6i")]
 
 [node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
