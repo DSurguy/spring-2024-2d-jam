@@ -9,16 +9,20 @@
 position = Vector2(97, 149)
 script = ExtResource("1_sbm6h")
 
-[node name="WallPlantRoot" parent="." instance=ExtResource("2_w072p")]
+[node name="WallPlantRoot" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("2_w072p")]
+next_plant_part = NodePath("../WallPlantStalk")
 
-[node name="WallPlantStalk" parent="." instance=ExtResource("3_c3l2i")]
+[node name="WallPlantStalk" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
 position = Vector2(15, -23)
+next_plant_part = NodePath("../WallPlantStalk2")
 
-[node name="WallPlantStalk2" parent="." instance=ExtResource("3_c3l2i")]
+[node name="WallPlantStalk2" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
 position = Vector2(15, -53)
+next_plant_part = NodePath("../WallPlantStalk3")
 
-[node name="WallPlantStalk3" parent="." instance=ExtResource("3_c3l2i")]
+[node name="WallPlantStalk3" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
 position = Vector2(15, -83)
+next_plant_part = NodePath("../WallPlantLeaf")
 
 [node name="WallPlantLeaf" parent="." instance=ExtResource("4_147r7")]
 position = Vector2(15, -98)

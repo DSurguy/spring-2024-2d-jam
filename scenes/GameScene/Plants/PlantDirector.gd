@@ -1,4 +1,4 @@
-extends Node2D
+class_name PlantDirector extends Node2D
 
 @export var submarine_node: Submarine
 @export var camera: Camera2D

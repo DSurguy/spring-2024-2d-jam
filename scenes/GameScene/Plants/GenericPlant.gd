@@ -2,15 +2,17 @@ class_name GenericPlant extends Node2D
 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @export var data: PlantData
+@export var initial_velocity: Vector2 = Vector2((randf() - .5) * 0.5, (randf() - .5) * 0.5)
 
 var velocity:Vector2
 
 func _ready():
 	assert(data != null, "PlantData is required")
+	$Sprite2D.texture = data.texture
 	animation_tree.active = true
 	var scaleFactor = 1 + (1.5 * (randf() - 0.25))
 	scale = Vector2(scaleFactor, scaleFactor)
-	velocity = Vector2((randf() - .5) * 0.5, (randf() - .5) * 0.5)
+	velocity = initial_velocity
 	rotation_degrees = randf() * 360.0
 
 func _process(delta):
