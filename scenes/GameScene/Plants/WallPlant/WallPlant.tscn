@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://11s0v6poswf7"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Plants/WallPlant/WallPlant.gd" id="1_sbm6h"]
+[ext_resource type="PackedScene" uid="uid://vy3uli2gxbc8" path="res://scenes/GameScene/Plants/WallPlant/WallPlantRoot.tscn" id="2_w072p"]
+[ext_resource type="PackedScene" uid="uid://dcjdci4ih1gmn" path="res://scenes/GameScene/Plants/WallPlant/WallPlantStalk.tscn" id="3_c3l2i"]
+[ext_resource type="PackedScene" uid="uid://b41jrltk4dtxi" path="res://scenes/GameScene/Plants/WallPlant/WallPlantLeaf.tscn" id="4_147r7"]
+
+[node name="WallPlant" type="Node2D"]
+position = Vector2(97, 149)
+script = ExtResource("1_sbm6h")
+
+[node name="WallPlantRoot" parent="." instance=ExtResource("2_w072p")]
+
+[node name="WallPlantStalk" parent="." instance=ExtResource("3_c3l2i")]
+position = Vector2(15, -23)
+
+[node name="WallPlantStalk2" parent="." instance=ExtResource("3_c3l2i")]
+position = Vector2(15, -53)
+
+[node name="WallPlantStalk3" parent="." instance=ExtResource("3_c3l2i")]
+position = Vector2(15, -83)
+
+[node name="WallPlantLeaf" parent="." instance=ExtResource("4_147r7")]
+position = Vector2(15, -98)

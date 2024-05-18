@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcjdci4ih1gmn"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Plants/WallPlant/WallPlantStalk.gd" id="1_oerhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpb5y"]
+size = Vector2(4, 32)
+
+[node name="WallPlantStalk" type="RigidBody2D"]
+mass = 0.2
+script = ExtResource("1_oerhg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -15)
+angular_limit_upper = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bpb5y")
+debug_color = Color(0, 0.643137, 0.270588, 0.419608)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -2.0
+offset_top = -16.0
+offset_right = 2.0
+offset_bottom = 16.0
+color = Color(0.194061, 0.760533, 0.45753, 1)
