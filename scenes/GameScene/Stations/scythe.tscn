@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c73tkpnjc5cs8"]
+[gd_scene load_steps=6 format=3 uid="uid://bwx2jvgrx18uh"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Scythe.gd" id="1_5p62b"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_f5akm"]

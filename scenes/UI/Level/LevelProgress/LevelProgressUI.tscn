@@ -30,8 +30,14 @@ theme_override_constants/margin_right = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 144
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Depth: X"
+label_settings = SubResource("LabelSettings_ass80")
+
+[node name="OxygenLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Oxygen: X"
 label_settings = SubResource("LabelSettings_ass80")
