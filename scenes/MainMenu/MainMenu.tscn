@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfwtjv78bol0l"]
 
-[ext_resource type="Script" path="res://scenes/LoadableScene.gd" id="1_ywqsf"]
+[ext_resource type="Script" path="res://scenes/MainMenu/MainMenu.gd" id="1_37hwn"]
 
 [node name="MainMenu" type="Node2D"]
-script = ExtResource("1_ywqsf")
+script = ExtResource("1_37hwn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
