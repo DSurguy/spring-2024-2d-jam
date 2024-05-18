@@ -100,6 +100,15 @@ exit={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Submarine"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Station"
+2d_physics/layer_4="Net"
+2d_physics/layer_5="Scythe"
+2d_physics/layer_8="Environment"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

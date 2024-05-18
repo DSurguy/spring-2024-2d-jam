@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://2rgbohrumi7m"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Music.gd" id="1_iu3p8"]
-[ext_resource type="AudioStream" uid="uid://2oeb3e5wfaij" path="res://music/MUS_Descent_v1.ogg" id="1_pk3qm"]
-[ext_resource type="AudioStream" uid="uid://btvtctn7dnkqd" path="res://music/MUS_Ascent.ogg" id="3_gd8d2"]
+[ext_resource type="AudioStream" uid="uid://doet8ohcom6os" path="res://music/MUS_Descent_loop.ogg" id="2_j6kpm"]
+[ext_resource type="AudioStream" uid="uid://dng05pwkicuor" path="res://music/MUS_Ascent_loop.ogg" id="3_2gvqn"]
 
 [node name="Music" type="Node"]
 script = ExtResource("1_iu3p8")
-descent_music = ExtResource("1_pk3qm")
-ascent_music = ExtResource("3_gd8d2")
+descent_music = ExtResource("2_j6kpm")
+ascent_music = ExtResource("3_2gvqn")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
