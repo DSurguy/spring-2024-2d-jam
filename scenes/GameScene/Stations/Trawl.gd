@@ -130,5 +130,6 @@ func _on_net_area_entered(area:Area2D):
 	area.set_collision_mask_value(plant_collection_layer, false)
 	area.set_collision_layer_value(plant_consumption_layer, true)
 	area.set_collision_mask_value(plant_consumption_layer, true)
-	var plant:Node2D = area.get_parent()
+	var plant:GenericPlant = area.get_parent()
 	plant.reparent(collection)
+	plant.collect(collection)
