@@ -49,8 +49,6 @@ func _process(delta):
 			
 	scythe.rotation_degrees += normalized_rotation_speed
 	
-	print(scythe.rotation_degrees)
-	
 	if abs(scythe.rotation_degrees) > max_rotation:
 		scythe.rotation_degrees = clampf(scythe.rotation_degrees, -1 * max_rotation, max_rotation)
 		rotation_speed = -1 * bounce_loss * rotation_speed
