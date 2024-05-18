@@ -21,10 +21,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update_animation_properties()
-	pass
-
-func update_animation_properties():
 	pass
 
 func _physics_process(delta):
@@ -32,6 +28,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("interact"):
 			station_touching.deactivate_station()
 			using_station = false
+			animation_tree["parameters/conditions/is_interacting"] = false
 	else:
 		# Add the gravity.
 		if not is_on_floor():
@@ -51,14 +48,35 @@ func _physics_process(delta):
 
 		move_and_slide()
 		
-		if abs(velocity.x) > 0.001:
+		#print(velocity.x)
+		if velocity.x > 0:
 			footsteps.start()
+			animation_tree["parameters/conditions/is_idle"] = false
+			animation_tree["parameters/conditions/is_moving_left"] = false
+			animation_tree["parameters/conditions/is_moving_right"] = true
+		elif velocity.x < 0:
+			footsteps.start()
+			animation_tree["parameters/conditions/is_idle"] = false
+			animation_tree["parameters/conditions/is_moving_left"] = true
+			animation_tree["parameters/conditions/is_moving_right"] = false
 		else:
 			footsteps.stop()
+			animation_tree["parameters/conditions/is_idle"] = true
+			animation_tree["parameters/conditions/is_moving_left"] = false
+			animation_tree["parameters/conditions/is_moving_right"] = false
 		
 		if Input.is_action_just_pressed("interact") and station_touching:
 			station_touching.activate_station()
 			using_station = true
+			animation_tree["parameters/conditions/is_interacting"] = true
+			animation_tree["parameters/conditions/is_idle"] = false
+			animation_tree["parameters/conditions/is_moving_left"] = false
+			animation_tree["parameters/conditions/is_moving_right"] = false
+			
+		#print(animation_tree["parameters/conditions/is_interacting"])
+		#print(animation_tree["parameters/conditions/is_idle"])
+		#print(animation_tree["parameters/conditions/is_moving_left"])
+		#print(animation_tree["parameters/conditions/is_moving_right"])
 
 func _on_station_interaction_area_entered(area):
 	print("station entered") # Replace with function body.
