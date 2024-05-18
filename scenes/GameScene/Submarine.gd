@@ -16,7 +16,7 @@ var hull_collider : StaticBody2D
 var descending = true
 var ascending = false
 var descent_speed = 30
-var ascent_speed = -30
+var ascent_acceleration = -0.2
 
 var velocity : Vector2
 var sub_speedX : float = 200
@@ -46,22 +46,21 @@ func _process(delta):
 		velocity.y = descent_speed
 	
 	if ascending:
-		velocity.y = ascent_speed
+		velocity.y += ascent_acceleration
 	
 	var final_move = velocity * delta
 	if !hull.test_move(transform, final_move):
 		position += final_move
-		bonk_move = Vector2.ZERO
-		velocity.y = 0
+		if ascending && velocity.y < -1500 : velocity.y = -1500
 	elif bonk_timer.is_stopped():
 		bonk_timer.start(0.5)
 		velocity.x *= -0.5
-		bonk_move.x = abs(final_move.x) * sub_speedX
-		bonk_move.y = 0
+		bonk_move.x = -abs(final_move.x) * 4
+		bonk_move.y = -abs(final_move.y) * 1
+		oxygen.add_oxygen(-5)
 	else :
 		bonk_timer.start(0.5)
-		position.x += bonk_move.x
-		
+		position += bonk_move
 	
 	var camera = get_parent().get_node("Camera2D")
 	camera.position.y = position.y
