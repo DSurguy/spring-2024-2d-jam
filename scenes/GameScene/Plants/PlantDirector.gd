@@ -3,6 +3,7 @@ extends Node2D
 @export var submarine_node: Submarine
 @export var camera: Camera2D
 
+var generic_plant_data: PlantData = load("res://resources/plants/FloatingPlant.tres")
 var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/GenericPlant.tscn")
 var wall_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/WallPlant/WallPlant.tscn")
 var random = RandomNumberGenerator.new()
@@ -18,7 +19,6 @@ var random = RandomNumberGenerator.new()
 @export var clump_radius = 100
 var floating_plant_has_done_first_spawn: bool = false
 var wall_plant_has_done_first_spawn: bool = false
-var temp_x_clamp = 500
 
 func _ready():
 	assert(submarine_node != null, "submarine node is required")
@@ -47,11 +47,14 @@ func spawn_floating_plants(delta: float, spawn_y_position: float):
 		floating_plant_seconds_since_last_spawn = 0
 	else: return
 	
-	# TODO: Clamp x with raycast
+	# TODO: Adjust more to keep out of walls probably
+	var left_clamp = $Rays/LeftRay.get_collision_point().x + clump_radius
+	var right_clamp = $Rays/RightRay.get_collision_point().x - clump_radius
 	
+	# TODO: Weighted random, tend toward smaller clumps
 	var num_clusters = random.randi_range(1, 3)
 	for cluster in num_clusters:
-		var clump_x_position = random.randi_range(0 - temp_x_clamp, 0 + temp_x_clamp)
+		var clump_x_position = random.randi_range(left_clamp, right_clamp)
 		var clump_position = Vector2(clump_x_position, spawn_y_position)
 		var num_plants = random.randi_range(1, 3)
 		for plant in num_plants:
@@ -59,7 +62,8 @@ func spawn_floating_plants(delta: float, spawn_y_position: float):
 				random.randi_range(-clump_radius, clump_radius),
 				random.randi_range(-clump_radius, clump_radius)
 			)
-			var new_plant:Node2D = generic_plant_scene.instantiate()
+			var new_plant: GenericPlant = generic_plant_scene.instantiate()
+			new_plant.data = generic_plant_data
 			new_plant.position = clump_position + plant_position
 			add_child(new_plant)
 
@@ -72,6 +76,8 @@ func spawn_wall_plants(delta: float, spawn_y_position: float):
 		wall_plant_seconds_since_last_spawn = 0
 	else: return
 	
+	# TODO: Iterate over plants and move down the wall to spawn more
+	# TODO: Weighted random, tend toward small
 	var num_plants = random.randi_range(1, 3)
 	
 	var new_plant: WallPlant = wall_plant_scene.instantiate()

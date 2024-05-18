@@ -1,10 +1,12 @@
-extends Node2D
+class_name GenericPlant extends Node2D
 
 @onready var animation_tree : AnimationTree = $AnimationTree
+@export var data: PlantData
 
 var velocity:Vector2
 
 func _ready():
+	assert(data != null, "PlantData is required")
 	animation_tree.active = true
 	var scaleFactor = 1 + (1.5 * (randf() - 0.25))
 	scale = Vector2(scaleFactor, scaleFactor)
