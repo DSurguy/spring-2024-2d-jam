@@ -1,13 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://bvg3k0vq6qxxn"]
+[gd_scene load_steps=11 format=3 uid="uid://bvg3k0vq6qxxn"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="1_klu5a"]
 [ext_resource type="Texture2D" uid="uid://b5trj3ci15qwf" path="res://assets/sprites/Sprite-0001.png" id="2_lxexh"]
 [ext_resource type="PackedScene" uid="uid://c3ogg8a2tefsv" path="res://scenes/Audio/footsteps.tscn" id="3_ws7qx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nvpx"]
+size = Vector2(13, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0bx2"]
-size = Vector2(24, 24)
+size = Vector2(13, 24)
 
 [sub_resource type="Animation" id="Animation_oxhk6"]
 resource_name = "idle"
@@ -80,22 +81,10 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:flip_h")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
@@ -110,80 +99,13 @@ _data = {
 "walk_right": SubResource("Animation_smjfy")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hs7wk"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4i0k"]
-animation = &"interact"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xasvg"]
-animation = &"walk_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqhid"]
-animation = &"walk_right"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h3ddk"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tmta4"]
-advance_mode = 2
-advance_condition = &"is_moving_left"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_thg0n"]
-advance_mode = 2
-advance_condition = &"is_moving_right"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybvcm"]
-advance_mode = 2
-advance_condition = &"is_interacting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1lo1"]
-advance_mode = 2
-advance_condition = &"is_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_axrwo"]
-advance_mode = 2
-advance_condition = &"is_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vg4gb"]
-advance_mode = 2
-advance_condition = &"is_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_74gxo"]
-advance_mode = 2
-advance_condition = &"is_interacting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g6yw5"]
-advance_mode = 2
-advance_condition = &"is_interacting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xdgf"]
-advance_mode = 2
-advance_condition = &"is_moving_left"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p657f"]
-advance_mode = 2
-advance_condition = &"is_moving_right"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dpdlr"]
-states/End/position = Vector2(828, 93)
-states/Start/position = Vector2(513, 225)
-states/idle/node = SubResource("AnimationNodeAnimation_hs7wk")
-states/idle/position = Vector2(513, 105)
-states/interact/node = SubResource("AnimationNodeAnimation_g4i0k")
-states/interact/position = Vector2(513, 27)
-states/walk_left/node = SubResource("AnimationNodeAnimation_xasvg")
-states/walk_left/position = Vector2(347, 157)
-states/walk_right/node = SubResource("AnimationNodeAnimation_dqhid")
-states/walk_right/position = Vector2(672, 162)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_h3ddk"), "idle", "walk_left", SubResource("AnimationNodeStateMachineTransition_tmta4"), "idle", "walk_right", SubResource("AnimationNodeStateMachineTransition_thg0n"), "idle", "interact", SubResource("AnimationNodeStateMachineTransition_ybvcm"), "interact", "idle", SubResource("AnimationNodeStateMachineTransition_u1lo1"), "walk_left", "idle", SubResource("AnimationNodeStateMachineTransition_axrwo"), "walk_right", "idle", SubResource("AnimationNodeStateMachineTransition_vg4gb"), "walk_right", "interact", SubResource("AnimationNodeStateMachineTransition_74gxo"), "walk_left", "interact", SubResource("AnimationNodeStateMachineTransition_g6yw5"), "walk_right", "walk_left", SubResource("AnimationNodeStateMachineTransition_2xdgf"), "walk_left", "walk_right", SubResource("AnimationNodeStateMachineTransition_p657f")]
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_klu5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_8nvpx")
 debug_color = Color(0.721569, 0.168627, 0.0627451, 0.615686)
 
@@ -192,28 +114,20 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationInteraction"]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_f0bx2")
 debug_color = Color(0.900578, 0.00016942, 0.762208, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lxexh")
-flip_h = true
 hframes = 4
 vframes = 3
-frame = 1
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_uq5el")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_dpdlr")
-anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/is_idle = false
-parameters/conditions/is_interacting = false
-parameters/conditions/is_moving_left = false
-parameters/conditions/is_moving_right = false
 
 [node name="Footsteps" parent="." instance=ExtResource("3_ws7qx")]
 

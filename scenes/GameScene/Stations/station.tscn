@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk4fm1rhxv6h"]
+[gd_scene load_steps=4 format=3 uid="uid://dk4fm1rhxv6h"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Station.gd" id="1_db2ko"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/StationAudio.tscn" id="2_x44lu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oke5l"]
 size = Vector2(32, 32)
 
 [node name="Station" type="Node2D"]
 script = ExtResource("1_db2ko")
+
+[node name="StationAudio" parent="." instance=ExtResource("2_x44lu")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

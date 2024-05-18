@@ -2,6 +2,7 @@ extends Node2D
 
 var active = false
 var submarine: Node2D
+@onready var audio: StationAudio = $StationAudio
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,9 +19,11 @@ func _process(delta):
 func activate_station():
 	active = true
 	get_parent().activate()
+	audio.play_open()
 	print("station active")
 	
 func deactivate_station():
 	active = false
 	get_parent().deactivate()
+	audio.play_close()
 	print("station inactive")

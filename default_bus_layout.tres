@@ -1,4 +1,7 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://doem4mqi4la0i"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://doem4mqi4la0i"]
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_t2t4g"]
+resource_name = "LowPassFilter"
 
 [resource]
 bus/1/name = &"Music"
@@ -13,3 +16,11 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = -1.71701
 bus/2/send = &"Master"
+bus/3/name = &"Stations"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = -5.04224
+bus/3/send = &"Sfx"
+bus/3/effect/0/effect = SubResource("AudioEffectLowPassFilter_t2t4g")
+bus/3/effect/0/enabled = true
