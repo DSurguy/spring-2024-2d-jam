@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://7kw6xoufgkpi"]
+
+[ext_resource type="Script" path="res://scenes/Audio/engine.gd" id="1_l07gx"]
+[ext_resource type="AudioStream" uid="uid://brts1c7tt0ici" path="res://sfx/SUB_engine_on.ogg" id="1_ptasr"]
+
+[node name="Engine" type="Node"]
+script = ExtResource("1_l07gx")
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ptasr")
+volume_db = -80.0
+bus = &"Sfx"
