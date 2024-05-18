@@ -12,7 +12,7 @@ var anchor_move_force = 1000
 var anchor_damping_force_factor = -1.5
 #var anchor_damping_force_factor = 0
 var anchor_max_speed = 100
-var anchor_max_distance_origin = 450
+var anchor_max_distance_origin = 400
 var anchor_max_distance_between = 300
 var anchor_counter_force_factor = -10
 var anchor_distance_force_factor = -10
@@ -75,11 +75,11 @@ func _process(delta):
 	anchor_left.apply_central_force(anchor_left.linear_velocity * anchor_damping_force_factor)
 	anchor_right.apply_central_force(anchor_right.linear_velocity * anchor_damping_force_factor)
 
-	_update_net()
+	#_update_net()
 	queue_redraw()
 		
 # we make a hexagonal polygon between the two anchor points
-func _update_net():
+func _physics_process(delta):
 	net.polygon[0] = anchor_left.position
 	net.polygon[3] = anchor_right.position
 	
