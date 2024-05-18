@@ -1,4 +1,4 @@
-extends Node2D
+class_name Submarine extends Node2D
 
 var descending = true
 var ascending = false

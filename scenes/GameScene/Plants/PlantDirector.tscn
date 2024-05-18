@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bphh0fc1peyxl"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Plants/PlantDirector.gd" id="1_sbgqo"]
+
+[node name="PlantDirector" type="Node2D"]
+script = ExtResource("1_sbgqo")
