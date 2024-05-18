@@ -5,7 +5,7 @@ class_name WallPlantLeaf extends Node2D
 var wall_leaf_data = load("res://resources/plants/WallLeaf.tres")
 var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/GenericPlant.tscn")
 @onready var plant: WallPlant = get_parent()
-# @onready var plant_director: PlantDirector = get_parent().get_parent() # Should be PlantDirector
+@onready var plant_director: PlantDirector = get_parent().get_parent() # Should be PlantDirector
 var rand = RandomNumberGenerator.new()
 
 func get_rigid_body():
@@ -38,6 +38,6 @@ func harvest():
 	new_plant.data = wall_leaf_data
 	new_plant.position = spawn_position
 	new_plant.initial_velocity = spawn_velocity
-	# plant_director.add_child(new_plant)
+	plant_director.add_child(new_plant)
 	
 	self.queue_free()

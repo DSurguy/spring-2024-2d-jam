@@ -3,7 +3,7 @@ class_name WallPlantStalk extends RigidBody2D
 var wall_stalk_data = load("res://resources/plants/WallStalk.tres")
 var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/GenericPlant.tscn")
 @onready var plant: WallPlant = get_parent()
-# @onready var plant_director: PlantDirector = get_parent().get_parent() # Should be PlantDirector
+@onready var plant_director: PlantDirector = get_parent().get_parent() # Should be PlantDirector
 @export var next_plant_part: Node2D
 var rand = RandomNumberGenerator.new()
 
@@ -39,7 +39,7 @@ func harvest():
 	new_plant.data = wall_stalk_data
 	new_plant.position = spawn_position
 	new_plant.initial_velocity = spawn_velocity
-	# plant_director.add_child(new_plant)
+	plant_director.add_child(new_plant)
 	
 	var next_node = next_plant_part
 	if next_node != null:
