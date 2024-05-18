@@ -7,6 +7,7 @@ var sub_acceleration = 8
 var sub_velocity_loss = 0.96
 var velocity : float
 @onready var engine_audio: SubEngine = $Engine
+@onready var button_audio: ButtonAudio = $ButtonAudio
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +17,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if station.active:
+		if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
+			button_audio.play()
 		var direction = Input.get_axis("move_left", "move_right")
 		if direction:
 			velocity += direction * sub_acceleration
