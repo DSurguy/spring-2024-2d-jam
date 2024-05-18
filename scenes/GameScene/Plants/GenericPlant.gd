@@ -19,5 +19,15 @@ func _process(delta):
 func collect(target: Node2D):
 	print("Plant collected")
 	animation_tree["parameters/conditions/is_collected"] = true
-
 # TODO: Drift?
+
+
+func _on_area_2d_area_entered(area):
+	
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_entered(body):
+	if body is TileMap:
+		velocity = -velocity * Vector2(0.5, 0.5)
+	pass # Replace with function body.

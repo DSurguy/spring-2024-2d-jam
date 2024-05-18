@@ -72,11 +72,10 @@ script = ExtResource("1_x367m")
 texture = ExtResource("2_sh160")
 hframes = 4
 vframes = 2
-frame = 2
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 8
+collision_layer = 32776
+collision_mask = 32776
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_rgdsy")
@@ -92,3 +91,6 @@ autoplay = "idle"
 tree_root = SubResource("AnimationNodeStateMachine_bgisr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_collected = null
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
