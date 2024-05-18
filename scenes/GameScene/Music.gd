@@ -1,4 +1,5 @@
 extends Node
+class_name Music
 
 @export var descent_music: AudioStream = null
 @export var ascent_music: AudioStream = null
@@ -19,4 +20,4 @@ func play_ascent():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	play_descent()
+	pass

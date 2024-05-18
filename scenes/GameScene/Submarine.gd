@@ -1,5 +1,7 @@
 class_name Submarine extends Node2D
 
+@onready var music: Music = $Music
+
 var descending = true
 var ascending = false
 var descent_speed = 30
@@ -7,7 +9,7 @@ var ascent_speed = -30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	music.play_descent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -27,6 +29,7 @@ func _process(delta):
 func start_ascent():
 	descending = false
 	ascending = true
+	music.play_ascent()
 
 func _draw():
 	pass
