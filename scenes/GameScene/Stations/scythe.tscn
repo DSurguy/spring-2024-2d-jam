@@ -97,7 +97,7 @@ collision_mask = 128
 polygon = PackedVector2Array(8, 24, 224, 0, 8, -24)
 
 [node name="Sprite2D" type="Sprite2D" parent="ScytheCollision"]
-z_index = 5
+z_index = -10
 position = Vector2(3, 112)
 scale = Vector2(2.675, 2.675)
 texture = ExtResource("5_k8yx2")
@@ -113,15 +113,13 @@ autoplay = "idle"
 [node name="HelmUI" parent="." instance=ExtResource("2_f5akm")]
 visible = false
 offset_left = -32.0
-offset_top = -16.0
+offset_top = -56.0
 offset_right = 32.0
-offset_bottom = 16.0
+offset_bottom = -24.0
 
 [node name="Station" parent="." instance=ExtResource("3_m42rt")]
-position = Vector2(0, 32)
 
 [node name="Sprite2D" type="Sprite2D" parent="Station"]
-z_index = 3
 texture = ExtResource("5_eas85")
 hframes = 4
 

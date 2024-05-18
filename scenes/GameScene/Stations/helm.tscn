@@ -30,7 +30,6 @@ _data = {
 }
 
 [node name="Helm" type="Node2D"]
-position = Vector2(192, 32)
 script = ExtResource("1_7g6xy")
 
 [node name="HelmUI" parent="." instance=ExtResource("2_gjx2v")]

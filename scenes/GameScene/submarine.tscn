@@ -33,9 +33,10 @@ position = Vector2(0, 12)
 position = Vector2(160, 32)
 
 [node name="Ascend" parent="Stations" instance=ExtResource("5_qpvru")]
-position = Vector2(-156, 32)
+position = Vector2(-160, 32)
 
 [node name="Scythe" parent="Stations" instance=ExtResource("6_8gp6i")]
+position = Vector2(0, 32)
 
 [node name="Trawl" parent="Stations" instance=ExtResource("10_7jlvt")]
 position = Vector2(96, 32)
