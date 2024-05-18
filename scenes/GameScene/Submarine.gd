@@ -3,6 +3,8 @@ class_name Submarine extends Node2D
 @onready var music: Music = $Music
 @onready var button_audio: ButtonAudio = $ButtonAudio
 @onready var ascent_audio: AscentAudio = $AscentAudio
+@onready var hull = $Hull
+var hull_collider : StaticBody2D
 
 var descending = true
 var ascending = false
@@ -11,6 +13,7 @@ var ascent_speed = -30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hull_collider = hull.get_child(0) #DONT MOVE THE COLLIDER NODE ORDER
 	music.play_descent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
