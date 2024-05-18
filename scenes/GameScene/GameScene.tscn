@@ -34,4 +34,5 @@ autoplay = true
 
 [node name="Environment" parent="." instance=ExtResource("4_5iene")]
 
-[node name="Ambience" parent="." instance=ExtResource("8_nav1v")]
+[node name="Ambience" parent="." node_paths=PackedStringArray("listener") instance=ExtResource("8_nav1v")]
+listener = NodePath("../Submarine")
