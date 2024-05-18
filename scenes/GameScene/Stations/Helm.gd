@@ -37,6 +37,7 @@ func activate():
 	
 func deactivate():
 	print("helm deactivated")
+	engine_audio.stop()
 	ui.visible = false
 	
 func use():
