@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx532280ahds"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Stations/Helm.gd" id="1_7g6xy"]
+[ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_gjx2v"]
+[ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/Stations/station.tscn" id="3_htd3u"]
+
+[node name="Helm" type="Node2D"]
+position = Vector2(192, 32)
+script = ExtResource("1_7g6xy")
+
+[node name="HelmUI" parent="." instance=ExtResource("2_gjx2v")]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Station" parent="." instance=ExtResource("3_htd3u")]
