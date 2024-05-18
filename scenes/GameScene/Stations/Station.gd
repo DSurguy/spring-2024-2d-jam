@@ -11,8 +11,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-	
+	if active:
+		if Input.is_action_just_pressed("use"):
+			get_parent().use()
 	
 func activate_station():
 	active = true
@@ -21,5 +22,5 @@ func activate_station():
 	
 func deactivate_station():
 	active = false
-	get_parent().activate()
+	get_parent().deactivate()
 	print("station inactive")

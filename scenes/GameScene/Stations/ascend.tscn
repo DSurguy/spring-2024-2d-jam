@@ -9,6 +9,7 @@ position = Vector2(-164, 32)
 script = ExtResource("1_ongcm")
 
 [node name="AscendUI" parent="." instance=ExtResource("2_a7p58")]
+visible = false
 offset_left = -16.0
 offset_top = -56.0
 offset_right = 16.0

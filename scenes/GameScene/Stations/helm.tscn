@@ -9,6 +9,7 @@ position = Vector2(192, 32)
 script = ExtResource("1_7g6xy")
 
 [node name="HelmUI" parent="." instance=ExtResource("2_gjx2v")]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
