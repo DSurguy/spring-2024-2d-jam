@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scenes/UI/Stations/Ascend/AscendButton.gd" id="3_82q1k"]
 
 [node name="AscendUI" type="Control"]
+z_index = 15
 layout_mode = 3
 anchors_preset = 0
 offset_right = 32.0

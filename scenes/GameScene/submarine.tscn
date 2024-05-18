@@ -7,19 +7,43 @@
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
 [ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
-[ext_resource type="PackedScene" uid="uid://bnj2l3nqmi52g" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
-[ext_resource type="PackedScene" uid="uid://crlshnis8tvt4" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
-[ext_resource type="PackedScene" uid="uid://d2lxnf6cx8ejt" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
+[ext_resource type="PackedScene" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
 [ext_resource type="PackedScene" uid="uid://dhpkwwwvwguk5" path="res://scenes/GameScene/Stations/trawl.tscn" id="10_7jlvt"]
 [ext_resource type="PackedScene" uid="uid://r0bdebyyubdw" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
 
 [node name="Submarine" type="Node2D"]
 script = ExtResource("1_0ojk1")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 10
+offset_left = -197.0
+offset_top = -69.0
+offset_right = 201.0
+offset_bottom = 74.0
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Stations" type="Node2D" parent="."]
+position = Vector2(0, 12)
+
+[node name="Helm" parent="Stations" instance=ExtResource("4_j4e8l")]
+position = Vector2(161, 32)
+
+[node name="Ascend" parent="Stations" instance=ExtResource("5_qpvru")]
+position = Vector2(-156, 32)
+
+[node name="Scythe" parent="Stations" instance=ExtResource("6_8gp6i")]
+
+[node name="Trawl" parent="Stations" instance=ExtResource("10_7jlvt")]
+position = Vector2(-10, 2)
+
 [node name="Player" parent="." instance=ExtResource("2_7br66")]
+z_index = 15
 
 [node name="Sprite" type="TileMap" parent="."]
+z_index = 5
 tile_set = ExtResource("3_xjmhw")
 rendering_quadrant_size = 32
 format = 2
@@ -38,20 +62,6 @@ target_position = Vector2(-32, 0)
 [node name="ButtonAudio" parent="." instance=ExtResource("5_ystk1")]
 
 [node name="Oxygen" parent="." instance=ExtResource("6_lobel")]
-
-[node name="Stations" type="Node2D" parent="."]
-position = Vector2(0, 12)
-
-[node name="Helm" parent="Stations" instance=ExtResource("4_j4e8l")]
-position = Vector2(161, 32)
-
-[node name="Ascend" parent="Stations" instance=ExtResource("5_qpvru")]
-position = Vector2(-156, 32)
-
-[node name="Scythe" parent="Stations" instance=ExtResource("6_8gp6i")]
-
-[node name="Trawl" parent="Stations" instance=ExtResource("10_7jlvt")]
-position = Vector2(-10, 2)
 
 [node name="SubBonkAudio" parent="." instance=ExtResource("11_yt1va")]
 
