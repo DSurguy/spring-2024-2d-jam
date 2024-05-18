@@ -24,6 +24,7 @@ var ascent_acceleration = -0.2
 var velocity : Vector2
 var sub_speedX : float = 200
 var bonk_timer = Timer.new()
+var alarm_timer = Timer.new()
 var bonk_move : Vector2
 
 @export var directionX : float = 0
@@ -37,6 +38,8 @@ func _ready():
 	oxygen.start_depleting()
 	bonk_timer.one_shot = true
 	add_child(bonk_timer)
+	alarm_timer.one_shot = true
+	add_child(alarm_timer)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -84,12 +87,14 @@ func stop_oxy_depletion():
 	oxygen.stop_depleting()
 
 func handle_low_oxygen():
-	if oxygen.current_oxygen < 20:
-		await get_tree().create_timer(0.3)
+	if !alarm_timer.is_stopped(): return
+	
+	if oxygen.current_oxygen < 25:
 		button_audio.play()
+		alarm_timer.start(0.3)
 	elif oxygen.current_oxygen < 50:
 		button_audio.play()
-		await get_tree().create_timer(0.1)
+		alarm_timer.start(0.6)
 
 func start_ascent():
 	if oxygen.is_empty():
@@ -100,13 +105,6 @@ func start_ascent():
 	button_audio.play()
 	music.play_ascent()
 	ascent_audio.play()
-	
-
-func _draw():
-	pass
-	
-	# debug drawing
-	#draw_rect(Rect2(1.0, 1.0, 3.0, 3.0), Color.RED)
 
 
 func _on_oxygen_oxygen_depleted():
