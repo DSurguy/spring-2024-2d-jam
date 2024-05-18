@@ -3,6 +3,8 @@ extends Node2D
 var station : Node2D
 var ui : AscendUI
 
+var used = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
@@ -18,10 +20,13 @@ func activate():
 	
 func deactivate():
 	print("ascend deactivated")
-	ui.visible = false
+	if not used:
+		ui.visible = false
 		
 func use():
 	print("ascend used")
-	if station.submarine.ascending == false:
+	if not used:
+		used = true
+		ui.set_status(ui.BUTTON_STATUS.PRESSED)
 		station.submarine.start_ascent()
 	
