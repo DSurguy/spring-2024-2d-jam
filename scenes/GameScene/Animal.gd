@@ -41,7 +41,7 @@ func _find_closest_plant():
 	plant_distance = 99999
 	for plant:GenericPlant in collection.get_children():
 		var direction = collection.to_global(plant.position) - to_global(rigidbody.position)
-		print("%v -> %v" % [to_global(rigidbody.position), collection.to_global(plant.position)])
+		# print("%v -> %v" % [to_global(rigidbody.position), collection.to_global(plant.position)])
 		if plant_direction.length() < plant_distance:
 			plant_distance = plant_direction.length()
 			plant_direction = direction
