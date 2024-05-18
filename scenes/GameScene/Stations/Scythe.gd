@@ -6,10 +6,15 @@ var scythe : Node2D
 
 var rotation_accel = 2
 var rotation_speed = 0
+var rotation_speed_rebound_threshold = 10
+var rotation_speed_rebound = 15
 var rotation_loss = 0.995
 var rotation_drop_factor = 0.02
 var bounce_loss = 0.75
 var max_rotation = 88
+
+var left_blade_collision = false
+var right_blade_collision = false
 
 var previous_submarine_position_x = 0
 var submarine_move_rotation_speed = 7
@@ -47,6 +52,23 @@ func _process(delta):
 	elif submarine_velocity_x < 0:
 		additional_sub_rotation = -1 * submarine_move_rotation_speed
 	previous_submarine_position_x = station.submarine.position.x
+	
+	# handle scythe collision
+	if left_blade_collision:
+		if rotation_speed > 0 && abs(rotation_speed) > rotation_speed_rebound_threshold:
+			# not stationary, we can rebound
+			rotation_speed = -1 * bounce_loss * rotation_speed
+		else:
+			# stationaryish, kick it in the opposite direction
+			rotation_speed = -1 * rotation_speed_rebound
+		
+	if right_blade_collision:
+		if rotation_speed < 0 && abs(rotation_speed) > rotation_speed_rebound_threshold:
+			# not stationary, we can rebound
+			rotation_speed = bounce_loss * rotation_speed
+		else:
+			# stationaryish, kick it in the opposite direction
+			rotation_speed = rotation_speed_rebound
 			
 	var normalized_rotation_speed = (rotation_speed + additional_sub_rotation) * delta
 			
@@ -76,4 +98,16 @@ func _on_scythe_blade_body_entered(body):
 	# TODO: Make this a little more safe, relying on layer for now
 	assert(body is WallPlantStalk)
 	body.on_scythe_hit()
-	pass # Replace with function body.
+
+func _on_rebound_area_left_body_entered(body):
+	left_blade_collision = true
+
+func _on_rebound_area_right_body_entered(body):
+	right_blade_collision = true
+
+func _on_rebound_area_left_body_exited(body):
+	left_blade_collision = false
+
+
+func _on_rebound_area_right_body_exited(body):
+	right_blade_collision = false
