@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://dswrm4pyhafd1"]
+
+[ext_resource type="Script" path="res://scenes/TestScene/TestScene.gd" id="1_mv6hr"]
+[ext_resource type="PackedScene" uid="uid://c2bwsfdj3jefd" path="res://scenes/UI/Level/LevelProgress/LevelProgressUI.tscn" id="2_2craq"]
+[ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="3_lad5o"]
+[ext_resource type="PackedScene" uid="uid://d3vhcxq5yx7k" path="res://scenes/GameScene/submarine.tscn" id="4_0wmwg"]
+[ext_resource type="PackedScene" uid="uid://vhgx1tlgboft" path="res://scenes/GameScene/environment.tscn" id="5_pxi8s"]
+[ext_resource type="PackedScene" uid="uid://62n5ao8l72cp" path="res://scenes/Audio/ambience.tscn" id="6_h7dd8"]
+[ext_resource type="PackedScene" uid="uid://bphh0fc1peyxl" path="res://scenes/GameScene/Plants/PlantDirector.tscn" id="7_ioosk"]
+[ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="8_g0auy"]
+[ext_resource type="PackedScene" uid="uid://dhp21hmamf56" path="res://scenes/GameScene/Plants/GenericPlant.tscn" id="8_ywfsy"]
+
+[node name="TestScene" type="Node2D"]
+script = ExtResource("1_mv6hr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelProgressUI" parent="CanvasLayer" instance=ExtResource("2_2craq")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_lad5o")
+
+[node name="Submarine" parent="." instance=ExtResource("4_0wmwg")]
+
+[node name="Environment" parent="." instance=ExtResource("5_pxi8s")]
+
+[node name="Ambience" parent="." instance=ExtResource("6_h7dd8")]
+is_playing = false
+
+[node name="PlantDirector" parent="." node_paths=PackedStringArray("submarine_node", "camera") instance=ExtResource("7_ioosk")]
+submarine_node = NodePath("../Submarine")
+camera = NodePath("../Camera2D")
+
+[node name="GenericPlant" parent="." instance=ExtResource("8_ywfsy")]
+position = Vector2(101, 159)
+
+[node name="Music" parent="." instance=ExtResource("8_g0auy")]
