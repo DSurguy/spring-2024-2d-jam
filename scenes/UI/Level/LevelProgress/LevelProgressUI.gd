@@ -7,7 +7,7 @@ class_name LevelProgressUI extends Control
 
 var format_string = "Depth: %.2f"
 var oxy_format_string = "Oxygen: %d"
-var score_format_string = "Score: %d"
+var score_format_string = "Value of Vegetation: %d"
 
 func _ready():
 	if submarine_node == null:

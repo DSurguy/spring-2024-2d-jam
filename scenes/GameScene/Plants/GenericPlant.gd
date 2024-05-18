@@ -21,6 +21,8 @@ func _process(delta):
 func collect(target: Node2D):
 	print("Plant collected")
 	animation_tree["parameters/conditions/is_collected"] = true
+	
+	GameState.score += 1
 # TODO: Drift?
 
 
