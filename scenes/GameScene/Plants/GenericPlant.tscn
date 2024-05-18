@@ -69,10 +69,10 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 script = ExtResource("1_x367m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_sh160")
 hframes = 4
 vframes = 2
-frame = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32776

@@ -13,16 +13,16 @@ script = ExtResource("1_sbm6h")
 next_plant_part = NodePath("../WallPlantStalk")
 
 [node name="WallPlantStalk" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
-position = Vector2(15, -23)
+position = Vector2(7, -18)
 next_plant_part = NodePath("../WallPlantStalk2")
 
 [node name="WallPlantStalk2" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
-position = Vector2(15, -53)
+position = Vector2(7, -48)
 next_plant_part = NodePath("../WallPlantStalk3")
 
 [node name="WallPlantStalk3" parent="." node_paths=PackedStringArray("next_plant_part") instance=ExtResource("3_c3l2i")]
-position = Vector2(15, -83)
+position = Vector2(7, -78)
 next_plant_part = NodePath("../WallPlantLeaf")
 
 [node name="WallPlantLeaf" parent="." instance=ExtResource("4_147r7")]
-position = Vector2(15, -98)
+position = Vector2(7, -93)

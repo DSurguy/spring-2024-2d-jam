@@ -1,6 +1,6 @@
 class_name WallPlantLeaf extends Node2D
 
-@onready var sprite_position = $ColorRect.position
+@onready var sprite_position = $Sprite2D.position
 var wall_leaf_data = load("res://resources/plants/WallLeaf.tres")
 var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/GenericPlant.tscn")
 @onready var plant: WallPlant = get_parent()
@@ -15,7 +15,8 @@ func _ready():
 #
 func _physics_process(delta):
 	$RigidBody2D.apply_force(Vector2(rand.randi_range(-10, 50), -250), $RigidBody2D.position)
-	$ColorRect.position = sprite_position + $RigidBody2D.position
+	# TODO: lerp between some small rotation
+	$Sprite2D.position = sprite_position + $RigidBody2D.position
 	pass
 
 func harvest():
