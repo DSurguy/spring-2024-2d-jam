@@ -54,7 +54,6 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x, directional_input * SPEED, 0.15) 
 		else:
 			velocity.x = lerp(velocity.x, 0.0, 0.5)
-		move_and_slide()
 		
 		animation_player.speed_scale = 1
 		if is_grounded:
@@ -74,10 +73,14 @@ func _physics_process(delta):
 		
 		if Input.is_action_just_pressed("interact") && station_touching && is_grounded:
 			station_touching.activate_station()
+			velocity.x = 0
 			animation_player.play("interact")
 			footsteps._play_one()
 			footsteps.stop()
 			using_station = true
+		
+		
+		move_and_slide()
 	
 	was_grounded = is_on_floor()
 
@@ -94,5 +97,6 @@ func _on_station_interaction_area_entered(area):
 
 
 func _on_station_interaction_area_exited(area):
-	print("station exited") 
+	if using_station : return
 	station_touching = null
+	print("station exited")
