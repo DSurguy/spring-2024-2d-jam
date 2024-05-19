@@ -58,7 +58,7 @@ func update_speed_label():
 		purchase_speed_button.set_text("Speed Upgrade : %d$" % current_price)
 	
 func update_win_label():
-	purchase_win_button.set_text("Gobo's Immortal Soul: %d" % win_base_price) 
+	purchase_win_button.set_text("Gobby's Immortal Soul: %d" % win_base_price) 
 
 func _on_start_level_button_pressed():
 	sfx.accept()
