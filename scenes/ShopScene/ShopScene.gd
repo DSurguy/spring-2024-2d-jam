@@ -9,6 +9,7 @@ extends LoadableScene
 @onready var purchase_win_button : Button = $CanvasLayer/Control/WinButton
 
 @onready var sfx: UISFX = $Uisfx
+@onready var fade_ui = $Fade_CanvasLayer
 
 @export var oxygen_price = 10
 @export var scythe_price = 20
@@ -16,6 +17,10 @@ extends LoadableScene
 @export var speed_upgrade_base_price = 10
 @export var win_base_price = 500
 var speed_upgrade_max = 5
+var load_path: String
+
+signal fade_scene_in
+signal fade_scene_out
 
 func _ready():
 	inscrease_oxygen_button.text = "Increase Oxygen: %d$" % oxygen_price
@@ -28,6 +33,10 @@ func _ready():
 
 	load_complete.emit()
 	$CanvasLayer/Control/IncreaseOxygenButton.grab_focus()
+	
+	fade_scene_in.connect(Callable(fade_ui, "fade_in"))
+	fade_scene_out.connect(Callable(fade_ui, "fade_out"))
+	fade_scene_in.emit()
 
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
@@ -62,7 +71,12 @@ func update_win_label():
 
 func _on_start_level_button_pressed():
 	sfx.accept()
-	loader.load_scene("res://scenes/GameScene/GameScene.tscn")
+	load_path = "res://scenes/GameScene/GameScene.tscn"
+	fade_scene_out.emit()
+	#loader.load_scene("res://scenes/GameScene/GameScene.tscn")
+
+func call_loader():
+	loader.load_scene(load_path)
 
 func _on_increase_oxygen_button_pressed():
 	if GameState.score < oxygen_price : 
@@ -119,7 +133,12 @@ func _on_purchase_win_button_down():
 		sfx.reject()
 	else :
 		sfx.accept()
-		loader.load_scene("res://scenes/WinScene/WinScene.tscn")
+		load_path = "res://scenes/WinScene/WinScene.tscn"
+		fade_scene_out.emit()
+#		loader.load_scene("res://scenes/WinScene/WinScene.tscn")
+
+func _on_fade_canvas_layer_fade_out_complete():
+	call_loader()
 
 
 func _on_start_level_button_mouse_entered():

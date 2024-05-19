@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3opyie8qan3"]
+[gd_scene load_steps=12 format=3 uid="uid://d3opyie8qan3"]
 
 [ext_resource type="Script" path="res://scenes/WinScene/WinScene.gd" id="1_8unqc"]
 [ext_resource type="Texture2D" uid="uid://b5trj3ci15qwf" path="res://assets/sprites/Sprite-0001.png" id="2_5vsvc"]
 [ext_resource type="Texture2D" uid="uid://dkyibeplo5jdy" path="res://assets/sprites/ghost.png" id="3_pase1"]
 [ext_resource type="AudioStream" uid="uid://yqawxrsuv0p6" path="res://music/MUS_Win.ogg" id="4_gppdt"]
+[ext_resource type="PackedScene" uid="uid://bhqhhc465l8nk" path="res://scenes/UI/UI_Fade.tscn" id="5_q3tfa"]
 
 [sub_resource type="Animation" id="Animation_40ooi"]
 resource_name = "dancing"
@@ -161,3 +162,5 @@ stream = ExtResource("4_gppdt")
 volume_db = -6.69
 autoplay = true
 bus = &"Music"
+
+[node name="Fade_CanvasLayer" parent="." instance=ExtResource("5_q3tfa")]

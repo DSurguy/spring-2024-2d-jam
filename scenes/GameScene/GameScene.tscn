@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=14 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Texture2D" uid="uid://8os54q1io74a" path="res://assets/sprites/wave.png" id="2_ax26t"]
@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="7_uyluk"]
 [ext_resource type="PackedScene" uid="uid://62n5ao8l72cp" path="res://scenes/Audio/ambience.tscn" id="8_nav1v"]
 [ext_resource type="PackedScene" uid="uid://c2bwsfdj3jefd" path="res://scenes/UI/Level/LevelProgress/LevelProgressUI.tscn" id="9_ej11t"]
-[ext_resource type="PackedScene" path="res://scenes/GameScene/WinchChain.tscn" id="9_ikbe7"]
+[ext_resource type="PackedScene" uid="uid://dhkojr061kgek" path="res://scenes/GameScene/WinchChain.tscn" id="9_ikbe7"]
 [ext_resource type="PackedScene" uid="uid://b32luoe7xtk5f" path="res://scenes/GameScene/animal_director.tscn" id="9_q7u3h"]
 [ext_resource type="PackedScene" uid="uid://bphh0fc1peyxl" path="res://scenes/GameScene/Plants/PlantDirector.tscn" id="10_0vwm8"]
-[ext_resource type="PackedScene" path="res://scenes/GameScene/parallax_background.tscn" id="11_6t2xp"]
+[ext_resource type="PackedScene" uid="uid://bfvxikfk86o28" path="res://scenes/GameScene/parallax_background.tscn" id="11_6t2xp"]
+[ext_resource type="PackedScene" uid="uid://bhqhhc465l8nk" path="res://scenes/UI/UI_Fade.tscn" id="13_rn2um"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_knlki")
@@ -65,6 +66,8 @@ submarine_node = NodePath("../Submarine")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("11_6t2xp")]
 
+[node name="Fade_CanvasLayer" parent="." instance=ExtResource("13_rn2um")]
+
 [connection signal="death_restart_timeout" from="Submarine" to="." method="_on_submarine_death_restart_timeout"]
 [connection signal="tutorial_image_activate" from="Submarine/Stations/Helm" to="CanvasLayer/LevelProgressUI" method="_on_helm_tutorial_image_activate"]
 [connection signal="tutorial_image_activate" from="Submarine/Stations/Ascend" to="CanvasLayer/LevelProgressUI" method="_on_ascend_tutorial_image_activate"]
@@ -72,5 +75,6 @@ submarine_node = NodePath("../Submarine")
 [connection signal="tutorial_image_activate" from="Submarine/Stations/Trawl" to="CanvasLayer/LevelProgressUI" method="_on_trawl_tutorial_image_activate"]
 [connection signal="tutorial_enter_message_activate" from="Submarine/Player" to="CanvasLayer/LevelProgressUI" method="_on_player_tutorial_enter_message_activate"]
 [connection signal="tutorial_message_deactivate" from="Submarine/Player" to="CanvasLayer/LevelProgressUI" method="_on_player_tutorial_message_deactivate"]
+[connection signal="fade_out_complete" from="Fade_CanvasLayer" to="." method="_on_fade_canvas_layer_fade_out_complete"]
 
 [editable path="Submarine"]

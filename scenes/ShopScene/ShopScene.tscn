@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciy5kjl5o8mjp"]
+[gd_scene load_steps=7 format=3 uid="uid://ciy5kjl5o8mjp"]
 
 [ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
 [ext_resource type="Texture2D" uid="uid://cqy43xlkbeti6" path="res://assets/sprites/shop_bg.png" id="2_78325"]
 [ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
 [ext_resource type="Texture2D" uid="uid://dt1bdu0ep7pjt" path="res://assets/sprites/shop_tile.png" id="3_p51dl"]
 [ext_resource type="AudioStream" uid="uid://208dfr6b2k04" path="res://music/MUS_shop.ogg" id="5_jlgpk"]
+[ext_resource type="PackedScene" uid="uid://bhqhhc465l8nk" path="res://scenes/UI/UI_Fade.tscn" id="6_kvaoq"]
 
 [node name="ShopScene" type="Node2D"]
 script = ExtResource("1_toyhn")
@@ -129,6 +130,8 @@ stream = ExtResource("5_jlgpk")
 autoplay = true
 bus = &"Music"
 
+[node name="Fade_CanvasLayer" parent="." instance=ExtResource("6_kvaoq")]
+
 [connection signal="mouse_entered" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/IncreaseOxygenButton" to="." method="_on_increase_oxygen_button_mouse_entered"]
@@ -141,3 +144,4 @@ bus = &"Music"
 [connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseSpeed" to="." method="_on_purchase_speed_mouse_entered"]
 [connection signal="button_down" from="CanvasLayer/Control/WinButton" to="." method="_on_purchase_win_button_down"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/WinButton" to="." method="_on_win_button_mouse_entered"]
+[connection signal="fade_out_complete" from="Fade_CanvasLayer" to="." method="_on_fade_canvas_layer_fade_out_complete"]
