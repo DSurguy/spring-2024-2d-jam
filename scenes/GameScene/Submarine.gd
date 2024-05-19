@@ -6,6 +6,7 @@ signal death_restart_timeout
 @onready var music: Music = $Music
 @onready var button_audio: ButtonAudio = $ButtonAudio
 @onready var ascent_audio: AscentAudio = $AscentAudio
+@onready var alarm_audio: AudioStreamPlayer2D = $AlarmAudio
 @onready var sub_bonk_audio: AudioStreamPlayer = $SubBonkAudio.get_child(0)
 #@onready var hull : StaticBody2D = $Hull_Collider
 @onready var oxygen: Oxygen = $Oxygen
@@ -87,12 +88,18 @@ func stop_oxy_depletion():
 func handle_low_oxygen():
 	if !alarm_timer.is_stopped(): return
 	
-	if oxygen.current_oxygen < 25:
-		button_audio.play()
-		alarm_timer.start(0.3)
+	if oxygen.current_oxygen < 10:
+		alarm_audio.play()
+		flash_oxygen_ui.emit()
+		alarm_timer.start(0.25)
+	elif oxygen.current_oxygen < 25:
+		alarm_audio.play()
+		flash_oxygen_ui.emit()
+		alarm_timer.start(0.5)
 	elif oxygen.current_oxygen < 50:
-		button_audio.play()
-		alarm_timer.start(0.6)
+		alarm_audio.play()
+		flash_oxygen_ui.emit()
+		alarm_timer.start(1)
 
 func start_ascent():
 	if oxygen.is_empty():
@@ -122,3 +129,5 @@ func _on_oxygen_oxygen_depleted():
 
 func _on_death_restart_timer_timeout():
 	death_restart_timeout.emit()
+
+signal flash_oxygen_ui
