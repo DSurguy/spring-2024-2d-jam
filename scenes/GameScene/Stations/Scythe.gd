@@ -119,14 +119,17 @@ func _on_scythe_blade_body_entered(body):
 	body.on_scythe_hit()
 
 func _on_rebound_area_left_body_entered(body):
-	left_blade_collision = true
+	if body is TileMap:
+		left_blade_collision = true
 
 func _on_rebound_area_right_body_entered(body):
-	right_blade_collision = true
+	if body is TileMap:
+		right_blade_collision = true
 
 func _on_rebound_area_left_body_exited(body):
-	left_blade_collision = false
-
+	if body is TileMap:
+		left_blade_collision = false
 
 func _on_rebound_area_right_body_exited(body):
-	right_blade_collision = false
+	if body is TileMap:
+		right_blade_collision = false
