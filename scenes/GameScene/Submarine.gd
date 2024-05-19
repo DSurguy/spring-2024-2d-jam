@@ -13,6 +13,7 @@ signal death_restart_timeout
 @onready var death_timer: Timer = $DeathRestartTimer
 @onready var ray_right: RayCast2D = $raycast_right
 @onready var ray_left: RayCast2D = $raycast_left
+@onready var scythe = $Stations/Scythe
 
 var hull_collider : StaticBody2D
 
@@ -33,9 +34,10 @@ var bonk_move : Vector2
 func _ready():
 	music.play_descent()
 	oxygen.max_oxygen = GameState.max_oxygen
-	print("Set max oxygen from GameState")
 	oxygen.reset()
 	oxygen.start_depleting()
+	if !GameState.enable_scythe : scythe.hide()
+	
 	bonk_timer.one_shot = true
 	add_child(bonk_timer)
 	alarm_timer.one_shot = true
