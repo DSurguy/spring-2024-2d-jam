@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciy5kjl5o8mjp"]
 
 [ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
-[ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
 
 [node name="ShopScene" type="Node2D"]
 script = ExtResource("1_toyhn")
@@ -114,4 +114,5 @@ text = "Gobo's Immortal Soul: $"
 [connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseAscent" to="." method="_on_purchase_ascent_mouse_entered"]
 [connection signal="button_down" from="CanvasLayer/Control/PurchaseSpeed" to="." method="_on_purchase_speed_button_down"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseSpeed" to="." method="_on_purchase_speed_mouse_entered"]
+[connection signal="button_down" from="CanvasLayer/Control/WinButton" to="." method="_on_purchase_win_button_down"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/WinButton" to="." method="_on_win_button_mouse_entered"]
