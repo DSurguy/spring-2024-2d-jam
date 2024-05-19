@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk5ga2mg3hvma"]
+[gd_scene load_steps=9 format=3 uid="uid://dk5ga2mg3hvma"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Turtle.gd" id="1_g7eao"]
 [ext_resource type="Texture2D" uid="uid://m6g55q33ayjg" path="res://assets/sprites/turtle.png" id="2_cucv5"]
+[ext_resource type="PackedScene" uid="uid://c3ogg8a2tefsv" path="res://scenes/Audio/footsteps.tscn" id="3_afhvf"]
+[ext_resource type="AudioStream" uid="uid://ukbbe0x3q5og" path="res://sfx/Turtle/TURT_monch_3.ogg" id="6_nqerm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujw36"]
 radius = 15.0
@@ -59,6 +61,10 @@ libraries = {
 "": SubResource("AnimationLibrary_yb2pl")
 }
 autoplay = "moving"
+
+[node name="Footsteps" parent="." instance=ExtResource("3_afhvf")]
+footsteps = Array[AudioStream]([ExtResource("6_nqerm")])
+footstep_rate = 0.755
 
 [connection signal="area_entered" from="RigidBody2D/PlantCollision" to="." method="_on_plant_collision_area_entered"]
 [connection signal="area_exited" from="RigidBody2D/PlantCollision" to="." method="_on_plant_collision_area_exited"]

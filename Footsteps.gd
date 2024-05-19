@@ -35,10 +35,9 @@ func _ready():
 	# The way this works is that we have an array with 4 values, shuffle it,
 	# and just go up the list. When we get to the end, reset the index, reshuffle,
 	# and off we go
-	sample_indices.append(0)
-	sample_indices.append(1)
-	sample_indices.append(2)
-	sample_indices.append(3)
+	for i in footsteps.size():
+		sample_indices.append(i)
+	
 	timer.wait_time = footstep_rate
 
 func _reset_sample_queue():		
@@ -51,7 +50,7 @@ func _play_one():
 	player.play()
 
 func _pick_next_sample() -> AudioStream:
-	if sample_index == 4:
+	if sample_index == footsteps.size():
 		_reset_sample_queue()
 	var ret: AudioStream = footsteps[sample_indices[sample_index]]
 	sample_index += 1

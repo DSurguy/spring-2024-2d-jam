@@ -5,9 +5,13 @@ var current_plant_eating:GenericPlant
 var eating_timer = 0
 var eating_time = 2
 
+
 var bubble_emitter: PackedScene = load("res://scenes/particles/BubbleEmitter.tscn")
 var bubble_timer = 0
 var bubble_time = 0.5
+
+@onready var monch_sound: Footsteps = $Footsteps
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +26,7 @@ func _process(delta):
 		bubble_timer -= delta
 	
 	if edible_plants.size() > 0:
+		monch_sound.start()
 		if current_plant_eating == edible_plants[0] && not current_plant_eating.is_queued_for_deletion():
 			# same plant, carry on eating
 			if bubble_timer <= 0:
@@ -39,6 +44,7 @@ func _process(delta):
 			eating_timer = 0
 		# start eating animation
 	else:
+		monch_sound.stop()
 		# stop eating animation
 		pass
 
