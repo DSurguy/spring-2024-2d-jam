@@ -1,12 +1,12 @@
 extends LoadableScene
 
-@onready var oxygen_label: Label = $CanvasLayer/OxygenLabel
-@onready var score_label : Label = $CanvasLayer/ScoreLabel
-@onready var inscrease_oxygen_button : Button = $CanvasLayer/IncreaseOxygenButton
-@onready var purchase_scythe_button : Button = $CanvasLayer/PurchaseScythe
-@onready var purchase_ascent_button : Button = $CanvasLayer/PurchaseAscent
-@onready var purchase_speed_button : Button = $CanvasLayer/PurchaseSpeed
-@onready var purchase_win_button : Button = $CanvasLayer/WinButton
+@onready var oxygen_label: Label = $CanvasLayer/Control/OxygenLabel
+@onready var score_label : Label = $CanvasLayer/Control/ScoreLabel
+@onready var inscrease_oxygen_button : Button = $CanvasLayer/Control/IncreaseOxygenButton
+@onready var purchase_scythe_button : Button = $CanvasLayer/Control/PurchaseScythe
+@onready var purchase_ascent_button : Button = $CanvasLayer/Control/PurchaseAscent
+@onready var purchase_speed_button : Button = $CanvasLayer/Control/PurchaseSpeed
+@onready var purchase_win_button : Button = $CanvasLayer/Control/WinButton
 @onready var purchaseSFX : AudioStreamPlayer = $purchase_sfx
 @onready var purchaseFailSFX : AudioStreamPlayer = $purchase_fail_sfx
 
@@ -27,6 +27,7 @@ func _ready():
 	update_win_label()
 
 	load_complete.emit()
+	$CanvasLayer/Control/IncreaseOxygenButton.grab_focus()
 
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
