@@ -13,6 +13,8 @@ var submarine:Node2D
 var game_scene:Node2D
 @onready var rigidbody:RigidBody2D = $RigidBody2D
 
+@onready var sprite:Sprite2D = $Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game_scene = get_parent().get_parent()
@@ -35,6 +37,13 @@ func _process(delta):
 	
 	# eventually come to rest
 	rigidbody.apply_central_force(rigidbody.linear_velocity * damping_force_factor)
+	
+	if rigidbody.linear_velocity.x < 0 :
+		sprite.flip_h = true
+	else :
+		sprite.flip_h = false
+		
+	sprite.position = rigidbody.position
 	
 func _find_closest_plant():
 	var collection = submarine.get_node("Stations/Trawl/Collection")
