@@ -34,6 +34,8 @@ script = ExtResource("1_s2uc2")
 
 [node name="AnchorLeft" type="RigidBody2D" parent="."]
 position = Vector2(-20, 50)
+collision_layer = 513
+collision_mask = 513
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnchorLeft"]
@@ -42,6 +44,8 @@ debug_color = Color(0, 0, 0, 0.42)
 
 [node name="AnchorRight" type="RigidBody2D" parent="."]
 position = Vector2(20, 50)
+collision_layer = 513
+collision_mask = 513
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnchorRight"]

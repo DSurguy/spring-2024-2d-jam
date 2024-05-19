@@ -1,14 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3vhcxq5yx7k"]
+[gd_scene load_steps=16 format=3 uid="uid://d3vhcxq5yx7k"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
-[ext_resource type="PackedScene" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
+[ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
-[ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
+[ext_resource type="PackedScene" uid="uid://bnj2l3nqmi52g" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
-[ext_resource type="PackedScene" uid="uid://crlshnis8tvt4" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
-[ext_resource type="PackedScene" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
+[ext_resource type="AudioStream" uid="uid://b33pjdg7inoly" path="res://sfx/oxygen_alarm.wav" id="6_kdq12"]
+[ext_resource type="PackedScene" uid="uid://bsym0ymicj3gw" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
+[ext_resource type="PackedScene" uid="uid://cxta2ydmd1oka" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
 [ext_resource type="PackedScene" uid="uid://dhpkwwwvwguk5" path="res://scenes/GameScene/Stations/trawl.tscn" id="10_7jlvt"]
 [ext_resource type="PackedScene" uid="uid://h5ihk2q0q8qd" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
 [ext_resource type="Texture2D" uid="uid://jplsvgwsidud" path="res://assets/sprites/sub.png" id="14_r2bkw"]
@@ -20,8 +21,9 @@ size = Vector2(448, 32)
 size = Vector2(27, 131)
 
 [node name="Submarine" type="RigidBody2D"]
-collision_layer = 136
-collision_mask = 128
+collision_layer = 648
+collision_mask = 640
+mass = 1000.0
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 2.0
@@ -59,6 +61,10 @@ shape = SubResource("RectangleShape2D_cx8th")
 [node name="SubBonkAudio" parent="." instance=ExtResource("11_yt1va")]
 
 [node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
+
+[node name="AlarmAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kdq12")
+volume_db = 10.0
 
 [node name="DeathRestartTimer" type="Timer" parent="."]
 wait_time = 3.0
