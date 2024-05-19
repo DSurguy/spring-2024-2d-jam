@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfwtjv78bol0l"]
+[gd_scene load_steps=7 format=3 uid="uid://dfwtjv78bol0l"]
 
 [ext_resource type="Script" path="res://scenes/MainMenu/MainMenu.gd" id="1_37hwn"]
 [ext_resource type="PackedScene" uid="uid://bfvxikfk86o28" path="res://scenes/GameScene/parallax_background.tscn" id="2_etga2"]
 [ext_resource type="Texture2D" uid="uid://dayh7f6ul4dav" path="res://assets/sprites/title_text.png" id="2_pglqr"]
 [ext_resource type="PackedScene" uid="uid://pcy4tjpv8m4f" path="res://scenes/particles/BubbleUpEmitter.tscn" id="3_pqpui"]
 [ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="5_ebd53"]
+[ext_resource type="AudioStream" uid="uid://daykhwpswtro4" path="res://music/MUS_Menu.ogg" id="6_d0oer"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_37hwn")
@@ -87,6 +88,10 @@ position = Vector2(1313, 1154)
 position = Vector2(425, 1154)
 
 [node name="Uisfx" parent="." instance=ExtResource("5_ebd53")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_d0oer")
+autoplay = true
 
 [connection signal="mouse_entered" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadShopScene" to="." method="_on_load_shop_scene_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadShopScene" to="." method="_on_load_shop_scene_button_pressed"]
