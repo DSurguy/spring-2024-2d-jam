@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://w86kxvhi8yd2"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Alarm.gd" id="1_eqyes"]
+[ext_resource type="AudioStream" uid="uid://dmo1ioyn4xtdu" path="res://sfx/SUB_oxygen_alarm_buzz.ogg" id="2_n4vi5"]
+
+[node name="Alarm" type="Node"]
+script = ExtResource("1_eqyes")
+
+[node name="AlarmSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_n4vi5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
