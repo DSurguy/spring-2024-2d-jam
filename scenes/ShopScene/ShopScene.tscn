@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
 [ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
-<<<<<<< Updated upstream
 [ext_resource type="AudioStream" uid="uid://208dfr6b2k04" path="res://music/MUS_shop.ogg" id="3_2wutg"]
-=======
->>>>>>> Stashed changes
 
 [node name="ShopScene" type="Node2D"]
 script = ExtResource("1_toyhn")
