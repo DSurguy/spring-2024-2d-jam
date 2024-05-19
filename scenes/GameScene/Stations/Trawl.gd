@@ -3,10 +3,13 @@ extends Node2D
 var station : Node2D
 var ui : TrawlUI
 
+var bubble_emitter: PackedScene = load("res://scenes/particles/BubbleEmitter.tscn")
+
 @onready var anchor_left:RigidBody2D = $AnchorLeft
 @onready var anchor_right:RigidBody2D = $AnchorRight
 @onready var net:CollisionPolygon2D = $Net/CollisionPolygon2D
 @onready var collection:Node2D = $Collection
+
 
 var anchor_gravity_scale = 0.05
 var anchor_move_force = 1000
@@ -141,8 +144,11 @@ func has_plants() -> bool:
 
 func consume_plant_for_oxygen() -> int:
 	if has_plants():
-		var plant = $Collection.get_child(0)
+		var plant: GenericPlant = $Collection.get_child(0)
 		var value = plant.data.value
+		var emitter = bubble_emitter.instantiate()
+		emitter.position = plant.global_position
+		get_tree().get_root().add_child(emitter)
 		plant.queue_free()
 		return value
 	return 0
