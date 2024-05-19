@@ -29,6 +29,8 @@ var plant_collection_center_drift_factor = 0.99
 var anchor_left_origin:Vector2
 var anchor_right_origin:Vector2
 
+@onready var netSprite: Sprite2D = $Net/Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
@@ -110,9 +112,20 @@ func _physics_process(delta):
 	net.polygon[4] = anchor_right.position - net_line_third - (net_line_perp_normal * net_line_third.length() * 0.5)
 	net.polygon[5] = anchor_left.position + net_line_third - (net_line_perp_normal * net_line_third.length() * 0.5)
 	
+	netSprite.scale.x = (net.polygon[0] - net.polygon[3]).length() / netSprite.texture.get_width()
+	netSprite.scale.y = (net.polygon[1] - net.polygon[2]).length() / netSprite.texture.get_height()
+	netSprite.position = net.polygon[0]
+	netSprite.position -= (net.polygon[1] - net.polygon[5]) / 2
+	netSprite.rotation = (net.polygon[3] - net.polygon[0]).angle()
+	
 func _draw():
 	draw_line(anchor_left_origin, anchor_left.position, Color.TAN, 3.0)
+	#draw_line(anchor_left.position, net.polygon[1], Color.TAN, 3.0)
+	#draw_line(anchor_left.position, net.polygon[5], Color.TAN, 3.0)
+	
 	draw_line(anchor_right_origin, anchor_right.position, Color.TAN, 3.0)
+	#draw_line(anchor_right.position, net.polygon[2], Color.TAN, 3.0)
+	#draw_line(anchor_right.position, net.polygon[4], Color.TAN, 3.0)
 
 func activate():
 	pass
