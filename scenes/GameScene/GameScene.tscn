@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=11 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
-[ext_resource type="Script" path="res://scenes/GameScene/GameCamera.gd" id="2_p4bl1"]
 [ext_resource type="PackedScene" uid="uid://d3vhcxq5yx7k" path="res://scenes/GameScene/submarine.tscn" id="3_hsa6m"]
 [ext_resource type="PackedScene" uid="uid://vhgx1tlgboft" path="res://scenes/GameScene/environment.tscn" id="4_5iene"]
 [ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="7_uyluk"]
@@ -21,7 +20,6 @@ script = ExtResource("1_knlki")
 submarine_node = NodePath("../../Submarine")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_p4bl1")
 
 [node name="Environment" parent="." instance=ExtResource("4_5iene")]
 
