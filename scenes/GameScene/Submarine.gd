@@ -41,7 +41,7 @@ func _ready():
 	oxygen.max_oxygen = GameState.max_oxygen
 	oxygen.reset()
 	oxygen.start_depleting()
-	if !GameState.enable_scythe:
+	if !GameState.enable_scythe:		
 		scythe.queue_free()
 	#if GameState.ascent_upgrade:
 		#ascent_acceleration *= 2

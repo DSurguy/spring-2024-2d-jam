@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bly77n4geixfn"]
+
+[ext_resource type="Texture2D" uid="uid://fk0bytca6o5n" path="res://assets/sprites/ocean_bg2.png" id="1_402x8"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+modulate = Color(0.760784, 0.372549, 0.552941, 1)
+texture_filter = 1
+position = Vector2(790, 1644)
+scale = Vector2(8, 8)
+texture = ExtResource("1_402x8")
