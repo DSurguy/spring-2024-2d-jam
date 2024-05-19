@@ -3,11 +3,11 @@ class_name LevelProgressUI extends Control
 @export var submarine_node: Node2D = Node2D.new()
 @onready var label = $MarginContainer/HBoxContainer/Label
 @onready var oxy_label = $MarginContainer/HBoxContainer/OxygenLabel
-@onready var score_label = $MarginContainer/HBoxContainer/ScoreLabel
+@onready var score_label = $MarginContainer/TextureRect/MarginContainer/MoneyLabel
 
 var format_string = "Depth: %.2f"
 var oxy_format_string = "Oxygen: %d"
-var score_format_string = "Value of Vegetation: %d"
+var score_format_string = "%d"
 
 func _ready():
 	if submarine_node == null:

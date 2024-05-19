@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2bwsfdj3jefd"]
+[gd_scene load_steps=7 format=3 uid="uid://c2bwsfdj3jefd"]
 
 [ext_resource type="Script" path="res://scenes/UI/Level/LevelProgress/LevelProgressUI.gd" id="1_aosjc"]
+[ext_resource type="Texture2D" uid="uid://c6l1afpff4r0u" path="res://assets/sprites/money.png" id="2_wbdyx"]
 
 [sub_resource type="SystemFont" id="SystemFont_wk0xc"]
 font_names = PackedStringArray("Comic Sans MS")
@@ -9,6 +10,14 @@ oversampling = 4.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ass80"]
 font = SubResource("SystemFont_wk0xc")
+
+[sub_resource type="SystemFont" id="SystemFont_q218i"]
+oversampling = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_s41hw"]
+font = SubResource("SystemFont_q218i")
+font_size = 24
+shadow_color = Color(0, 0, 0, 0.588235)
 
 [node name="LevelProgressUI" type="Control"]
 layout_mode = 3
@@ -23,7 +32,7 @@ script = ExtResource("1_aosjc")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 33.0
+offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -43,7 +52,25 @@ layout_mode = 2
 text = "Oxygen: X"
 label_settings = SubResource("LabelSettings_ass80")
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+texture_filter = 1
 layout_mode = 2
-text = "Oxygen: X"
-label_settings = SubResource("LabelSettings_ass80")
+size_flags_horizontal = 8
+texture = ExtResource("2_wbdyx")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 6
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "9999
+"
+label_settings = SubResource("LabelSettings_s41hw")
