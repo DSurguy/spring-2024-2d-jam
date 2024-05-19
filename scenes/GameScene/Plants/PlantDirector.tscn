@@ -9,9 +9,9 @@ script = ExtResource("1_sbgqo")
 
 [node name="LeftRay" type="RayCast2D" parent="Rays"]
 target_position = Vector2(-2000, 0)
-collision_mask = 128
+collision_mask = 16384
 collide_with_areas = true
 
 [node name="RightRay" type="RayCast2D" parent="Rays"]
 target_position = Vector2(2000, 0)
-collision_mask = 128
+collision_mask = 16384

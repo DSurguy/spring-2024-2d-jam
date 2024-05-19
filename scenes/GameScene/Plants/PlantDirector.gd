@@ -91,7 +91,6 @@ func spawn_wall_plants(delta: float, spawn_y_position: float):
 			new_plant.position = collision_point - Vector2i(-2, 0) - Vector2i(collision_point.x % 32, collision_point.y % 32) + Vector2i(16, 16)
 		else: return
 	else:
-		# TODO: Make this not die on 13, 39 on the tileset, why does it collide - please
 		var tile_map = $Rays/RightRay.get_collider()
 		var original_collision_point = $Rays/RightRay.get_collision_point()
 		var collision_point = Vector2(original_collision_point + Vector2(2, 0))
