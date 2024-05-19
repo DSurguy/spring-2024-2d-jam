@@ -9,7 +9,7 @@ var bubble_emitter: PackedScene = load("res://scenes/particles/BubbleEmitter.tsc
 @onready var anchor_right:RigidBody2D = $AnchorRight
 @onready var net:CollisionPolygon2D = $Net/CollisionPolygon2D
 @onready var collection:Node2D = $Collection
-
+@onready var grab_sound: AudioStreamPlayer2D = $AudioPlayer
 
 var anchor_gravity_scale = 0.05
 var anchor_move_force = 1000
@@ -94,8 +94,8 @@ func _process(delta):
 	
 	# move collection toward net center
 	for plant in collection.get_children():
-		plant.position *= plant_collection_center_drift_factor
-
+		plant.position *= plant_collection_center_drift_factor	
+	
 	#_update_net()
 	queue_redraw()
 		
@@ -152,6 +152,8 @@ func use():
 
 func _on_net_area_entered(area:Area2D):
 	var plant:GenericPlant = area.get_parent()
+	grab_sound.position = area.global_position
+	grab_sound.play()
 	if plant.get_parent().name == "Collection":
 		return
 		

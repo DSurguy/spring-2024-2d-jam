@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://3rx12klq7s22"]
+[gd_scene load_steps=10 format=3 uid="uid://ccbv4lvdi3vpe"]
 
 [ext_resource type="Texture2D" uid="uid://dot51ukh2lne7" path="res://assets/sprites/Sprite-0003.png" id="1_mds1j"]
 
@@ -69,7 +69,6 @@ texture_filter = 1
 texture = ExtResource("1_mds1j")
 hframes = 4
 vframes = 2
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
