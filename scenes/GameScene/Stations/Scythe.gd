@@ -22,6 +22,7 @@ var previous_submarine_position_x = 0
 var submarine_move_rotation_speed = 7
 
 var minimum_cut_speed = 1
+var random = RandomNumberGenerator.new()
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -95,11 +96,15 @@ func deactivate():
 func use():
 	pass
 
+func _play_cut_sound():
+	var pitch_random = random.randf_range(0.8, 1.4)
+	cut_sound.pitch_scale = pitch_random
+	cut_sound.play()
 
 func _on_scythe_blade_body_entered(body):
 	# TODO: Make this a little more safe, relying on layer for now
 	assert(body is WallPlantStalk)
-	cut_sound.play()
+	_play_cut_sound()
 	body.on_scythe_hit()
 
 func _on_rebound_area_left_body_entered(body):
