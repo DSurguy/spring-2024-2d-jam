@@ -14,4 +14,5 @@ func _process(delta):
 
 
 func _on_submarine_death_restart_timeout():
-	loader.load_scene("res://scenes/ShopScene/ShopScene.tscn")
+	loader.load_scene("res://scenes/GameOverScene/GameOverScene.tscn")
+	# loader.load_scene("res://scenes/ShopScene/ShopScene.tscn")
