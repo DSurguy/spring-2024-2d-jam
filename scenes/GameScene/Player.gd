@@ -30,7 +30,8 @@ func _process(delta):
 
 func kill():
 	dead = true
-	rotate(1.0)
+	animation_player.play("death")
+	#rotate(1.0)
 
 
 func _physics_process(delta):

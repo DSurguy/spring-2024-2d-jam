@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bvg3k0vq6qxxn"]
+[gd_scene load_steps=28 format=3 uid="uid://bvg3k0vq6qxxn"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player.gd" id="1_klu5a"]
 [ext_resource type="Texture2D" uid="uid://b5trj3ci15qwf" path="res://assets/sprites/Sprite-0001.png" id="2_lxexh"]
@@ -102,8 +102,25 @@ tracks/1/keys = {
 "values": [4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_0o46u"]
+resource_name = "death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uq5el"]
 _data = {
+"death": SubResource("Animation_0o46u"),
 "idle": SubResource("Animation_oxhk6"),
 "interact": SubResource("Animation_whtqp"),
 "walk_left": SubResource("Animation_yx27f"),
@@ -177,6 +194,7 @@ states/walk_left/position = Vector2(347, 157)
 states/walk_right/node = SubResource("AnimationNodeAnimation_dqhid")
 states/walk_right/position = Vector2(672, 162)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_h3ddk"), "idle", "walk_left", SubResource("AnimationNodeStateMachineTransition_tmta4"), "idle", "walk_right", SubResource("AnimationNodeStateMachineTransition_thg0n"), "idle", "interact", SubResource("AnimationNodeStateMachineTransition_ybvcm"), "interact", "idle", SubResource("AnimationNodeStateMachineTransition_u1lo1"), "walk_left", "idle", SubResource("AnimationNodeStateMachineTransition_axrwo"), "walk_right", "idle", SubResource("AnimationNodeStateMachineTransition_vg4gb"), "walk_right", "interact", SubResource("AnimationNodeStateMachineTransition_74gxo"), "walk_left", "interact", SubResource("AnimationNodeStateMachineTransition_g6yw5"), "walk_right", "walk_left", SubResource("AnimationNodeStateMachineTransition_2xdgf"), "walk_left", "walk_right", SubResource("AnimationNodeStateMachineTransition_p657f")]
+graph_offset = Vector2(0, -3.75509e-06)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -199,8 +217,8 @@ debug_color = Color(0.900578, 0.00016942, 0.762208, 0.42)
 texture = ExtResource("2_lxexh")
 flip_h = true
 hframes = 4
-vframes = 3
-frame = 3
+vframes = 5
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
