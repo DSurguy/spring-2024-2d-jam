@@ -4,6 +4,7 @@ extends LoadableScene
 
 func _ready():
 	button.grab_focus()
+	load_complete.emit()
 
 func _on_button_pressed():
 	loader.load_scene("res://scenes/MainMenu/MainMenu.tscn")
