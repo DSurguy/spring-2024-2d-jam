@@ -24,6 +24,7 @@ var ascent_acceleration = -0.2
 
 var velocity : Vector2
 var sub_speedX : float = 200
+var speed_upgrade_value = 50
 var bonk_timer = Timer.new()
 var alarm_timer = Timer.new()
 var bonk_move : Vector2
@@ -37,6 +38,10 @@ func _ready():
 	oxygen.reset()
 	oxygen.start_depleting()
 	if !GameState.enable_scythe : scythe.hide()
+	if GameState.ascent_upgrade : 
+		ascent_acceleration *= 2
+	if GameState.speed_upgrade != 0 :
+		sub_speedX += (speed_upgrade_value * GameState.speed_upgrade)
 	
 	bonk_timer.one_shot = true
 	add_child(bonk_timer)
