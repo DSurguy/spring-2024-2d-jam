@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
 [ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
-[ext_resource type="PackedScene" uid="uid://bnj2l3nqmi52g" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
 [ext_resource type="AudioStream" uid="uid://b33pjdg7inoly" path="res://sfx/oxygen_alarm.wav" id="6_kdq12"]
 [ext_resource type="PackedScene" uid="uid://bsym0ymicj3gw" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
