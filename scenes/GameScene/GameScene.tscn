@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="7_uyluk"]
 [ext_resource type="PackedScene" uid="uid://62n5ao8l72cp" path="res://scenes/Audio/ambience.tscn" id="8_nav1v"]
 [ext_resource type="PackedScene" uid="uid://c2bwsfdj3jefd" path="res://scenes/UI/Level/LevelProgress/LevelProgressUI.tscn" id="9_ej11t"]
-[ext_resource type="PackedScene" uid="uid://dhkojr061kgek" path="res://scenes/GameScene/WinchChain.tscn" id="9_ikbe7"]
+[ext_resource type="PackedScene" path="res://scenes/GameScene/WinchChain.tscn" id="9_ikbe7"]
 [ext_resource type="PackedScene" uid="uid://b32luoe7xtk5f" path="res://scenes/GameScene/animal_director.tscn" id="9_q7u3h"]
 [ext_resource type="PackedScene" uid="uid://bphh0fc1peyxl" path="res://scenes/GameScene/Plants/PlantDirector.tscn" id="10_0vwm8"]
-[ext_resource type="PackedScene" uid="uid://bfvxikfk86o28" path="res://scenes/GameScene/parallax_background.tscn" id="11_6t2xp"]
+[ext_resource type="PackedScene" path="res://scenes/GameScene/parallax_background.tscn" id="11_6t2xp"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_knlki")
