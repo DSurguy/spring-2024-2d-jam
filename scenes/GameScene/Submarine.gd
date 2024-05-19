@@ -20,7 +20,10 @@ var bubble_emitter: PackedScene = load("res://scenes/particles/BubbleEmitter.tsc
 var descending = true
 var ascending = false
 var descent_force = 70
-var ascent_force = -350
+var descent_force_additional = 0
+var descent_force_upgrade = 50
+var ascent_force = -200
+var ascent_force_multiplier = 1
 
 var velocity : Vector2
 var sub_speedX : float = 200
@@ -29,7 +32,7 @@ var bonk_timer = Timer.new()
 var alarm_timer = Timer.new()
 
 var bonk_damage_timer = 0
-var bonk_damage_time = 1
+var bonk_damage_time = 0.5
 var bonk_sfx_timer = 0
 var bonk_sfx_time = 0.5
 
@@ -51,10 +54,9 @@ func _ready():
 	oxygen.start_depleting()
 	if !GameState.enable_scythe:		
 		scythe.queue_free()
-	#if GameState.ascent_upgrade:
-		#ascent_acceleration *= 2
-	#if GameState.speed_upgrade != 0:
-		#sub_speedX += (speed_upgrade_value * GameState.speed_upgrade)
+	if GameState.ascent_upgrade:
+		ascent_force_multiplier = 2
+	descent_force_additional = GameState.speed_upgrade * descent_force_upgrade
 	
 	bonk_timer.one_shot = true
 	add_child(bonk_timer)
@@ -86,9 +88,9 @@ func _physics_process(delta):
 	
 	var move_force = 0
 	if descending:
-		move_force = descent_force
+		move_force = descent_force + descent_force_additional
 	elif ascending:
-		move_force = ascent_force
+		move_force = ascent_force * ascent_force_multiplier
 	
 	apply_central_force(Vector2.DOWN * move_force * mass)
 	
