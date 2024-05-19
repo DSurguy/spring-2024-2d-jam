@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3opyie8qan3"]
+[gd_scene load_steps=10 format=3 uid="uid://d3opyie8qan3"]
 
 [ext_resource type="Script" path="res://scenes/WinScene/WinScene.gd" id="1_8unqc"]
 [ext_resource type="Texture2D" uid="uid://b5trj3ci15qwf" path="res://assets/sprites/Sprite-0001.png" id="2_5vsvc"]
+[ext_resource type="Texture2D" uid="uid://dkyibeplo5jdy" path="res://assets/sprites/ghost.png" id="3_pase1"]
 
 [sub_resource type="Animation" id="Animation_40ooi"]
 resource_name = "dancing"
@@ -71,6 +72,28 @@ _data = {
 "Dancing": SubResource("Animation_cuj6e")
 }
 
+[sub_resource type="Animation" id="Animation_lwui2"]
+resource_name = "dance"
+length = 1.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o2t8v"]
+_data = {
+"dance": SubResource("Animation_lwui2")
+}
+
 [node name="WinScene" type="Node2D"]
 script = ExtResource("1_8unqc")
 
@@ -88,6 +111,7 @@ position = Vector2(1400, 600)
 scale = Vector2(4, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="DancingGobo"]
+texture_filter = 1
 texture = ExtResource("2_5vsvc")
 hframes = 4
 vframes = 5
@@ -103,6 +127,7 @@ position = Vector2(400, 600)
 scale = Vector2(4, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="DancingGobo2"]
+texture_filter = 1
 texture = ExtResource("2_5vsvc")
 flip_h = true
 hframes = 4
@@ -113,3 +138,19 @@ libraries = {
 "": SubResource("AnimationLibrary_4rrgf")
 }
 autoplay = "Dancing"
+
+[node name="Ghost" type="Node2D" parent="."]
+position = Vector2(900, 600)
+scale = Vector2(8, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ghost"]
+texture_filter = 1
+texture = ExtResource("3_pase1")
+hframes = 12
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ghost"]
+libraries = {
+"": SubResource("AnimationLibrary_o2t8v")
+}
+autoplay = "dance"
