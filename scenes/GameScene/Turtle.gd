@@ -31,7 +31,7 @@ func _process(delta):
 			# same plant, carry on eating
 			if bubble_timer <= 0:
 				var emitter = bubble_emitter.instantiate()
-				emitter.position = position
+				emitter.position = rigidbody.global_position
 				get_tree().get_root().add_child(emitter)
 				bubble_timer = bubble_time
 			
