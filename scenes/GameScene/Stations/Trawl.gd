@@ -192,6 +192,7 @@ func consume_plant_for_oxygen() -> int:
 		var emitter = bubble_emitter.instantiate()
 		emitter.position = plant.global_position
 		get_tree().get_root().add_child(emitter)
+		GameState.score -= plant.data.value
 		plant.queue_free()
 		return value
 	return 0

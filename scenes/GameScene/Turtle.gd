@@ -49,6 +49,7 @@ func _process(delta):
 		pass
 
 func _eat_plant(plant:GenericPlant):
+	if plant == null: return
 	GameState.score -= plant.data.value
 	edible_plants.erase(plant)
 	eating_timer = 0

@@ -40,6 +40,7 @@ var bubble_timers = {}
 var bubble_time = 0.5
 
 var bonking : bool = false
+var died = false
 
 var lateral_move_force = 400
 @onready var rigidbody:RigidBody2D = $Hull/RigidBody2D
@@ -151,6 +152,8 @@ func _on_oxygen_oxygen_depleted():
 		oxygen.start_depleting()
 	else:
 		# Otherwise, we ded
+		if died: return
+		died = true
 		ascending = false
 		descending = false
 		music.stop()
