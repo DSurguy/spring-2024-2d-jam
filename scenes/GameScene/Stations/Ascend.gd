@@ -5,6 +5,8 @@ var ui : AscendUI
 
 var used = false
 
+signal tutorial_image_activate
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
@@ -17,6 +19,7 @@ func _process(delta):
 func activate():
 	print("ascend activated")
 	ui.visible = true
+	tutorial_image_activate.emit()
 	
 func deactivate():
 	print("ascend deactivated")

@@ -19,6 +19,7 @@ var dead = false
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
 
+signal tutorial_message_deactivate
 
 func _ready():
 	jump_timer.one_shot = true
@@ -39,6 +40,7 @@ func _physics_process(delta):
 	if using_station:
 		if Input.is_action_just_pressed("interact"):
 			station_touching.deactivate_station()
+			tutorial_message_deactivate.emit()
 			using_station = false
 	else:
 		check_grounded()

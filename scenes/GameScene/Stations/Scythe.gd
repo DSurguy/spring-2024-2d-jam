@@ -28,6 +28,8 @@ var random = RandomNumberGenerator.new()
 
 @onready var animationPlayer: AnimationPlayer = $ScytheCollision/AnimationPlayer
 
+signal tutorial_image_activate
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
@@ -47,7 +49,7 @@ func _process(delta):
 				ui.set_status(ui.HELM_STATUS.LEFT)
 		else:
 			ui.set_status(ui.HELM_STATUS.NONE)
-			
+		
 	var submarine_velocity_x = station.submarine.position.x - previous_submarine_position_x
 	var additional_sub_rotation = 0
 	if submarine_velocity_x > 0:
@@ -87,6 +89,7 @@ func _process(delta):
 			
 func activate():
 	ui.visible = true
+	tutorial_image_activate.emit()
 	animationPlayer.play("idle")
 	
 func deactivate():

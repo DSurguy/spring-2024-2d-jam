@@ -6,6 +6,9 @@ var ui : HelmUI
 @onready var engine_audio: SubEngine = $Engine
 @onready var button_audio: ButtonAudio = $ButtonAudio
 @onready var sub : Submarine
+@onready var ui_script = get_parent().get_parent().get_parent().get_child(0).get_child(0)
+
+signal tutorial_image_activate
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +38,7 @@ func _process(delta):
 func activate():
 	print("helm activated")
 	ui.visible = true
+	tutorial_image_activate.emit()
 	
 func deactivate():
 	print("helm deactivated")

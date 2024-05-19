@@ -31,6 +31,8 @@ var anchor_right_origin:Vector2
 
 @onready var netSprite: Sprite2D = $Net/Sprite2D
 
+signal tutorial_image_activate
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	station = get_node("Station")
@@ -130,6 +132,7 @@ func _draw():
 func activate():
 	pass
 	ui.visible = true
+	tutorial_image_activate.emit()
 
 func deactivate():
 	anchor_left.constant_force = Vector2.ZERO

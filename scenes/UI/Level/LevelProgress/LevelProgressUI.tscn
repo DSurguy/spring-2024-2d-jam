@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://by5lswp5pcjdg" path="res://assets/sprites/o2.png" id="2_fn8sm"]
 [ext_resource type="Texture2D" uid="uid://dyc0eejur8i1n" path="res://assets/sprites/depth.png" id="2_r4bw7"]
 [ext_resource type="Texture2D" uid="uid://c6l1afpff4r0u" path="res://assets/sprites/money.png" id="2_wbdyx"]
-[ext_resource type="LabelSettings" uid="uid://d1lfxg68yhv6m" path="res://scenes/UI/Level/LevelProgress/ProgressLabelSetting.tres" id="3_4v1if"]
+[ext_resource type="LabelSettings" uid="uid://dkxmc4d18fb6x" path="res://scenes/UI/Level/LevelProgress/ProgressLabelSetting.tres" id="3_4v1if"]
 
 [node name="LevelProgressUI" type="Control"]
 layout_mode = 3
@@ -97,3 +97,10 @@ text = "9999
 "
 label_settings = ExtResource("3_4v1if")
 horizontal_alignment = 2
+
+[node name="ControlsTutorial" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1545.0
+offset_top = 30.0
+offset_right = 1893.0
+offset_bottom = 160.0
