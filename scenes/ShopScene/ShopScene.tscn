@@ -1,9 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://ciy5kjl5o8mjp"]
 
 [ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://cqy43xlkbeti6" path="res://assets/sprites/shop_bg.png" id="2_78325"]
 [ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
 [ext_resource type="Texture2D" uid="uid://dt1bdu0ep7pjt" path="res://assets/sprites/shop_tile.png" id="3_p51dl"]
+=======
+[ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
+[ext_resource type="AudioStream" uid="uid://208dfr6b2k04" path="res://music/MUS_shop.ogg" id="3_2wutg"]
+>>>>>>> aae4dfe005cee10e02232be05ca9c2be1ae29942
 
 [node name="ShopScene" type="Node2D"]
 script = ExtResource("1_toyhn")
@@ -122,6 +127,14 @@ offset_bottom = 306.0
 texture = ExtResource("3_p51dl")
 
 [node name="Uisfx" parent="." instance=ExtResource("2_p8tlu")]
+<<<<<<< Updated upstream
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2wutg")
+autoplay = true
+bus = &"Music"
+=======
+>>>>>>> Stashed changes
 
 [connection signal="mouse_entered" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_pressed"]
@@ -133,5 +146,8 @@ texture = ExtResource("3_p51dl")
 [connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseAscent" to="." method="_on_purchase_ascent_mouse_entered"]
 [connection signal="button_down" from="CanvasLayer/Control/PurchaseSpeed" to="." method="_on_purchase_speed_button_down"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseSpeed" to="." method="_on_purchase_speed_mouse_entered"]
+<<<<<<< Updated upstream
 [connection signal="button_down" from="CanvasLayer/Control/WinButton" to="." method="_on_purchase_win_button_down"]
+=======
+>>>>>>> Stashed changes
 [connection signal="mouse_entered" from="CanvasLayer/Control/WinButton" to="." method="_on_win_button_mouse_entered"]
