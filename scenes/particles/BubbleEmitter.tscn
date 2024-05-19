@@ -21,6 +21,7 @@ scale_curve = SubResource("CurveTexture_nm7wk")
 turbulence_enabled = true
 
 [node name="BubbleEmitter" type="Node2D"]
+z_index = 25
 script = ExtResource("1_22bul")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
