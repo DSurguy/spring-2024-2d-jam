@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfwtjv78bol0l"]
+[gd_scene load_steps=4 format=3 uid="uid://dfwtjv78bol0l"]
 
 [ext_resource type="Script" path="res://scenes/MainMenu/MainMenu.gd" id="1_37hwn"]
+[ext_resource type="PackedScene" uid="uid://bfvxikfk86o28" path="res://scenes/GameScene/parallax_background.tscn" id="2_etga2"]
+[ext_resource type="PackedScene" uid="uid://pcy4tjpv8m4f" path="res://scenes/particles/BubbleUpEmitter.tscn" id="3_pqpui"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_37hwn")
@@ -34,7 +36,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][outline_size={3}][outline_color=#31424f]UI Practice Project[/outline_color][/outline_size][/center]"
+text = "[center][outline_size={3}][outline_color=#31424f]Gobby's Hydrophite Harvest[/outline_color][/outline_size][/center]"
 fit_content = true
 scroll_active = false
 
@@ -51,6 +53,29 @@ text = "Load Shop Scene"
 [node name="LoadGameScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Load Game Scene"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_etga2")]
+
+[node name="BubbleUpEmitter" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(104, 1154)
+
+[node name="BubbleUpEmitter2" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(803, 1154)
+
+[node name="BubbleUpEmitter3" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1056, 1154)
+
+[node name="BubbleUpEmitter5" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1749, 1154)
+
+[node name="BubbleUpEmitter6" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1498, 1154)
+
+[node name="BubbleUpEmitter7" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1313, 1154)
+
+[node name="BubbleUpEmitter4" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(425, 1154)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadShopScene" to="." method="_on_load_shop_scene_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadGameScene" to="." method="_on_load_game_scene_button_pressed"]
