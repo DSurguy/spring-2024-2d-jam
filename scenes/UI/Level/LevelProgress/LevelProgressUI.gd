@@ -15,7 +15,7 @@ func _ready():
 
 func _process(delta):
 	if submarine_node:
-		label.text = format_string % submarine_node.position.y		
+		label.text = format_string % submarine_node.position.y
 		oxy_label.text = oxy_format_string % submarine_node.current_oxygen()
 	
 	score_label.text = score_format_string % GameState.score

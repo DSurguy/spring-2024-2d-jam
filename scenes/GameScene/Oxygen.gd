@@ -33,13 +33,18 @@ func _process(_delta):
 
 func _handle_deplete():
 	current_oxygen -= decay_rate_per_second
-	if current_oxygen <= 0:
-		current_oxygen = 0
-		oxygen_depleted.emit()
-		is_depleting = false
+	if is_empty():
+		_handle_oxygen_empty()
+
+func _handle_oxygen_empty():
+	current_oxygen = 0
+	stop_depleting()
+	oxygen_depleted.emit()
 
 func add_oxygen(amount: int):
 	current_oxygen += amount
+	if is_empty():
+		_handle_oxygen_empty()
 
 func _on_timer_timeout():
 	_handle_deplete()
