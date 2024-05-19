@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciy5kjl5o8mjp"]
+[gd_scene load_steps=3 format=3 uid="uid://ciy5kjl5o8mjp"]
 
 [ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
-[ext_resource type="AudioStream" uid="uid://ml7woovxcfp3" path="res://sfx/purchase.wav" id="2_ermvh"]
-[ext_resource type="AudioStream" uid="uid://ig4wg7btu2in" path="res://sfx/purchase_fail.wav" id="3_w50gc"]
+[ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
 
 [node name="ShopScene" type="Node2D"]
 script = ExtResource("1_toyhn")
@@ -96,20 +95,23 @@ offset_bottom = 442.0
 text = "Current Money: X"
 
 [node name="WinButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 746.0
 offset_top = 300.0
 offset_right = 1189.0
 offset_bottom = 332.0
 text = "Gobo's Immortal Soul: $"
 
-[node name="purchase_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ermvh")
+[node name="Uisfx" parent="." instance=ExtResource("2_p8tlu")]
 
-[node name="purchase_fail_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_w50gc")
-
+[connection signal="mouse_entered" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/IncreaseOxygenButton" to="." method="_on_increase_oxygen_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/IncreaseOxygenButton" to="." method="_on_increase_oxygen_button_pressed"]
 [connection signal="button_down" from="CanvasLayer/Control/PurchaseScythe" to="." method="_on_purchase_scythe_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseScythe" to="." method="_on_purchase_scythe_mouse_entered"]
 [connection signal="button_down" from="CanvasLayer/Control/PurchaseAscent" to="." method="_on_purchase_ascent_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseAscent" to="." method="_on_purchase_ascent_mouse_entered"]
 [connection signal="button_down" from="CanvasLayer/Control/PurchaseSpeed" to="." method="_on_purchase_speed_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/PurchaseSpeed" to="." method="_on_purchase_speed_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/WinButton" to="." method="_on_win_button_mouse_entered"]

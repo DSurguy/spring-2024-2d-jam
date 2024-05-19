@@ -7,8 +7,8 @@ extends LoadableScene
 @onready var purchase_ascent_button : Button = $CanvasLayer/Control/PurchaseAscent
 @onready var purchase_speed_button : Button = $CanvasLayer/Control/PurchaseSpeed
 @onready var purchase_win_button : Button = $CanvasLayer/Control/WinButton
-@onready var purchaseSFX : AudioStreamPlayer = $purchase_sfx
-@onready var purchaseFailSFX : AudioStreamPlayer = $purchase_fail_sfx
+
+@onready var sfx: UISFX = $Uisfx
 
 @export var oxygen_price = 10
 @export var scythe_price = 20
@@ -61,45 +61,46 @@ func update_win_label():
 	purchase_win_button.set_text("Gobo's Immortal Soul: %d" % win_base_price) 
 
 func _on_start_level_button_pressed():
+	sfx.accept()
 	loader.load_scene("res://scenes/GameScene/GameScene.tscn")
 
 func _on_increase_oxygen_button_pressed():
 	if GameState.score < oxygen_price : 
-		purchaseFailSFX.play()
+		sfx.reject()
 	else :
 		GameState.max_oxygen += 10
 		GameState.score -= oxygen_price
 		update_oxygen_label()
 		update_score_label()
-		purchaseSFX.play()
+		sfx.accept()
 
 func _on_purchase_scythe_button_down():
 	if GameState.score < scythe_price || GameState.enable_scythe == true:
-		purchaseFailSFX.play()
+		sfx.reject()
 	else :
 		GameState.score -= scythe_price
 		GameState.enable_scythe = true
 		purchase_scythe_button.set_text("PURCHASED")
 		update_score_label()
-		purchaseSFX.play()
+		sfx.accept()
 
 func _on_purchase_ascent_button_down():
 	if GameState.score < ascent_upgrade_price || GameState.ascent_upgrade == true:
-		purchaseFailSFX.play()
+		sfx.reject()
 	else :
 		GameState.score -= ascent_upgrade_price
 		GameState.ascent_upgrade = true
 		purchase_ascent_button.set_text("PURCHASED")
 		update_score_label()
-		purchaseSFX.play()
+		sfx.accept()
 
 func _on_purchase_speed_button_down():
 	var current_price = speed_upgrade_base_price + (speed_upgrade_base_price * GameState.speed_upgrade) 
 	if GameState.score < current_price: 
-		purchaseFailSFX.play()
+		sfx.reject()
 	elif GameState.speed_upgrade == speed_upgrade_max :
 		purchase_speed_button.set_text("PURCHASED")
-		purchaseFailSFX.play()
+		sfx.reject()
 	else :
 		GameState.score -= current_price
 		GameState.speed_upgrade += 1
@@ -111,11 +112,35 @@ func _on_purchase_speed_button_down():
 			purchase_speed_button.set_text("Speed Upgrade : %d$" % current_price)
 		
 		update_score_label()
-		purchaseSFX.play()
+		sfx.accept()
 
 func _on_purchase_win_button_down():
 	if GameState.score < win_base_price:
-		purchaseFailSFX.play()
+		sfx.reject()
 	else :
-		purchaseSFX.play()
+		sfx.accept()
 		loader.load_scene("res://scenes/WinScene/WinScene.tscn")
+
+
+func _on_start_level_button_mouse_entered():
+	sfx.mouseover()
+
+
+func _on_increase_oxygen_button_mouse_entered():
+	sfx.mouseover()
+
+
+func _on_purchase_scythe_mouse_entered():
+	sfx.mouseover()
+
+
+func _on_purchase_ascent_mouse_entered():
+	sfx.mouseover()
+
+
+func _on_purchase_speed_mouse_entered():
+	sfx.mouseover()
+
+
+func _on_win_button_mouse_entered():
+	sfx.mouseover()

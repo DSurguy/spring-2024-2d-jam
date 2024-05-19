@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bysk5dqj3sux1"]
+
+[ext_resource type="AudioStream" uid="uid://b7ep43b503pe6" path="res://sfx/UI/UI_reject_short.ogg" id="1_lf4ei"]
+[ext_resource type="Script" path="res://scenes/Audio/UISFX.gd" id="1_mxo1k"]
+[ext_resource type="AudioStream" uid="uid://ulndwtikehny" path="res://sfx/UI/UI_mousever_short.ogg" id="2_fsu81"]
+[ext_resource type="AudioStream" uid="uid://ctc854qcfaaa4" path="res://sfx/UI/UI_accept.ogg" id="3_ej7wb"]
+
+[node name="Uisfx" type="Node"]
+script = ExtResource("1_mxo1k")
+
+[node name="reject" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_lf4ei")
+
+[node name="mouseover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fsu81")
+bus = &"Sfx"
+
+[node name="accept" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ej7wb")
+bus = &"Sfx"
