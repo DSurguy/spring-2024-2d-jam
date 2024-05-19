@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciy5kjl5o8mjp"]
 
 [ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
-[ext_resource type="PackedScene" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
+[ext_resource type="PackedScene" uid="uid://bysk5dqj3sux1" path="res://scenes/Audio/UISFX.tscn" id="2_p8tlu"]
+[ext_resource type="AudioStream" uid="uid://208dfr6b2k04" path="res://music/MUS_shop.ogg" id="3_2wutg"]
 
 [node name="ShopScene" type="Node2D"]
 script = ExtResource("1_toyhn")
@@ -103,6 +104,11 @@ offset_bottom = 332.0
 text = "Gobo's Immortal Soul: $"
 
 [node name="Uisfx" parent="." instance=ExtResource("2_p8tlu")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2wutg")
+autoplay = true
+bus = &"Music"
 
 [connection signal="mouse_entered" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/StartLevelButton" to="." method="_on_start_level_button_pressed"]
