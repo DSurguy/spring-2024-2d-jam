@@ -1,23 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2bwsfdj3jefd"]
+[gd_scene load_steps=6 format=3 uid="uid://c2bwsfdj3jefd"]
 
 [ext_resource type="Script" path="res://scenes/UI/Level/LevelProgress/LevelProgressUI.gd" id="1_aosjc"]
+[ext_resource type="Texture2D" uid="uid://by5lswp5pcjdg" path="res://assets/sprites/o2.png" id="2_fn8sm"]
+[ext_resource type="Texture2D" uid="uid://dyc0eejur8i1n" path="res://assets/sprites/depth.png" id="2_r4bw7"]
 [ext_resource type="Texture2D" uid="uid://c6l1afpff4r0u" path="res://assets/sprites/money.png" id="2_wbdyx"]
-
-[sub_resource type="SystemFont" id="SystemFont_wk0xc"]
-font_names = PackedStringArray("Comic Sans MS")
-subpixel_positioning = 0
-oversampling = 4.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_ass80"]
-font = SubResource("SystemFont_wk0xc")
-
-[sub_resource type="SystemFont" id="SystemFont_q218i"]
-oversampling = 4.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_s41hw"]
-font = SubResource("SystemFont_q218i")
-font_size = 24
-shadow_color = Color(0, 0, 0, 0.588235)
+[ext_resource type="LabelSettings" uid="uid://d1lfxg68yhv6m" path="res://scenes/UI/Level/LevelProgress/ProgressLabelSetting.tres" id="3_4v1if"]
 
 [node name="LevelProgressUI" type="Control"]
 layout_mode = 3
@@ -40,26 +27,15 @@ theme_override_constants/margin_right = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 144
+theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Depth: X"
-label_settings = SubResource("LabelSettings_ass80")
-
-[node name="OxygenLabel" type="Label" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Oxygen: X"
-label_settings = SubResource("LabelSettings_ass80")
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 8
-texture = ExtResource("2_wbdyx")
+texture = ExtResource("2_r4bw7")
 expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/TextureRect3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,9 +44,56 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_right = 6
 
-[node name="MoneyLabel" type="Label" parent="MarginContainer/TextureRect/MarginContainer"]
+[node name="DepthLabel" type="Label" parent="MarginContainer/HBoxContainer/TextureRect3/MarginContainer"]
+layout_mode = 2
+text = "99999.99 m
+"
+label_settings = ExtResource("3_4v1if")
+horizontal_alignment = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_fn8sm")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 6
+
+[node name="OxygenLabel" type="Label" parent="MarginContainer/HBoxContainer/TextureRect2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "999
+"
+label_settings = ExtResource("3_4v1if")
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("2_wbdyx")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 6
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/HBoxContainer/TextureRect/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "9999
 "
-label_settings = SubResource("LabelSettings_s41hw")
+label_settings = ExtResource("3_4v1if")
+horizontal_alignment = 2

@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d1lfxg68yhv6m"]
+
+[sub_resource type="SystemFont" id="SystemFont_q218i"]
+oversampling = 4.0
+
+[resource]
+font = SubResource("SystemFont_q218i")
+font_size = 24
+shadow_color = Color(0, 0, 0, 0.588235)
