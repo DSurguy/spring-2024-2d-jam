@@ -20,6 +20,7 @@ var dead = false
 @onready var sprite : Sprite2D = $Sprite2D
 
 signal tutorial_message_deactivate
+signal tutorial_enter_message_activate
 
 func _ready():
 	jump_timer.one_shot = true
@@ -107,10 +108,12 @@ func _on_station_interaction_area_entered(area):
 	print("station entered") 
 	station_touching = area.get_parent()
 	station_touching.show_hint()
+	tutorial_enter_message_activate.emit()
 
 
 func _on_station_interaction_area_exited(area):
 	if using_station : return
 	station_touching.hide_hint()
 	station_touching = null
+	tutorial_message_deactivate.emit()
 	print("station exited")

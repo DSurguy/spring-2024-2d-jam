@@ -9,10 +9,10 @@ class_name LevelProgressUI extends Control
 var format_string = "%.2f m"
 var oxy_format_string = "%d"
 var score_format_string = "%d"
-
-@onready var wasd_arrows_image
-@onready var wasd_space_image
-@onready var wasd_image
+var wasd_arrows_image
+var wasd_space_image
+var wasd_image
+var e_key_image
 
 func _ready():
 	if submarine_node == null:
@@ -20,8 +20,9 @@ func _ready():
 	
 	tutorial.texture = null
 	wasd_arrows_image = preload("res://resources/tutorial_image1.tres")
-	wasd_space_image = preload("res://resources/tutorial_image2.tres")
+	e_key_image = preload("res://resources/tutorial_image2.tres")
 	wasd_image = preload("res://resources/tutorial_image3.tres")
+	wasd_space_image = preload("res://resources/tutorial_image4.tres")
 
 func _process(delta):
 	if submarine_node:
@@ -43,3 +44,6 @@ func _on_scythe_tutorial_image_activate():
 
 func _on_trawl_tutorial_image_activate():
 	tutorial.texture = wasd_arrows_image
+
+func _on_player_tutorial_enter_message_activate():
+	tutorial.texture = e_key_image
