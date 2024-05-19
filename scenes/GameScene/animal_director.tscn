@@ -1,13 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b32luoe7xtk5f"]
+[gd_scene load_steps=2 format=3 uid="uid://b32luoe7xtk5f"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/AnimalDirector.gd" id="1_fr80n"]
-[ext_resource type="PackedScene" uid="uid://dk5ga2mg3hvma" path="res://scenes/GameScene/turtle.tscn" id="2_gkn8f"]
 
 [node name="AnimalDirector" type="Node2D"]
 script = ExtResource("1_fr80n")
-
-[node name="Turtle2" parent="." instance=ExtResource("2_gkn8f")]
-position = Vector2(-200, 1000)
-
-[node name="Turtle" parent="." instance=ExtResource("2_gkn8f")]
-position = Vector2(200, 1000)
