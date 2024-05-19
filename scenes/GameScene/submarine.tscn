@@ -1,17 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3vhcxq5yx7k"]
+[gd_scene load_steps=15 format=3 uid="uid://d3vhcxq5yx7k"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
-[ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
 [ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
-[ext_resource type="AudioStream" uid="uid://b33pjdg7inoly" path="res://sfx/oxygen_alarm.wav" id="6_kdq12"]
-[ext_resource type="PackedScene" uid="uid://bsym0ymicj3gw" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
-[ext_resource type="PackedScene" uid="uid://d2lxnf6cx8ejt" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
+[ext_resource type="PackedScene" uid="uid://crlshnis8tvt4" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
 [ext_resource type="PackedScene" uid="uid://dhpkwwwvwguk5" path="res://scenes/GameScene/Stations/trawl.tscn" id="10_7jlvt"]
-[ext_resource type="PackedScene" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
+[ext_resource type="PackedScene" uid="uid://h5ihk2q0q8qd" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
 [ext_resource type="Texture2D" uid="uid://jplsvgwsidud" path="res://assets/sprites/sub.png" id="14_r2bkw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26upc"]
@@ -26,6 +25,8 @@ collision_mask = 640
 mass = 1000.0
 gravity_scale = 0.0
 lock_rotation = true
+max_contacts_reported = 5
+contact_monitor = true
 linear_damp = 2.0
 script = ExtResource("1_0ojk1")
 
@@ -61,10 +62,6 @@ shape = SubResource("RectangleShape2D_cx8th")
 [node name="SubBonkAudio" parent="." instance=ExtResource("11_yt1va")]
 
 [node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
-
-[node name="AlarmAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_kdq12")
-volume_db = 10.0
 
 [node name="DeathRestartTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -111,5 +108,7 @@ target_position = Vector2(-32, 0)
 z_index = 5
 texture = ExtResource("14_r2bkw")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="oxygen_depleted" from="Oxygen" to="." method="_on_oxygen_oxygen_depleted"]
 [connection signal="timeout" from="DeathRestartTimer" to="." method="_on_death_restart_timer_timeout"]

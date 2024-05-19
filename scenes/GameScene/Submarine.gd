@@ -8,7 +8,6 @@ signal death_restart_timeout
 @onready var ascent_audio: AscentAudio = $AscentAudio
 #@onready var alarm_audio: AudioStreamPlayer2D = $AlarmAudio
 @onready var sub_bonk_audio: AudioStreamPlayer = $SubBonkAudio.get_child(0)
-#@onready var hull : StaticBody2D = $Hull_Collider
 @onready var oxygen: Oxygen = $Oxygen
 @onready var player: Goblin = $Player
 @onready var death_timer: Timer = $DeathRestartTimer
@@ -16,7 +15,7 @@ signal death_restart_timeout
 @onready var ray_left: RayCast2D = $raycast_left
 @onready var scythe = $Stations/Scythe
 
-var hull_collider : StaticBody2D
+var bubble_emitter: PackedScene = load("res://scenes/particles/BubbleEmitter.tscn")
 
 var descending = true
 var ascending = false
@@ -28,7 +27,16 @@ var sub_speedX : float = 200
 var speed_upgrade_value = 50
 var bonk_timer = Timer.new()
 var alarm_timer = Timer.new()
-var bonk_move : Vector2
+
+var bonk_damage_timer = 0
+var bonk_damage_time = 1
+var bonk_sfx_timer = 0
+var bonk_sfx_time = 0.5
+
+var bubble_timers = {}
+var bubble_time = 0.5
+
+var bonking : bool = false
 
 var lateral_move_force = 400
 @onready var rigidbody:RigidBody2D = $Hull/RigidBody2D
@@ -57,9 +65,20 @@ func _ready():
 func _process(delta):
 	handle_low_oxygen()
 	
-		# TODO: sub_bonk_audio.play()
-	#else :
-		#bonk_timer.start(0.5)
+	if bonking:
+		bonk_damage_timer += delta
+		if bonk_damage_timer > bonk_damage_time:
+			bonk_damage_timer -= bonk_damage_time
+			oxygen.add_oxygen(-1)
+	
+		if bonk_sfx_timer > 0:
+			bonk_sfx_timer -= delta
+			
+	for key in bubble_timers:
+		if bubble_timers[key] > 0:
+			bubble_timers[key] -= delta
+		else:
+			bubble_timers.erase(key)
 	
 func _physics_process(delta):
 	if helm_direction.length() > 0:
@@ -75,6 +94,17 @@ func _physics_process(delta):
 	
 	var camera = get_parent().get_node("Camera2D")
 	camera.position.y = position.y
+	
+func _integrate_forces(state:PhysicsDirectBodyState2D):
+	var contact_count = state.get_contact_count()
+	for i in range(contact_count):
+		var contact_point = state.get_contact_collider_position(i)
+		
+		if not bubble_timers.has(contact_point):
+			var emitter = bubble_emitter.instantiate()
+			emitter.position = contact_point
+			get_tree().get_root().add_child(emitter)
+			bubble_timers[contact_point] = bubble_time
 
 func current_oxygen():
 	return oxygen.current_oxygen
@@ -131,3 +161,16 @@ func _on_death_restart_timer_timeout():
 	death_restart_timeout.emit()
 
 signal flash_oxygen_ui
+
+func _on_body_entered(body):
+	if body is TileMap:
+		bonking = true
+		if bonk_sfx_timer <= 0:
+			sub_bonk_audio.play()
+			bonk_sfx_timer = bonk_sfx_time
+		print("BONK")
+
+
+func _on_body_exited(body):
+	if body is TileMap:
+		bonking = false
