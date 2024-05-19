@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://rdw40v3okmnq"]
+[gd_scene load_steps=7 format=3 uid="uid://dk5ga2mg3hvma"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Turtle.gd" id="1_g7eao"]
 [ext_resource type="Texture2D" uid="uid://m6g55q33ayjg" path="res://assets/sprites/turtle.png" id="2_cucv5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujw36"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_upvod"]
 radius = 25.0
 
 [sub_resource type="Animation" id="Animation_s5jou"]
@@ -32,13 +35,20 @@ _data = {
 script = ExtResource("1_g7eao")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 385
-collision_mask = 385
+collision_layer = 129
+collision_mask = 129
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_ujw36")
 debug_color = Color(0.923341, 4.87083e-05, 0.684148, 0.42)
+
+[node name="PlantCollision" type="Area2D" parent="RigidBody2D"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/PlantCollision"]
+shape = SubResource("CircleShape2D_upvod")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cucv5")
@@ -49,3 +59,6 @@ libraries = {
 "": SubResource("AnimationLibrary_yb2pl")
 }
 autoplay = "moving"
+
+[connection signal="area_entered" from="RigidBody2D/PlantCollision" to="." method="_on_plant_collision_area_entered"]
+[connection signal="area_exited" from="RigidBody2D/PlantCollision" to="." method="_on_plant_collision_area_exited"]

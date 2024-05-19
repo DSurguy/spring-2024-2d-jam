@@ -128,12 +128,16 @@ func use():
 	pass
 
 func _on_net_area_entered(area:Area2D):
+	var plant:GenericPlant = area.get_parent()
+	if plant.get_parent().name == "Collection":
+		return
+		
 	print("PLANT GET")
+	
 	area.set_collision_layer_value(plant_collection_layer, false)
 	area.set_collision_mask_value(plant_collection_layer, false)
 	area.set_collision_layer_value(plant_consumption_layer, true)
 	area.set_collision_mask_value(plant_consumption_layer, true)
-	var plant:GenericPlant = area.get_parent()
 	plant.reparent(collection)
 	plant.collect(collection)
 

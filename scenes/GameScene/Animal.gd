@@ -1,7 +1,7 @@
 class_name Animal extends Node2D
 
-var max_speed = 250
-var move_force = 300
+var max_speed = 200
+var move_force = 200
 var counter_force_factor = -10
 var damping_force_factor = -1.5
 

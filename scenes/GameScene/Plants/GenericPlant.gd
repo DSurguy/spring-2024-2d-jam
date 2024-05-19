@@ -44,8 +44,7 @@ func collect(target: Node2D):
 	print("Plant collected")
 	animation_tree["parameters/conditions/is_collected"] = true
 	
-	GameState.score += 1
-# TODO: Drift?
+	GameState.score += data.value
 
 
 func _on_area_2d_area_entered(area):
