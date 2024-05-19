@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhpkwwwvwguk5"]
+[gd_scene load_steps=11 format=3 uid="uid://dhpkwwwvwguk5"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Trawl.gd" id="1_s2uc2"]
 [ext_resource type="PackedScene" uid="uid://dk4fm1rhxv6h" path="res://scenes/GameScene/Stations/station.tscn" id="2_c5vwa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://koxswugnyuwn" path="res://assets/sprites/stations/twinstickStation.png" id="4_4nadc"]
 [ext_resource type="Texture2D" uid="uid://b5uycaccnvsqr" path="res://assets/sprites/stations/net.png" id="5_18wtr"]
 [ext_resource type="AudioStream" uid="uid://bddstdedo4hj7" path="res://sfx/SUB_plant_Grab.ogg" id="6_vodk4"]
+[ext_resource type="PackedScene" uid="uid://bnj2l3nqmi52g" path="res://scenes/Audio/ButtonAudio.tscn" id="7_qgrh6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r6xj"]
 
@@ -94,12 +95,14 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="PlantGrabSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_vodk4")
 volume_db = 9.505
 attenuation = 0.203063
 max_polyphony = 10
 panning_strength = 2.77
-bus = &"Sfx"
+bus = &"Underwater_Sfx"
+
+[node name="ButtonAudio" parent="." instance=ExtResource("7_qgrh6")]
 
 [connection signal="area_entered" from="Net" to="." method="_on_net_area_entered"]

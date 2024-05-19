@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxta2ydmd1oka"]
+[gd_scene load_steps=4 format=3 uid="uid://d2lxnf6cx8ejt"]
 
 [ext_resource type="Script" path="res://scenes/Audio/AscentAudio.gd" id="1_2ckt8"]
 [ext_resource type="AudioStream" uid="uid://x8dk8l73i4df" path="res://sfx/ascent/SUB_chain_loop.ogg" id="2_v1qg3"]
@@ -10,6 +10,6 @@ chain_loop = ExtResource("2_v1qg3")
 ascent_start = ExtResource("3_q4enj")
 
 [node name="Player" type="AudioStreamPlayer" parent="."]
-bus = &"Sfx"
+bus = &"Underwater_Sfx"
 
 [connection signal="finished" from="Player" to="." method="_on_player_finished"]

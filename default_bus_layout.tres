@@ -1,14 +1,20 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://doem4mqi4la0i"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://doem4mqi4la0i"]
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_t2t4g"]
 resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_b2r1c"]
+resource_name = "EQ"
+band_db/1000_hz = -14.3
+band_db/3200_hz = -11.8
+band_db/10000_hz = -0.9
 
 [resource]
 bus/1/name = &"Music"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -3.11736
+bus/1/volume_db = -3.76831
 bus/1/send = &"Master"
 bus/2/name = &"Sfx"
 bus/2/solo = false
@@ -24,3 +30,11 @@ bus/3/volume_db = -4.003
 bus/3/send = &"Sfx"
 bus/3/effect/0/effect = SubResource("AudioEffectLowPassFilter_t2t4g")
 bus/3/effect/0/enabled = true
+bus/4/name = &"Underwater_Sfx"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectEQ_b2r1c")
+bus/4/effect/0/enabled = true

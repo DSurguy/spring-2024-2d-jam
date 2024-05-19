@@ -131,7 +131,7 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_d62as")
-bus = &"Sfx"
+bus = &"Underwater_Sfx"
 
 [node name="CutSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-6, 371)
@@ -139,7 +139,7 @@ stream = ExtResource("7_gs6fj")
 volume_db = 15.23
 max_polyphony = 5
 panning_strength = 11.1
-bus = &"Sfx"
+bus = &"Underwater_Sfx"
 
 [connection signal="body_entered" from="ScytheCollision/ScytheBlade" to="." method="_on_scythe_blade_body_entered"]
 [connection signal="body_entered" from="ScytheCollision/ReboundAreaLeft" to="." method="_on_rebound_area_left_body_entered"]
