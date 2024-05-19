@@ -10,6 +10,7 @@ chain_loop = ExtResource("2_v1qg3")
 ascent_start = ExtResource("3_q4enj")
 
 [node name="Player" type="AudioStreamPlayer" parent="."]
+volume_db = -14.596
 bus = &"Underwater_Sfx"
 
 [connection signal="finished" from="Player" to="." method="_on_player_finished"]

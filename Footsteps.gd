@@ -4,7 +4,7 @@ class_name Footsteps
 
 @export var footsteps: Array[AudioStream]
 @export var footstep_rate: float = 0.2
-
+@export var volume_offset: float = 0
 @onready var player: AudioStreamPlayer = $Player
 @onready var timer: Timer = $Timer
 
@@ -39,6 +39,7 @@ func _ready():
 		sample_indices.append(i)
 	
 	timer.wait_time = footstep_rate
+	player.volume_db += volume_offset
 
 func _reset_sample_queue():		
 	sample_index = 0
