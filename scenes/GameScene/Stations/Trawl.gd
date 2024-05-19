@@ -130,9 +130,16 @@ func _draw():
 	#draw_line(anchor_right.position, net.polygon[4], Color.TAN, 3.0)
 
 func activate():
-	pass
+	ui.modulate = Color(1, 1, 1, 1)
 	ui.visible = true
 	tutorial_image_activate.emit()
+
+func show_hint():
+	ui.modulate = Color(1, 1, 1, 0.5)
+	ui.visible = true
+
+func hide_hint():
+	ui.visible = false
 
 func deactivate():
 	anchor_left.constant_force = Vector2.ZERO
@@ -154,6 +161,7 @@ func _on_net_area_entered(area:Area2D):
 	area.set_collision_mask_value(plant_collection_layer, false)
 	area.set_collision_layer_value(plant_consumption_layer, true)
 	area.set_collision_mask_value(plant_consumption_layer, true)
+	# TODO: Fix with deferred call
 	plant.reparent(collection)
 	plant.collect(collection)
 

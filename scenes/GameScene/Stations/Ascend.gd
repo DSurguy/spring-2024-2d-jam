@@ -18,6 +18,7 @@ func _process(delta):
 
 func activate():
 	print("ascend activated")
+	ui.modulate = Color(1, 1, 1, 1)
 	ui.visible = true
 	tutorial_image_activate.emit()
 	
@@ -25,7 +26,14 @@ func deactivate():
 	print("ascend deactivated")
 	if not used:
 		ui.visible = false
-		
+
+func show_hint():
+	ui.modulate = Color(1, 1, 1, 0.5)
+	ui.visible = true
+
+func hide_hint():
+	ui.visible = false
+
 func use():
 	print("ascend used")
 	if not used:

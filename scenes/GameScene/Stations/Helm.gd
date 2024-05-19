@@ -37,6 +37,7 @@ func _process(delta):
 	
 func activate():
 	print("helm activated")
+	ui.modulate = Color(1, 1, 1, 1)
 	ui.visible = true
 	tutorial_image_activate.emit()
 	
@@ -45,6 +46,13 @@ func deactivate():
 	sub.helm_direction = Vector2.ZERO
 	engine_audio.stop()
 	ui.visible = false
-	
+
+func show_hint():
+	ui.modulate = Color(1, 1, 1, 0.5)
+	ui.visible = true
+
+func hide_hint():
+	ui.visible = false
+
 func use():
 	print("helm used")

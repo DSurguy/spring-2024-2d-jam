@@ -7,7 +7,7 @@ const JUMP_VELOCITY_MIN : float = -150.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var using_station : bool = false
-var station_touching : Node2D = null
+var station_touching : Station = null
 var directional_input : int = 0
 var flip_sprite : bool = false
 var is_grounded : bool = false
@@ -106,9 +106,11 @@ func check_grounded():
 func _on_station_interaction_area_entered(area):
 	print("station entered") 
 	station_touching = area.get_parent()
+	station_touching.show_hint()
 
 
 func _on_station_interaction_area_exited(area):
 	if using_station : return
+	station_touching.hide_hint()
 	station_touching = null
 	print("station exited")

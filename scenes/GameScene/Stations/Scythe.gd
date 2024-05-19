@@ -88,6 +88,7 @@ func _process(delta):
 		rotation_speed *= rotation_loss
 			
 func activate():
+	ui.modulate = Color(1, 1, 1, 1)
 	ui.visible = true
 	tutorial_image_activate.emit()
 	animationPlayer.play("idle")
@@ -95,7 +96,14 @@ func activate():
 func deactivate():
 	ui.visible = false
 	animationPlayer.stop(true)
-	
+
+func show_hint():
+	ui.modulate = Color(1, 1, 1, 0.5)
+	ui.visible = true
+
+func hide_hint():
+	ui.visible = false
+
 func use():
 	pass
 

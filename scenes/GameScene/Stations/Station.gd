@@ -1,4 +1,4 @@
-extends Node2D
+class_name Station extends Node2D
 
 var active = false
 var submarine: Node2D
@@ -18,7 +18,15 @@ func _process(delta):
 	if active:
 		if Input.is_action_just_pressed("use"):
 			get_parent().use()
-	
+
+func show_hint():
+	if active == false:
+		get_parent().show_hint()
+
+func hide_hint():
+	if active == false:
+		get_parent().hide_hint()
+
 func activate_station():
 	active = true
 	get_parent().activate()
