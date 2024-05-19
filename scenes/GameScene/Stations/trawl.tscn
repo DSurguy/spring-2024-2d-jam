@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bnj2l3nqmi52g" path="res://scenes/Audio/ButtonAudio.tscn" id="7_qgrh6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r6xj"]
+radius = 5.0
 
 [sub_resource type="Animation" id="Animation_e5rbk"]
 resource_name = "active"

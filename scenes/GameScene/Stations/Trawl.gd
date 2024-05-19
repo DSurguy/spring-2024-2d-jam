@@ -12,7 +12,7 @@ var bubble_emitter: PackedScene = load("res://scenes/particles/BubbleEmitter.tsc
 @onready var grab_sound: AudioStreamPlayer2D = $PlantGrabSound
 @onready var button_sound: ButtonAudio = $ButtonAudio
 
-var anchor_gravity_scale = 0.05
+var anchor_gravity_scale = 0.055
 var anchor_move_force = 1000
 var anchor_damping_force_factor = -1.5
 #var anchor_damping_force_factor = 0
@@ -44,6 +44,9 @@ func _ready():
 	
 	anchor_left_origin = anchor_left.position
 	anchor_right_origin = anchor_right.position
+	
+	anchor_left.apply_central_force(Vector2.DOWN * 1000)
+	anchor_right.apply_central_force(Vector2.DOWN * 1000)
 
 func _any_input_just_pressed() -> bool:
 	return Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("aim_left")  or Input.is_action_just_pressed("aim_right") or Input.is_action_just_pressed("aim_up")  or Input.is_action_just_pressed("aim_down") 
