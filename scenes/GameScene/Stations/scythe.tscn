@@ -99,6 +99,7 @@ polygon = PackedVector2Array(8, 24, 224, 0, 8, -24)
 
 [node name="Sprite2D" type="Sprite2D" parent="ScytheCollision"]
 z_index = -10
+texture_filter = 1
 position = Vector2(3, 96)
 scale = Vector2(3, 3)
 texture = ExtResource("5_k8yx2")
