@@ -4,6 +4,7 @@ var wall_stalk_data = load("res://resources/plants/WallStalk.tres")
 var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/GenericPlant.tscn")
 @onready var plant: WallPlant = get_parent()
 @onready var plant_director: PlantDirector = get_parent().get_parent() # Should be PlantDirector
+@onready var cut_audio: AudioStreamPlayer = $AudioStreamPlayer
 @export var next_plant_part: Node2D
 var rand = RandomNumberGenerator.new()
 
@@ -21,13 +22,11 @@ func connect_joint_to(to: Node2D):
 
 func _physics_process(delta):
 	apply_force(Vector2(0, -200))
-	pass
 
 func on_scythe_hit():
 	harvest()
-	pass
 
-func harvest():
+func harvest():	
 	var spawn_position = self.global_position
 	var spawn_velocity: Vector2
 	if plant.face_left:

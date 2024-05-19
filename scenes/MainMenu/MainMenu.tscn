@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfwtjv78bol0l"]
+[gd_scene load_steps=5 format=3 uid="uid://dfwtjv78bol0l"]
 
 [ext_resource type="Script" path="res://scenes/MainMenu/MainMenu.gd" id="1_37hwn"]
+[ext_resource type="PackedScene" uid="uid://bfvxikfk86o28" path="res://scenes/GameScene/parallax_background.tscn" id="2_etga2"]
+[ext_resource type="Texture2D" uid="uid://dayh7f6ul4dav" path="res://assets/sprites/title_text.png" id="2_pglqr"]
+[ext_resource type="PackedScene" uid="uid://pcy4tjpv8m4f" path="res://scenes/particles/BubbleUpEmitter.tscn" id="3_pqpui"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_37hwn")
@@ -8,11 +11,17 @@ script = ExtResource("1_37hwn")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 360)
+texture = ExtResource("2_pglqr")
+
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 341.0
+offset_bottom = 341.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -27,6 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_bottom = 20
 
@@ -34,7 +44,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][outline_size={3}][outline_color=#31424f]UI Practice Project[/outline_color][/outline_size][/center]"
+text = "[center][outline_size={3}][outline_color=#31424f]Gobby's Hydrophite Harvest[/outline_color][/outline_size][/center]"
 fit_content = true
 scroll_active = false
 
@@ -44,10 +54,6 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="LoadTestScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Load Test Scene"
-
 [node name="LoadShopScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Load Shop Scene"
@@ -56,11 +62,28 @@ text = "Load Shop Scene"
 layout_mode = 2
 text = "Load Game Scene"
 
-[node name="LoadUITestScene" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Load UI Test Scene"
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_etga2")]
 
-[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadTestScene" to="." method="_on_load_test_scene_button_pressed"]
+[node name="BubbleUpEmitter" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(104, 1154)
+
+[node name="BubbleUpEmitter2" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(803, 1154)
+
+[node name="BubbleUpEmitter3" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1056, 1154)
+
+[node name="BubbleUpEmitter5" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1749, 1154)
+
+[node name="BubbleUpEmitter6" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1498, 1154)
+
+[node name="BubbleUpEmitter7" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(1313, 1154)
+
+[node name="BubbleUpEmitter4" parent="." instance=ExtResource("3_pqpui")]
+position = Vector2(425, 1154)
+
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadShopScene" to="." method="_on_load_shop_scene_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadGameScene" to="." method="_on_load_game_scene_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/CenterContainer/VBoxContainer/LoadUITestScene" to="." method="_on_load_ui_test_scene_button_pressed"]

@@ -7,17 +7,13 @@ var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/Gener
 var wall_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/WallPlant/WallPlant.tscn")
 var random = RandomNumberGenerator.new()
 
-@export var floating_plant_first_spawn_time_seconds = 1
-@export var floating_plant_spawn_time_seconds = 8
-@export var floating_plant_seconds_since_last_spawn: float = 0
-@export var wall_plant_first_spawn_time_seconds = 1
-@export var wall_plant_spawn_time_seconds = 15
-@export var wall_plant_seconds_since_last_spawn: float = 0
-@export var spawn_y_offset_mult = 15
-@export var spawn_y_offset_const = 100
+var required_proximity = 500
+
+@export var floating_plant_spawn_depth_period = 150
+@export var wall_plant_spawn_depth_period = 400
 @export var clump_radius = 100
-var floating_plant_has_done_first_spawn: bool = false
-var wall_plant_has_done_first_spawn: bool = false
+var floating_plant_next_spawn_depth: float = 500
+var wall_plant_next_spawn_depth: float = 500
 
 func _ready():
 	assert(submarine_node != null, "submarine node is required")
@@ -27,23 +23,16 @@ func _process(delta):
 		_handle_descent_process(delta)
 
 func _handle_descent_process(delta):
-	# TODO: Actually make this garbage spawn off screen
-	var spawn_y_position = submarine_node.position.y + spawn_y_offset_const + submarine_node.linear_velocity.y * spawn_y_offset_mult
-	$Rays.position.y = spawn_y_position
+	spawn_floating_plants()
+	spawn_wall_plants()
+
+func spawn_floating_plants():
+	var current_proximity = floating_plant_next_spawn_depth - submarine_node.position.y
+	if current_proximity > required_proximity: return
+	
+	$Rays.position.y = floating_plant_next_spawn_depth
 	$Rays/LeftRay.force_raycast_update()
 	$Rays/RightRay.force_raycast_update()
-	spawn_floating_plants(delta, spawn_y_position)
-	spawn_wall_plants(delta, spawn_y_position)
-
-func spawn_floating_plants(delta: float, spawn_y_position: float):
-	
-	floating_plant_seconds_since_last_spawn += delta
-	if not floating_plant_has_done_first_spawn and floating_plant_seconds_since_last_spawn > floating_plant_first_spawn_time_seconds:
-		floating_plant_has_done_first_spawn = true
-		floating_plant_seconds_since_last_spawn = 0
-	elif floating_plant_seconds_since_last_spawn > floating_plant_spawn_time_seconds:
-		floating_plant_seconds_since_last_spawn = 0
-	else: return
 	
 	# TODO: Adjust more to keep out of walls probably
 	var left_clamp = $Rays/LeftRay.get_collision_point().x + clump_radius
@@ -53,7 +42,7 @@ func spawn_floating_plants(delta: float, spawn_y_position: float):
 	var num_clusters = random.randi_range(1, 3)
 	for cluster in num_clusters:
 		var clump_x_position = random.randi_range(left_clamp, right_clamp)
-		var clump_position = Vector2(clump_x_position, spawn_y_position)
+		var clump_position = Vector2(clump_x_position, floating_plant_next_spawn_depth)
 		var num_plants = random.randi_range(1, 3)
 		for plant in num_plants:
 			var plant_position = Vector2(
@@ -64,15 +53,15 @@ func spawn_floating_plants(delta: float, spawn_y_position: float):
 			new_plant.data = generic_plant_data
 			new_plant.position = clump_position + plant_position
 			add_child(new_plant)
+	floating_plant_next_spawn_depth += floating_plant_spawn_depth_period
 
-func spawn_wall_plants(delta: float, spawn_y_position: float):
-	wall_plant_seconds_since_last_spawn += delta
-	if not wall_plant_has_done_first_spawn and wall_plant_seconds_since_last_spawn > wall_plant_first_spawn_time_seconds:
-		wall_plant_has_done_first_spawn = true
-		wall_plant_seconds_since_last_spawn = 0
-	elif wall_plant_seconds_since_last_spawn > wall_plant_spawn_time_seconds:
-		wall_plant_seconds_since_last_spawn = 0
-	else: return
+func spawn_wall_plants():
+	var current_proximity = wall_plant_next_spawn_depth - submarine_node.position.y
+	if current_proximity > required_proximity: return
+	
+	$Rays.position.y = wall_plant_next_spawn_depth
+	$Rays/LeftRay.force_raycast_update()
+	$Rays/RightRay.force_raycast_update()
 	
 	# TODO: Iterate over plants and move down the wall to spawn more
 	# TODO: Weighted random, tend toward small
@@ -105,3 +94,4 @@ func spawn_wall_plants(delta: float, spawn_y_position: float):
 		else: return
 	
 	add_child(new_plant)
+	wall_plant_next_spawn_depth += wall_plant_spawn_depth_period
