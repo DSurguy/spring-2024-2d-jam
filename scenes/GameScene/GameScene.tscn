@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmj7kchtv06qw"]
+[gd_scene load_steps=13 format=3 uid="uid://cmj7kchtv06qw"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameScene.gd" id="1_knlki"]
 [ext_resource type="Texture2D" uid="uid://8os54q1io74a" path="res://assets/sprites/wave.png" id="2_ax26t"]
+[ext_resource type="Script" path="res://scenes/GameScene/Surface.gd" id="2_hgyg0"]
 [ext_resource type="PackedScene" uid="uid://d3vhcxq5yx7k" path="res://scenes/GameScene/submarine.tscn" id="3_hsa6m"]
 [ext_resource type="PackedScene" uid="uid://vhgx1tlgboft" path="res://scenes/GameScene/environment.tscn" id="4_5iene"]
 [ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="7_uyluk"]
@@ -16,6 +17,7 @@
 script = ExtResource("1_knlki")
 
 [node name="Surface" type="Node2D" parent="."]
+script = ExtResource("2_hgyg0")
 
 [node name="ColorRect" type="ColorRect" parent="Surface"]
 offset_left = -1286.0
@@ -26,8 +28,8 @@ color = Color(0.729412, 1, 1, 1)
 [node name="Line2D" type="Line2D" parent="Surface"]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(3, -11)
-points = PackedVector2Array(-545, -1, 545, -1)
+position = Vector2(0, -11)
+points = PackedVector2Array(-564, 0, 564, 0)
 width = 24.0
 texture = ExtResource("2_ax26t")
 texture_mode = 1
