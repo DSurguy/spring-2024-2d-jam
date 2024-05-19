@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvhwabd5wb4f1"]
+[gd_scene load_steps=3 format=3 uid="uid://bvhwabd5wb4f1"]
 
 [ext_resource type="Script" path="res://scenes/GameOverScene/GameOverScene.gd" id="1_l6kxi"]
+[ext_resource type="AudioStream" uid="uid://d0cqmb6wn3np6" path="res://music/MUS_death.ogg" id="2_lylra"]
 
 [node name="GameOverScene" type="Node2D"]
 script = ExtResource("1_l6kxi")
@@ -43,5 +44,10 @@ text = "Gobby has perished - his soul remains impounded"
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
 text = "Return to Main Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lylra")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="_on_button_pressed"]
