@@ -4,6 +4,8 @@ var station : Node2D
 var ui : HelmUI
 var scythe : Node2D
 
+@onready var cut_sound: AudioStreamPlayer2D = $CutSound
+
 var rotation_accel = 2
 var rotation_speed = 0
 var rotation_speed_rebound_threshold = 10
@@ -97,6 +99,7 @@ func use():
 func _on_scythe_blade_body_entered(body):
 	# TODO: Make this a little more safe, relying on layer for now
 	assert(body is WallPlantStalk)
+	cut_sound.play()
 	body.on_scythe_hit()
 
 func _on_rebound_area_left_body_entered(body):

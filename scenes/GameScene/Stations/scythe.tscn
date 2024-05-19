@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwx2jvgrx18uh"]
+[gd_scene load_steps=13 format=3 uid="uid://bwx2jvgrx18uh"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Stations/Scythe.gd" id="1_5p62b"]
 [ext_resource type="PackedScene" uid="uid://30roy3p4ivnh" path="res://scenes/UI/Stations/Helm/HelmUI.tscn" id="2_f5akm"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b3umyrshlcxdk" path="res://sfx/SUB_impact.ogg" id="4_d62as"]
 [ext_resource type="Texture2D" uid="uid://bf6unsmbb00xs" path="res://assets/sprites/stations/computerStation.png" id="5_eas85"]
 [ext_resource type="Texture2D" uid="uid://c0is2eejah3cu" path="res://assets/sprites/sawScythe-Sheet.png" id="5_k8yx2"]
+[ext_resource type="AudioStream" uid="uid://dfmgxtasdxjin" path="res://sfx/SCYTHE_cut.ogg" id="7_gs6fj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54cjv"]
 size = Vector2(20, 256)
@@ -130,6 +131,11 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_d62as")
+bus = &"Sfx"
+
+[node name="CutSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_gs6fj")
+volume_db = 15.23
 bus = &"Sfx"
 
 [connection signal="body_entered" from="ScytheCollision/ScytheBlade" to="." method="_on_scythe_blade_body_entered"]
