@@ -6,6 +6,7 @@ extends LoadableScene
 @onready var purchase_scythe_button : Button = $CanvasLayer/PurchaseScythe
 @onready var purchase_ascent_button : Button = $CanvasLayer/PurchaseAscent
 @onready var purchase_speed_button : Button = $CanvasLayer/PurchaseSpeed
+@onready var purchase_win_button : Button = $CanvasLayer/WinButton
 @onready var purchaseSFX : AudioStreamPlayer = $purchase_sfx
 @onready var purchaseFailSFX : AudioStreamPlayer = $purchase_fail_sfx
 
@@ -13,6 +14,7 @@ extends LoadableScene
 @export var scythe_price = 20
 @export var ascent_upgrade_price = 20
 @export var speed_upgrade_base_price = 10
+@export var win_base_price = 500
 var speed_upgrade_max = 5
 
 func _ready():
@@ -22,10 +24,14 @@ func _ready():
 	update_scythe_label()
 	update_ascent_label()
 	update_speed_label()
+	update_win_label()
 
 	load_complete.emit()
 
 func _process(delta):
+	if Input.is_action_just_pressed("exit"):
+		print("bye")
+		get_tree().quit()
 	if Input.is_action_just_pressed("test_button"): 
 		GameState.score = 999
 		update_score_label()
@@ -49,6 +55,9 @@ func update_speed_label():
 	else :
 		var current_price = speed_upgrade_base_price + (speed_upgrade_base_price * GameState.speed_upgrade)
 		purchase_speed_button.set_text("Speed Upgrade : %d$" % current_price)
+	
+func update_win_label():
+	purchase_win_button.set_text("Gobo's Immortal Soul: %d" % win_base_price) 
 
 func _on_start_level_button_pressed():
 	loader.load_scene("res://scenes/GameScene/GameScene.tscn")
@@ -102,3 +111,10 @@ func _on_purchase_speed_button_down():
 		
 		update_score_label()
 		purchaseSFX.play()
+
+func _on_purchase_win_button_down():
+	if GameState.score < win_base_price:
+		purchaseFailSFX.play()
+	else :
+		purchaseSFX.play()
+		loader.load_scene("res://scenes/WinScene/WinScene.tscn")

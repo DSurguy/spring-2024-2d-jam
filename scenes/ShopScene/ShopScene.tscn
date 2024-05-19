@@ -82,6 +82,13 @@ offset_right = 1027.0
 offset_bottom = 442.0
 text = "Current Money: X"
 
+[node name="WinButton" type="Button" parent="CanvasLayer"]
+offset_left = 746.0
+offset_top = 300.0
+offset_right = 1189.0
+offset_bottom = 332.0
+text = "Gobo's Immortal Soul: $"
+
 [node name="purchase_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ermvh")
 
@@ -93,3 +100,4 @@ stream = ExtResource("3_w50gc")
 [connection signal="button_down" from="CanvasLayer/PurchaseScythe" to="." method="_on_purchase_scythe_button_down"]
 [connection signal="button_down" from="CanvasLayer/PurchaseAscent" to="." method="_on_purchase_ascent_button_down"]
 [connection signal="button_down" from="CanvasLayer/PurchaseSpeed" to="." method="_on_purchase_speed_button_down"]
+[connection signal="button_down" from="CanvasLayer/WinButton" to="." method="_on_purchase_win_button_down"]

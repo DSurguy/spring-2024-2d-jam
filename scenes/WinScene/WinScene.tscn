@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3opyie8qan3"]
+
+[ext_resource type="Script" path="res://scenes/WinScene/WinScene.gd" id="1_8unqc"]
+[ext_resource type="Texture2D" uid="uid://b5trj3ci15qwf" path="res://assets/sprites/Sprite-0001.png" id="2_5vsvc"]
+
+[sub_resource type="Animation" id="Animation_40ooi"]
+resource_name = "dancing"
+length = 3.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DancingGobo/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 8, 9, 10, 11, 0, 1, 2, 3, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DancingGobo/Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ow362"]
+_data = {
+"dancing": SubResource("Animation_40ooi")
+}
+
+[sub_resource type="Animation" id="Animation_cuj6e"]
+resource_name = "Dancing"
+length = 3.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 8, 9, 10, 11, 0, 1, 2, 3, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rrgf"]
+_data = {
+"Dancing": SubResource("Animation_cuj6e")
+}
+
+[node name="WinScene" type="Node2D"]
+script = ExtResource("1_8unqc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 621.0
+offset_top = 262.0
+offset_right = 1296.0
+offset_bottom = 504.0
+theme_override_font_sizes/normal_font_size = 160
+text = "VICTORY"
+fit_content = true
+
+[node name="DancingGobo" type="Node2D" parent="."]
+position = Vector2(1400, 600)
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="DancingGobo"]
+texture = ExtResource("2_5vsvc")
+hframes = 4
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DancingGobo"]
+libraries = {
+"": SubResource("AnimationLibrary_ow362")
+}
+autoplay = "dancing"
+
+[node name="DancingGobo2" type="Node2D" parent="."]
+position = Vector2(400, 600)
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="DancingGobo2"]
+texture = ExtResource("2_5vsvc")
+flip_h = true
+hframes = 4
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DancingGobo2"]
+libraries = {
+"": SubResource("AnimationLibrary_4rrgf")
+}
+autoplay = "Dancing"
