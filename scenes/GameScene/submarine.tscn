@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
 [ext_resource type="PackedScene" uid="uid://bsym0ymicj3gw" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
-[ext_resource type="PackedScene" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
+[ext_resource type="PackedScene" uid="uid://cxta2ydmd1oka" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
 [ext_resource type="PackedScene" uid="uid://dhpkwwwvwguk5" path="res://scenes/GameScene/Stations/trawl.tscn" id="10_7jlvt"]
-[ext_resource type="PackedScene" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
+[ext_resource type="PackedScene" uid="uid://r0bdebyyubdw" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
 [ext_resource type="Texture2D" uid="uid://jplsvgwsidud" path="res://assets/sprites/sub.png" id="14_r2bkw"]
 
 [node name="Submarine" type="Node2D"]

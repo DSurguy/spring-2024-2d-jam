@@ -1,7 +1,6 @@
 class_name PlantDirector extends Node2D
 
 @export var submarine_node: Submarine
-@export var camera: Camera2D
 
 var generic_plant_data: PlantData = load("res://resources/plants/FloatingPlant.tres")
 var generic_plant_scene: PackedScene = load("res://scenes/GameScene/Plants/GenericPlant.tscn")
@@ -14,7 +13,7 @@ var random = RandomNumberGenerator.new()
 @export var wall_plant_first_spawn_time_seconds = 1
 @export var wall_plant_spawn_time_seconds = 15
 @export var wall_plant_seconds_since_last_spawn: float = 0
-@export var spawn_y_offset_mult = 15
+@export var spawn_y_offset_mult = 10
 @export var spawn_y_offset_const = 100
 @export var clump_radius = 100
 var floating_plant_has_done_first_spawn: bool = false
@@ -22,7 +21,6 @@ var wall_plant_has_done_first_spawn: bool = false
 
 func _ready():
 	assert(submarine_node != null, "submarine node is required")
-	assert(camera != null, "camera is required")
 
 func _process(delta):
 	if submarine_node.descending:
@@ -30,10 +28,10 @@ func _process(delta):
 
 func _handle_descent_process(delta):
 	# TODO: Actually make this garbage spawn off screen
-	var view_rect = get_viewport_rect().size * camera.zoom
-	var bottom = camera.get_screen_center_position().y + view_rect.y / 2
-	var spawn_y_position = bottom + spawn_y_offset_const + submarine_node.descent_speed * spawn_y_offset_mult
+	var spawn_y_position = submarine_node.position.y + spawn_y_offset_const + submarine_node.descent_speed * spawn_y_offset_mult
 	$Rays.position.y = spawn_y_position
+	$Rays/LeftRay.force_raycast_update()
+	$Rays/RightRay.force_raycast_update()
 	spawn_floating_plants(delta, spawn_y_position)
 	spawn_wall_plants(delta, spawn_y_position)
 
@@ -83,13 +81,28 @@ func spawn_wall_plants(delta: float, spawn_y_position: float):
 	var new_plant: WallPlant = wall_plant_scene.instantiate()
 	var left: bool = random.randi_range(0,1) == 1
 	if left:
-		var collider = $Rays/LeftRay.get_collider()
-		var collision_point = Vector2i($Rays/LeftRay.get_collision_point() + Vector2(2, 0))
-		new_plant.position = collision_point - Vector2i(collision_point.x % 32, collision_point.y % 32) + Vector2i(16, 16)
+		var tile_map: TileMap = $Rays/LeftRay.get_collider()
+		var collision_point = Vector2i($Rays/LeftRay.get_collision_point() + Vector2(-2, 0))
+		var local_point = self.to_local(collision_point)
+		var tilemap_point = tile_map.local_to_map(local_point)
+		var tile = tile_map.get_cell_tile_data(0, tilemap_point)
+		var can_spawn_wall_plant = tile.get_custom_data("can_spawn_wall_plant")
+		if can_spawn_wall_plant:
+			new_plant.position = collision_point - Vector2i(-2, 0) - Vector2i(collision_point.x % 32, collision_point.y % 32) + Vector2i(16, 16)
+		else: return
 	else:
-		var collider = $Rays/RightRay.get_collider()
-		var collision_point = Vector2i($Rays/RightRay.get_collision_point() + Vector2(-2, 0))
-		new_plant.position = collision_point - Vector2i(collision_point.x % 32, collision_point.y % 32) + Vector2i(16, 16)
-		new_plant.face_left = true
+		# TODO: Make this not die on 13, 39 on the tileset, why does it collide - please
+		var tile_map = $Rays/RightRay.get_collider()
+		var original_collision_point = $Rays/RightRay.get_collision_point()
+		var collision_point = Vector2(original_collision_point + Vector2(2, 0))
+		var local_point = self.to_local(collision_point)
+		var tilemap_point = tile_map.local_to_map(local_point)
+		var tile = tile_map.get_cell_tile_data(0, tilemap_point)
+		var can_spawn_wall_plant = tile.get_custom_data("can_spawn_wall_plant")
+		if can_spawn_wall_plant:
+			var int_collision_point = Vector2i(collision_point)
+			new_plant.position = int_collision_point - Vector2i(32, 0) - Vector2i(int_collision_point.x % 32, int_collision_point.y % 32) + Vector2i(16, 16)
+			new_plant.face_left = true
+		else: return
 	
 	add_child(new_plant)
