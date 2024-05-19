@@ -32,7 +32,7 @@ func _on_increase_oxygen_button_pressed():
 		return
 	
 	GameState.max_oxygen += 10
-	GameState.score -= 100
+	GameState.score -= oxygen_price
 	update_oxygen_label()
 	update_score_lable()
 	purchaseSFX.play()
