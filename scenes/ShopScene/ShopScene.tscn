@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciy5kjl5o8mjp"]
+[gd_scene load_steps=4 format=3 uid="uid://ciy5kjl5o8mjp"]
 
 [ext_resource type="Script" path="res://scenes/ShopScene/ShopScene.gd" id="1_toyhn"]
+[ext_resource type="AudioStream" uid="uid://ml7woovxcfp3" path="res://sfx/purchase.wav" id="2_ermvh"]
+[ext_resource type="AudioStream" uid="uid://ig4wg7btu2in" path="res://sfx/purchase_fail.wav" id="3_w50gc"]
 
 [node name="ShopScene" type="Node2D"]
 script = ExtResource("1_toyhn")
@@ -27,13 +29,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -80.0
-offset_right = 45.0
-offset_bottom = -49.0
+offset_left = -162.0
+offset_top = -132.0
+offset_right = -26.0
+offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Increase Oxygen"
+text = "Increase Oxygen: 100$"
+alignment = 0
 
 [node name="OxygenLabel" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
@@ -41,13 +44,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -47.0
-offset_right = 18.0
-offset_bottom = -24.0
+offset_left = 17.0
+offset_top = -129.0
+offset_right = 158.0
+offset_bottom = -106.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Current Oxygen: X"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 892.0
+offset_top = 360.0
+offset_right = 1027.0
+offset_bottom = 383.0
+text = "Current Money: X"
+
+[node name="purchase_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ermvh")
+
+[node name="purchase_fail_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_w50gc")
 
 [connection signal="pressed" from="CanvasLayer/StartLevelButton" to="." method="_on_start_level_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/IncreaseOxygenButton" to="." method="_on_increase_oxygen_button_pressed"]
