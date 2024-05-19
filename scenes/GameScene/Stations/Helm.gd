@@ -20,7 +20,7 @@ func _process(delta):
 			button_audio.play()
 		
 		var direction = Input.get_axis("move_left", "move_right")
-		sub.directionX = direction
+		sub.helm_direction = Vector2(direction, 0)
 		
 		if direction:
 			engine_audio.start()
@@ -38,7 +38,7 @@ func activate():
 	
 func deactivate():
 	print("helm deactivated")
-	sub.directionX = 0
+	sub.helm_direction = Vector2.ZERO
 	engine_audio.stop()
 	ui.visible = false
 	

@@ -28,7 +28,7 @@ func _process(delta):
 
 func _handle_descent_process(delta):
 	# TODO: Actually make this garbage spawn off screen
-	var spawn_y_position = submarine_node.position.y + spawn_y_offset_const + submarine_node.descent_speed * spawn_y_offset_mult
+	var spawn_y_position = submarine_node.position.y + spawn_y_offset_const + submarine_node.velocity.y * spawn_y_offset_mult
 	$Rays.position.y = spawn_y_position
 	$Rays/LeftRay.force_raycast_update()
 	$Rays/RightRay.force_raycast_update()

@@ -2,21 +2,68 @@
 
 [ext_resource type="Script" path="res://scenes/GameScene/Submarine.gd" id="1_0ojk1"]
 [ext_resource type="PackedScene" uid="uid://bvg3k0vq6qxxn" path="res://scenes/GameScene/player.tscn" id="2_7br66"]
-[ext_resource type="PackedScene" uid="uid://o1a2g3k6pytn" path="res://scenes/GameScene/hull.tscn" id="3_jwyqe"]
-[ext_resource type="TileSet" uid="uid://ysb2iug31w84" path="res://assets/resources/hull_temp_tilemap.tres" id="3_xjmhw"]
 [ext_resource type="PackedScene" uid="uid://cx532280ahds" path="res://scenes/GameScene/Stations/helm.tscn" id="4_j4e8l"]
-[ext_resource type="PackedScene" uid="uid://2rgbohrumi7m" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/Music.tscn" id="4_yekdg"]
 [ext_resource type="PackedScene" uid="uid://dk2uw3lvlbwaq" path="res://scenes/GameScene/Stations/ascend.tscn" id="5_qpvru"]
 [ext_resource type="PackedScene" path="res://scenes/Audio/ButtonAudio.tscn" id="5_ystk1"]
 [ext_resource type="PackedScene" uid="uid://bwx2jvgrx18uh" path="res://scenes/GameScene/Stations/scythe.tscn" id="6_8gp6i"]
-[ext_resource type="PackedScene" uid="uid://bsym0ymicj3gw" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
-[ext_resource type="PackedScene" uid="uid://cxta2ydmd1oka" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
+[ext_resource type="PackedScene" uid="uid://crlshnis8tvt4" path="res://scenes/GameScene/Oxygen.tscn" id="6_lobel"]
+[ext_resource type="PackedScene" path="res://scenes/Audio/AscentAudio.tscn" id="8_80dgj"]
 [ext_resource type="PackedScene" uid="uid://dhpkwwwvwguk5" path="res://scenes/GameScene/Stations/trawl.tscn" id="10_7jlvt"]
-[ext_resource type="PackedScene" uid="uid://r0bdebyyubdw" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
+[ext_resource type="PackedScene" uid="uid://h5ihk2q0q8qd" path="res://scenes/Audio/SubBonkAudio.tscn" id="11_yt1va"]
 [ext_resource type="Texture2D" uid="uid://jplsvgwsidud" path="res://assets/sprites/sub.png" id="14_r2bkw"]
 
-[node name="Submarine" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26upc"]
+size = Vector2(448, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cx8th"]
+size = Vector2(27, 131)
+
+[node name="Submarine" type="RigidBody2D"]
+collision_layer = 136
+collision_mask = 128
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 2.0
 script = ExtResource("1_0ojk1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-192, -96, 192, -96, 224, -64, 224, 65, 193, 96, -193, 96, -224, 64, -224, -65)
+
+[node name="Hull" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hull"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Floor" type="CollisionShape2D" parent="Hull/StaticBody2D"]
+position = Vector2(0, 78)
+shape = SubResource("RectangleShape2D_26upc")
+
+[node name="Ceiling" type="CollisionShape2D" parent="Hull/StaticBody2D"]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_26upc")
+
+[node name="WallLeft" type="CollisionShape2D" parent="Hull/StaticBody2D"]
+position = Vector2(-210.5, -4)
+shape = SubResource("RectangleShape2D_cx8th")
+
+[node name="WallRight" type="CollisionShape2D" parent="Hull/StaticBody2D"]
+position = Vector2(210, -4)
+shape = SubResource("RectangleShape2D_cx8th")
+
+[node name="ButtonAudio" parent="." instance=ExtResource("5_ystk1")]
+
+[node name="Oxygen" parent="." instance=ExtResource("6_lobel")]
+
+[node name="SubBonkAudio" parent="." instance=ExtResource("11_yt1va")]
+
+[node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
+
+[node name="DeathRestartTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Music" parent="." instance=ExtResource("4_yekdg")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -46,14 +93,6 @@ position = Vector2(96, 32)
 [node name="Player" parent="." instance=ExtResource("2_7br66")]
 z_index = 15
 
-[node name="Sprite" type="TileMap" parent="."]
-tile_set = ExtResource("3_xjmhw")
-rendering_quadrant_size = 32
-format = 2
-layer_0/tile_data = PackedInt32Array(196602, 65536, 1, 196603, 65536, 1, 196604, 65536, 1, 196605, 65536, 1, 196606, 65536, 1, 196607, 65536, 1, 131072, 65536, 1, 131073, 65536, 1, 131074, 65536, 1, 131075, 65536, 1, 131076, 65536, 1, 131077, 65536, 1, 65542, 65536, 1, 6, 65536, 1, -65530, 65536, 1, -131066, 65536, 1, -196603, 65536, 1, -196604, 65536, 1, -196605, 65536, 1, -196606, 65536, 1, -196607, 65536, 1, -196608, 65536, 1, -131073, 65536, 1, -131074, 65536, 1, -131075, 65536, 1, -131076, 65536, 1, -131077, 65536, 1, -131078, 65536, 1, -65543, 65536, 1, -7, 65536, 1, 65529, 65536, 1, 131065, 65536, 1, -196602, 131072, 0, -131079, 0, 0, 196601, 0, 2, 131078, 131072, 2)
-
-[node name="Hull_Collider" parent="." instance=ExtResource("3_jwyqe")]
-
 [node name="raycast_right" type="RayCast2D" parent="."]
 position = Vector2(192, 97)
 target_position = Vector2(32, 0)
@@ -61,22 +100,6 @@ target_position = Vector2(32, 0)
 [node name="raycast_left" type="RayCast2D" parent="."]
 position = Vector2(-192, 97)
 target_position = Vector2(-32, 0)
-
-[node name="ButtonAudio" parent="." instance=ExtResource("5_ystk1")]
-
-[node name="Oxygen" parent="." instance=ExtResource("6_lobel")]
-
-[node name="Stations2" type="Node2D" parent="."]
-position = Vector2(0, 12)
-
-[node name="SubBonkAudio" parent="." instance=ExtResource("11_yt1va")]
-
-[node name="AscentAudio" parent="." instance=ExtResource("8_80dgj")]
-
-[node name="DeathRestartTimer" type="Timer" parent="."]
-wait_time = 3.0
-
-[node name="Music" parent="." instance=ExtResource("4_yekdg")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 5
