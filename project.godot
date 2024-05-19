@@ -118,6 +118,7 @@ test_button={
 2d_physics/layer_5="Scythe"
 2d_physics/layer_8="Environment"
 2d_physics/layer_9="Consumption"
+2d_physics/layer_10="Anchors"
 2d_physics/layer_15="PlantDirector"
 2d_physics/layer_16="Plant + Environment"
 
