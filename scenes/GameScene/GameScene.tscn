@@ -56,7 +56,7 @@ attach_from = NodePath("../Submarine")
 attach_to = NodePath("../MockWinch")
 
 [node name="MockWinch" type="Node2D" parent="."]
-position = Vector2(0, -500)
+position = Vector2(0, -800)
 
 [node name="Submarine" parent="." instance=ExtResource("3_hsa6m")]
 
