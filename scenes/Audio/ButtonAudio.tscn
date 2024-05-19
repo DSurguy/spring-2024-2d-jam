@@ -8,5 +8,5 @@ script = ExtResource("1_mnjq0")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_60hnr")
-max_polyphony = 3
+max_polyphony = 6
 bus = &"Sfx"

@@ -9,7 +9,8 @@ var bubble_emitter: PackedScene = load("res://scenes/particles/BubbleEmitter.tsc
 @onready var anchor_right:RigidBody2D = $AnchorRight
 @onready var net:CollisionPolygon2D = $Net/CollisionPolygon2D
 @onready var collection:Node2D = $Collection
-@onready var grab_sound: AudioStreamPlayer2D = $AudioPlayer
+@onready var grab_sound: AudioStreamPlayer2D = $PlantGrabSound
+@onready var button_sound: ButtonAudio = $ButtonAudio
 
 var anchor_gravity_scale = 0.05
 var anchor_move_force = 1000
@@ -44,9 +45,14 @@ func _ready():
 	anchor_left_origin = anchor_left.position
 	anchor_right_origin = anchor_right.position
 
+func _any_input_just_pressed() -> bool:
+	return Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("aim_left")  or Input.is_action_just_pressed("aim_right") or Input.is_action_just_pressed("aim_up")  or Input.is_action_just_pressed("aim_down") 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if station.active:
+		if _any_input_just_pressed():
+			button_sound.play()
 		var left_anchor_direction : Vector2 = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
 		#print("left: %s" % left_anchor_direction)
 		var right_anchor_direction : Vector2 = Vector2(Input.get_axis("aim_left", "aim_right"), Input.get_axis("aim_up", "aim_down"))
@@ -152,7 +158,11 @@ func use():
 
 func _on_net_area_entered(area:Area2D):
 	var plant:GenericPlant = area.get_parent()
-	grab_sound.position = area.global_position
+	# Sometimes bug, so we null guard
+	if area.global_position:
+		grab_sound.position = area.global_position
+	else:
+		grab_sound.position = global_position
 	grab_sound.play()
 	if plant.get_parent().name == "Collection":
 		return
