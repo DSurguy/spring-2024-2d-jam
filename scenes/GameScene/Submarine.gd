@@ -62,7 +62,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	if helm_direction.length() > 0:
-		apply_central_force(helm_direction * lateral_move_force)
+		apply_central_force(helm_direction * lateral_move_force * mass)
 	
 	var move_force = 0
 	if descending:
@@ -70,7 +70,7 @@ func _physics_process(delta):
 	elif ascending:
 		move_force = ascent_force
 	
-	apply_central_force(Vector2.DOWN * move_force)
+	apply_central_force(Vector2.DOWN * move_force * mass)
 	
 	var camera = get_parent().get_node("Camera2D")
 	camera.position.y = position.y
